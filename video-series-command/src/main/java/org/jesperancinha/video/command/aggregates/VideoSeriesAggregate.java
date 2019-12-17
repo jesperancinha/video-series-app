@@ -1,15 +1,15 @@
 package org.jesperancinha.video.command.aggregates;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.jesperancinha.video.command.commands.AddSeriesCommand;
+import org.jesperancinha.video.command.commands.AddVideoSeriesCommand;
 import org.jesperancinha.video.core.events.AddSeriesEvent;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
@@ -17,21 +17,14 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 @Slf4j
 @NoArgsConstructor
 @Aggregate
-public class SeriesAggregate {
+@Data
+public class VideoSeriesAggregate {
 
     @AggregateIdentifier
     private String id;
 
-    private String name;
-
-    private Integer volumes;
-
-    private BigDecimal cashValue;
-
-    private String genre;
-
     @CommandHandler
-    public SeriesAggregate(AddSeriesCommand command) {
+    public VideoSeriesAggregate(AddVideoSeriesCommand command) {
         apply(AddSeriesEvent.builder()
                 .id(UUID.randomUUID().toString())
                 .cashValue(command.getCashValue())
@@ -45,6 +38,5 @@ public class SeriesAggregate {
     public void on(AddSeriesEvent event) {
         this.id = event.getId();
     }
-
 
 }

@@ -1,7 +1,7 @@
 package org.jesperancinha.video.command.rest;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.jesperancinha.video.command.commands.AddSeriesCommand;
+import org.jesperancinha.video.command.commands.AddVideoSeriesCommand;
 import org.jesperancinha.video.core.data.VideoSeriesDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +21,7 @@ public class VideoSeriesController {
     @PostMapping
     public void postNewVideoSeries(@RequestBody VideoSeriesDto videoSeriesDto) {
         commandGateway.send(
-                AddSeriesCommand.builder()
+                AddVideoSeriesCommand.builder()
                         .name(videoSeriesDto.getName())
                         .volumes(videoSeriesDto.getVolumes())
                         .genre(videoSeriesDto.getGenre())

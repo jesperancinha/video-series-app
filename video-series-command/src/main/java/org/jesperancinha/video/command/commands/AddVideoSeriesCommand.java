@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Builder
 @EqualsAndHashCode
 @ToString
-public class AddSeriesCommand {
+public class AddVideoSeriesCommand {
 
     @TargetAggregateIdentifier
     private String id;

@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jesperancinha.video</groupId>
+    <artifactId>video-series-app</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <modules>
+        <module>video-series-command</module>
+        <module>video-series-query</module>
+        <module>video-series-core</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>13</java.version>
+        <h2.version>1.4.200</h2.version>
+        <lombok.version>1.18.10</lombok.version>
+        <spring-tx.version>5.2.2.RELEASE</spring-tx.version>
+        <assertj-core.version>3.13.2</assertj-core.version>
+        <mockito-all.version>1.10.19</mockito-all.version>
+        <junit-jupiter.version>5.5.2</junit-jupiter.version>
+        <mockito-junit-jupiter.version>3.1.0</mockito-junit-jupiter.version>
+        <axon.version>4.2</axon.version>
+        <axon-eventsourcing.version>4.2.1</axon-eventsourcing.version>
+        <axon-mongo.version>4.0-M2</axon-mongo.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Inner dependencies -->
+            <dependency>
+                <groupId>org.jesperancinha.video</groupId>
+                <artifactId>video-series-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- External Dependencies -->
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring-tx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.axonframework</groupId>
+                <artifactId>axon-spring-boot-starter</artifactId>
+                <version>${axon.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.axonframework</groupId>
+                        <artifactId>axon-server-connector</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.axonframework</groupId>
+                <artifactId>axon-amqp</artifactId>
+                <version>${axon.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.axonframework</groupId>
+                <artifactId>axon-mongo</artifactId>
+                <version>${axon-mongo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
+
+            <!-- Test dependencies -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito-all.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito-junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

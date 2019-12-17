@@ -20,15 +20,18 @@
     <packaging>pom</packaging>
 
     <properties>
+        <!-- External Dependency Versions -->
         <java.version>13</java.version>
         <h2.version>1.4.200</h2.version>
         <lombok.version>1.18.10</lombok.version>
         <spring-tx.version>5.2.2.RELEASE</spring-tx.version>
+        <axon.version>4.2</axon.version>
+        <!-- Test Dependency Versions -->
         <assertj-core.version>3.13.2</assertj-core.version>
         <mockito-all.version>1.10.19</mockito-all.version>
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <mockito-junit-jupiter.version>3.1.0</mockito-junit-jupiter.version>
-        <axon.version>4.2</axon.version>
+        <de.flapdoodle.embed.mongo.version>2.2.0</de.flapdoodle.embed.mongo.version>
     </properties>
 
     <dependencyManagement>
@@ -103,6 +106,13 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>de.flapdoodle.embed</groupId>
+                <artifactId>de.flapdoodle.embed.mongo</artifactId>
+                <version>${de.flapdoodle.embed.mongo.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

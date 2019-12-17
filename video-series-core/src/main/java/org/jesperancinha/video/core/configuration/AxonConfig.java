@@ -1,4 +1,4 @@
-package org.jesperancinha.video.query.configuration;
+package org.jesperancinha.video.core.configuration;
 
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
@@ -21,19 +21,14 @@ import java.util.Collections;
 @Configuration
 public class AxonConfig {
 
-    @Value("${mongo.host:127.0.0.1}")
+    @Value("${spring.data.mongodb.host:127.0.0.1}")
     private String mongoHost;
 
-    @Value("${mongo.port:27017}")
+    @Value("${spring.data.mongodb.port:27017}")
     private int mongoPort;
 
-    @Value("${mongo.db:test}")
-    private String mongoDB;
-//
-//    @Bean
-//    public MongoSagaStore sagaStore() {
-//        return MongoSagaStore.builder().mongoTemplate(axonMongoTemplate()).build();
-//    }
+    @Value("${spring.data.mongodb.database:test}")
+    private String mongoDatabase;
 
     @Bean
     public TokenStore tokenStore(Serializer serializer) {
@@ -47,16 +42,8 @@ public class AxonConfig {
 
     @Bean
     public MongoTemplate axonMongoTemplate() {
-        return DefaultMongoTemplate.builder().mongoDatabase(mongo()).domainEventsCollectionName(mongoDB).build();
+        return DefaultMongoTemplate.builder().mongoDatabase(mongo(), mongoDatabase).build();
     }
-//
-//    @Bean
-//    public Configurer configurer() {
-//        return DefaultConfigurer.defaultConfiguration()
-//                .configureEmbeddedEventStore(
-//                        c -> MongoEventStorageEngine.builder().mongoTemplate(axonMongoTemplate()).build()
-//                );
-//    }
 
     @Bean
     public MongoClient mongo() {

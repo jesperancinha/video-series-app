@@ -5,7 +5,6 @@ import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.jesperancinha.video.core.data.VideoSeriesDto;
 import org.jesperancinha.video.core.events.AddSeriesEvent;
-import org.jesperancinha.video.core.events.ConfirmSeriesEvent;
 import org.jesperancinha.video.query.commands.FindAllVideoSeriesCommand;
 import org.jesperancinha.video.query.data.VideoSeries;
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository;
@@ -34,12 +33,6 @@ public class VideoSeriesEventHandler {
                 .cashValue(event.getCashValue())
                 .build());
     }
-
-    @EventHandler
-    public void on(ConfirmSeriesEvent event) {
-        System.out.println("Confirm");
-    }
-
 
     @QueryHandler
     public List<VideoSeriesDto> handle(FindAllVideoSeriesCommand query) {

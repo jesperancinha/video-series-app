@@ -35,26 +35,7 @@
 
         <dependency>
             <groupId>org.axonframework</groupId>
-            <artifactId>axon-configuration</artifactId>
-            <version>4.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
-            <version>4.2</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.axonframework</groupId>
-                    <artifactId>axon-server-connector</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.axonframework.extensions.mongo</groupId>
-            <artifactId>axon-mongo</artifactId>
-            <version>4.2</version>
         </dependency>
 
         <dependency>

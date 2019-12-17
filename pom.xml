@@ -29,8 +29,6 @@
         <junit-jupiter.version>5.5.2</junit-jupiter.version>
         <mockito-junit-jupiter.version>3.1.0</mockito-junit-jupiter.version>
         <axon.version>4.2</axon.version>
-        <axon-eventsourcing.version>4.2.1</axon-eventsourcing.version>
-        <axon-mongo.version>4.0-M2</axon-mongo.version>
     </properties>
 
     <dependencyManagement>
@@ -64,12 +62,6 @@
                         <artifactId>axon-server-connector</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.axonframework</groupId>
-                <artifactId>axon-amqp</artifactId>
-                <version>${axon.version}</version>
             </dependency>
 
             <dependency>

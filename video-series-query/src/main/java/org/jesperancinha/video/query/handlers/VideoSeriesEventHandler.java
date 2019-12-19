@@ -5,7 +5,7 @@ import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.jesperancinha.video.core.data.VideoSeriesDto;
 import org.jesperancinha.video.core.events.AddSeriesEvent;
-import org.jesperancinha.video.query.commands.FindAllVideoSeriesCommand;
+import org.jesperancinha.video.query.queries.FindAllVideoSeriesQuery;
 import org.jesperancinha.video.query.data.VideoSeries;
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class VideoSeriesEventHandler {
     }
 
     @QueryHandler
-    public List<VideoSeriesDto> handle(FindAllVideoSeriesCommand query) {
+    public List<VideoSeriesDto> handle(FindAllVideoSeriesQuery query) {
         return videoSeriesRepository.findAll().stream().map(
                 videoSeries -> VideoSeriesDto.builder()
                         .name(videoSeries.getName())

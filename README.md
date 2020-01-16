@@ -1,4 +1,5 @@
 # Video Series App
+![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/video-series-app/master)
 
 This is an example project to to offer you a very simple example of a CQRS architecture.
 

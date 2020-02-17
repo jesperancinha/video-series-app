@@ -3,6 +3,10 @@
 
 This is an example project to to offer you a very simple example of a CQRS architecture.
 
+This project is also the official support project of my article on medium:
+
+[CQRS — Command Query Responsibility Segregation](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
+
 ## Installation notes
 
 ### Install Mongo

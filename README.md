@@ -31,7 +31,7 @@ brew services start mongodb-community@4.2
 -   [Object-Oriented Software Construction by Bertrand Meyer](https://www.amazon.com/gp/product/0136291554?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0136291554)
 -   [CQRS Journey by Microsoft](https://docs.microsoft.com/en-gb/previous-versions/msp-n-p/jj554200%28v%3Dpandp.10%29)
 
-## About me 👨🏽‍💻🚀
+## About me 👨🏽‍💻🚀🏳️‍🌈
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)
 [![Twitter Follow](https://img.shields.io/twitter/follow/joaofse?label=João%20Esperancinha&style=social "Twitter")](https://twitter.com/joaofse)

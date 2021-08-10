@@ -2,7 +2,7 @@
 
 [![Generic badge](https://img.shields.io/static/v1.svg?label=GitLab&message=Video%20Series%20Apps&color=informational)](https://gitlab.com/jesperancinha/video-series-app)
 [![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=Checkout%20this%20%40gitlab%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//gitlab.com/jesperancinha/video-series-app)
-![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/video-series-app/master)
+[![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/video-series-app/master)](https://gitlab.com/jesperancinha/video-series-app/-/pipelines)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/video-series-app&amp;utm_campaign=Badge_Grade)
 

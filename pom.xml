@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.2</version>
+        <version>2.5.3</version>
         <relativePath/>
     </parent>
 
@@ -25,7 +25,7 @@
         <h2.version>1.4.200</h2.version>
         <lombok.version>1.18.20</lombok.version>
         <spring-tx.version>5.2.2.RELEASE</spring-tx.version>
-        <axon.version>4.2</axon.version>
+        <axon.version>4.5.3</axon.version>
         <!-- Test Dependency Versions -->
         <assertj-core.version>3.13.2</assertj-core.version>
         <mockito-all.version>1.10.19</mockito-all.version>

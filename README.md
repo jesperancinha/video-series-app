@@ -3,7 +3,8 @@
 [![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=Checkout%20this%20%40gitlab%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//gitlab.com/jesperancinha/video-series-app)
 ![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/video-series-app/master)
 
-
+[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/video-series-app/badge.svg?branch=master)](https://coveralls.io/gitlab/jesperancinha/video-series-app?branch=master)
+[![codecov](https://codecov.io/gl/jesperancinha/video-series-app/branch/\x6d6173746572/graph/badge.svg?token=XTM3IUB721)](https://codecov.io/gl/jesperancinha/video-series-app)
 
 This is an example project to to offer you a very simple example of a CQRS architecture.
 
@@ -26,23 +27,23 @@ brew services start mongodb-community@4.2
 
 ## Roadmap to revision 2.0.0
 
-- Migration to JDK 16
-- Upgrade to latest Axon libraries
-- Open issues - [Why H2 and UUID's explanation - Issue 1](https://gitlab.com/jesperancinha/video-series-app/-/issues/1)
-- Kotest
-- Mockk
-- Coverage
+-   Migration to JDK 16
+-   Upgrade to latest Axon libraries
+-   Open issues - [Why H2 and UUID's explanation - Issue 1](https://gitlab.com/jesperancinha/video-series-app/-/issues/1)
+-   Kotest
+-   Mockk
+-   Coverage
 
 ## References
 
-- [Mongo Axon Reference Guide](https://docs.axoniq.io/reference-guide/extensions/mongo)
-- [CQRS Microservice Sampler by Ben Wilcock on GitHub](https://github.com/benwilcock/cqrs-microservice-sampler)
-- [Patrick Gillespie's Text to Ascii Art Generator](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
-- [Microservices With Spring Boot, Axon CQRS/ES, and Docker by Ben Wilcock](https://dzone.com/articles/microservices-with-spring-boot-axon-cqrses-anddock)
-- [Advanced Message Queuing Protocol](https://www.amqp.org/)
-- [Install MongoDB on Mac OS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-- [Object-Oriented Software Construction by Bertrand Meyer](https://www.amazon.com/gp/product/0136291554?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0136291554)
-- [CQRS Journey by Microsoft](https://docs.microsoft.com/en-gb/previous-versions/msp-n-p/jj554200%28v%3Dpandp.10%29)
+-   [Mongo Axon Reference Guide](https://docs.axoniq.io/reference-guide/extensions/mongo)
+-   [CQRS Microservice Sampler by Ben Wilcock on GitHub](https://github.com/benwilcock/cqrs-microservice-sampler)
+-   [Patrick Gillespie's Text to Ascii Art Generator](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
+-   [Microservices With Spring Boot, Axon CQRS/ES, and Docker by Ben Wilcock](https://dzone.com/articles/microservices-with-spring-boot-axon-cqrses-anddock)
+-   [Advanced Message Queuing Protocol](https://www.amqp.org/)
+-   [Install MongoDB on Mac OS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+-   [Object-Oriented Software Construction by Bertrand Meyer](https://www.amazon.com/gp/product/0136291554?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0136291554)
+-   [CQRS Journey by Microsoft](https://docs.microsoft.com/en-gb/previous-versions/msp-n-p/jj554200%28v%3Dpandp.10%29)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

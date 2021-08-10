@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import org.jesperancinha.video.core.data.Genre;
 
 import java.math.BigDecimal;
 
@@ -23,6 +24,6 @@ public class AddVideoSeriesCommand {
 
     private BigDecimal cashValue;
 
-    private String genre;
+    private Genre genre;
 
 }

@@ -1,22 +1,18 @@
 package org.jesperancinha.video.core.events;
 
 import lombok.Builder;
-import lombok.Data;
+import org.jesperancinha.video.core.data.Genre;
 
 import java.math.BigDecimal;
 
-@Data
-@Builder
-public class AddSeriesEvent {
-
-    private String id;
-
-    private String name;
-
-    private Integer volumes;
-
-    private BigDecimal cashValue;
-
-    private String genre;
-
+public record AddSeriesEvent(
+        String id,
+        String name,
+        Integer volumes,
+        BigDecimal cashValue,
+        Genre genre
+) {
+    @Builder
+    public AddSeriesEvent {
+    }
 }

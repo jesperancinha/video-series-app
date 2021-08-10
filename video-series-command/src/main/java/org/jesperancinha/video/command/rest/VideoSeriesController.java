@@ -19,13 +19,15 @@ public class VideoSeriesController {
     }
 
     @PostMapping
-    public void postNewVideoSeries(@RequestBody VideoSeriesDto videoSeriesDto) {
+    public void postNewVideoSeries(
+            @RequestBody
+                    VideoSeriesDto videoSeriesDto) {
         commandGateway.send(
                 AddVideoSeriesCommand.builder()
-                        .name(videoSeriesDto.getName())
-                        .volumes(videoSeriesDto.getVolumes())
-                        .genre(videoSeriesDto.getGenre())
-                        .cashValue(videoSeriesDto.getCashValue())
+                        .name(videoSeriesDto.name())
+                        .volumes(videoSeriesDto.volumes())
+                        .genre(videoSeriesDto.genre())
+                        .cashValue(videoSeriesDto.cashValue())
                         .build());
     }
 }

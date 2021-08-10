@@ -20,13 +20,13 @@
         <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
-            <version>4.5.3</version>
+            <version>${axon-spring-boot-starter.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.axonframework.extensions.mongo</groupId>
             <artifactId>axon-mongo</artifactId>
-            <version>4.4</version>
+            <version>${axon-mongo.version}</version>
         </dependency>
 
         <dependency>

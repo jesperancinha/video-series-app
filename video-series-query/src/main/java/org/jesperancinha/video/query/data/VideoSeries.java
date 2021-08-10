@@ -5,9 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jesperancinha.video.core.data.Genre;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -38,5 +41,6 @@ public class VideoSeries {
     private BigDecimal cashValue;
 
     @Column
-    private String genre;
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
 }

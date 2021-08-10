@@ -15,8 +15,11 @@ import java.util.List;
 @RequestMapping("/video-series")
 public class VideoSeriesController {
 
-    @Autowired
-    private QueryGateway queryGateway;
+    private final QueryGateway queryGateway;
+
+    public VideoSeriesController(QueryGateway queryGateway) {
+        this.queryGateway = queryGateway;
+    }
 
     @GetMapping
     public List<VideoSeriesDto> gertAllVideoSeries() {

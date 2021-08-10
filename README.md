@@ -29,12 +29,13 @@ brew services start mongodb-community@4.2
 
 ## Roadmap to revision 2.0.0
 
--   Migration to JDK 16
--   Upgrade to latest Axon libraries
--   Open issues - [Why H2 and UUID's explanation - Issue 1](https://gitlab.com/jesperancinha/video-series-app/-/issues/1)
--   Kotest
--   Mockk
--   Coverage
+- Migration to JDK 16
+- Upgrade to latest Axon libraries
+- Open issues - [Why H2 and UUID's explanation - Issue 1](https://gitlab.com/jesperancinha/video-series-app/-/issues/1)
+- Kotest
+- Mockk
+- Coverage
+- Mongo in Ubuntu and Windows
 
 ## References
 

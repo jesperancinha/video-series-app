@@ -4,11 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.listeners.TestListener
 import io.kotest.core.spec.style.WordSpec
-import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import io.kotest.spring.SpringListener
+import io.mockk.Called
 import io.mockk.slot
 import io.mockk.verify
 import org.axonframework.commandhandling.gateway.CommandGateway
@@ -29,7 +28,7 @@ import java.math.BigDecimal
 @MockkBean(CommandGateway::class)
 class VideoSeriesControllerTest(
     @Autowired
-    private val mvc: MockMvc
+    private val mvc: MockMvc,
 ) : WordSpec() {
 
     private val objectMapper = ObjectMapper()
@@ -50,16 +49,20 @@ class VideoSeriesControllerTest(
             "should send a video title" {
                 val slotFilm = slot<AddVideoSeriesCommand>()
                 val film = VideoSeriesDto.builder()
-                    .name("Silence of the Lambsd")
+                    .name("Silence of the Lambs")
                     .cashValue(BigDecimal.valueOf(1_000_000))
                     .genre(Genre.HORROR)
                     .build()
-                mvc.perform(post("/video-series")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(film)))
-                    .andExpect(status().isOk)
+                with(mvc) {
+                    perform(post("/video-series")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(film)))
+                        .andExpect(status().isOk)
+                }
 
                 verify { commandGateway.send<AddVideoSeriesCommand>(capture(slotFilm)) }
+                verify { tokenStore wasNot Called }
+                verify { eventStorageEngine wasNot Called }
 
                 val captured = slotFilm.captured
                 captured.shouldNotBeNull()

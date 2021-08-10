@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Import;
 @Import(AxonConfig.class)
 public class VideoAppCommandLauncher {
     public static void main(String[] args) {
-            SpringApplication.run(VideoAppCommandLauncher.class);
-        }
+        SpringApplication.run(VideoAppCommandLauncher.class);
+    }
 }

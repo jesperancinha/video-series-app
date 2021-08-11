@@ -28,26 +28,40 @@ brew install mongodb-community@4.2
 brew services start mongodb-community@4.2
 ```
 
+## Docker helper commands
+
+```shell
+docker system prune --all
+```
+
+## Analysis commands
+
+```shell
+sudo lsof -i :5432
+```
+
 ## Roadmap to revision 2.0.0
 
--   Migration to JDK 16
--   Upgrade to latest Axon libraries
--   Open issues - [Why H2 and UUID's explanation - Issue 1](https://gitlab.com/jesperancinha/video-series-app/-/issues/1)
--   Kotest
--   Mockk
--   Coverage
--   Mongo in Ubuntu and Windows
+- Dockerize project
+- Migration to JDK 16
+- Upgrade to latest Axon libraries
+- Open issues - [Why H2 and UUID's explanation - Issue 1](https://gitlab.com/jesperancinha/video-series-app/-/issues/1)
+- Kotest
+- Mockk
+- Coverage
+- Mongo in Ubuntu and Windows
 
 ## References
 
--   [Mongo Axon Reference Guide](https://docs.axoniq.io/reference-guide/extensions/mongo)
--   [CQRS Microservice Sampler by Ben Wilcock on GitHub](https://github.com/benwilcock/cqrs-microservice-sampler)
--   [Patrick Gillespie's Text to Ascii Art Generator](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
--   [Microservices With Spring Boot, Axon CQRS/ES, and Docker by Ben Wilcock](https://dzone.com/articles/microservices-with-spring-boot-axon-cqrses-anddock)
--   [Advanced Message Queuing Protocol](https://www.amqp.org/)
--   [Install MongoDB on Mac OS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
--   [Object-Oriented Software Construction by Bertrand Meyer](https://www.amazon.com/gp/product/0136291554?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0136291554)
--   [CQRS Journey by Microsoft](https://docs.microsoft.com/en-gb/previous-versions/msp-n-p/jj554200%28v%3Dpandp.10%29)
+- [Platforms JVM Records](https://kotlinlang.org/docs/jvm-records.html)
+- [Mongo Axon Reference Guide](https://docs.axoniq.io/reference-guide/extensions/mongo)
+- [CQRS Microservice Sampler by Ben Wilcock on GitHub](https://github.com/benwilcock/cqrs-microservice-sampler)
+- [Patrick Gillespie's Text to Ascii Art Generator](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
+- [Microservices With Spring Boot, Axon CQRS/ES, and Docker by Ben Wilcock](https://dzone.com/articles/microservices-with-spring-boot-axon-cqrses-anddock)
+- [Advanced Message Queuing Protocol](https://www.amqp.org/)
+- [Install MongoDB on Mac OS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+- [Object-Oriented Software Construction by Bertrand Meyer](https://www.amazon.com/gp/product/0136291554?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0136291554)
+- [CQRS Journey by Microsoft](https://docs.microsoft.com/en-gb/previous-versions/msp-n-p/jj554200%28v%3Dpandp.10%29)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

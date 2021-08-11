@@ -46,6 +46,7 @@
         <axon-spring-boot-starter.version>4.5.3</axon-spring-boot-starter.version>
         <axon-mongo.version>4.4</axon-mongo.version>
         <spring-boot-starter-test.version>${parent.version}</spring-boot-starter-test.version>
+        <postgresql.version>42.2.23</postgresql.version>
     </properties>
 
     <dependencyManagement>
@@ -163,6 +164,11 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-stdlib</artifactId>
                 <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

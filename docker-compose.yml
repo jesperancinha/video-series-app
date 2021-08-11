@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  postgres:
+    hostname: postgres
+    build:
+      context: ./docker-psql/.
+    env_file:
+      - ./docker-psql/.env
+    volumes:
+      - ./docker-psql/init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_MULTIPLE_DATABASES=vsa
+    ports:
+      - "5432:5432"
+  command:
+    hostname: command
+    build:
+      context: ./video-series-command/.
+    ports:
+      - "8080:8080"
+
+  query:
+    hostname: query
+    build:
+      context: ./video-series-query/.
+    ports:
+      - "8090:8090"
+
+  mongo:
+    hostname: mongo
+    image: mongo
+    ports:
+      - "27017:27017"

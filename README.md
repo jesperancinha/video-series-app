@@ -16,9 +16,35 @@ This project is also the official support project of my article on medium:
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
 [CQRS — Command Query Responsibility Segregation](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
 
+
+## Requests
+
+1. curl localhost:8090/video-series
+2. 
+
 ## Installation notes
 
-### Install Mongo
+### Quickstart
+
+The best way to start this application is using the provided docker-composer configuration:
+
+```shell
+make build-docker
+```
+
+or
+
+```shell
+docker-composer up
+```
+
+or 
+
+```shell
+docker composer up
+```
+
+### Install Mongo (Optional)
 
 ```bash
 brew tap mongodb/brew

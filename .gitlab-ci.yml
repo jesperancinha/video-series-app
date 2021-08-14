@@ -9,6 +9,9 @@
 # * Verify but don't deploy merge requests.
 # * Deploy built artifacts from master branch only.
 
+services:
+  - docker:dind
+
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
   # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
@@ -20,6 +23,13 @@ variables:
   CODECOV_TOKEN: $CODECOV_TOKEN
   COVERALLS_REPO_TOKEN: $COVERALLS_REPO_TOKEN
   CODACY_PROJECT_TOKEN: $CODACY_PROJECT_TOKEN
+
+  # Instruct Testcontainers to use the daemon of DinD.
+  DOCKER_HOST: "tcp://docker:2375"
+  # Instruct Docker not to start over TLS.
+  DOCKER_TLS_CERTDIR: ""
+  # Improve performance with overlayfs.
+  DOCKER_DRIVER: overlay2
 
 image: maven:3-openjdk-16
 

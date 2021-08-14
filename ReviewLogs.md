@@ -5,7 +5,10 @@
 - Kotest
 - Mockk
 - Command/Query separation made clear
+
+
 - Dockerize project
+- Test Containers
 
 2021/08/11 Baseline upgrade
 - Coverage

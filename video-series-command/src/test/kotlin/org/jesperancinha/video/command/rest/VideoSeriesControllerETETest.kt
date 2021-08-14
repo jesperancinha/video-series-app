@@ -26,7 +26,7 @@ class VideoSeriesControllerETETest(
 
         @Container
         @JvmField
-        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:4.4.2")
+        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:5")
 
         @DynamicPropertySource
         @JvmStatic
@@ -34,6 +34,7 @@ class VideoSeriesControllerETETest(
             mongoDBContainer.start()
             registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl)
             registry.add("spring.data.mongodb.port", mongoDBContainer::getFirstMappedPort)
+            registry.add("spring.data.mongodb.host", mongoDBContainer::getHost)
         }
 
     }

@@ -47,7 +47,7 @@ curl localhost:8090/video-series
 2.  Create new records
 
 ```shell
-curl -d '{ "name":"True Blood", "volumes":30, "cashValue": 1323.2, "genre": "Drama"}' -H "Content-Type: application/json" -X POST http://localhost:8080/video-series
+curl -d '{ "name":"True Blood", "volumes":30, "cashValue": 1323.2, "genre": "DRAMA"}' -H "Content-Type: application/json" -X POST http://localhost:8080/video-series
 ```
 
 ## Installation notes

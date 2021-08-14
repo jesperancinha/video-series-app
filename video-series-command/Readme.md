@@ -2,7 +2,7 @@
 
 ## References
 
-- [MongoDB Testcontainers Setup for @DataMongoTest](https://rieckpil.de/mongodb-testcontainers-setup-for-datamongotest/)
+-   [MongoDB Testcontainers Setup for @DataMongoTest](https://rieckpil.de/mongodb-testcontainers-setup-for-datamongotest/)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

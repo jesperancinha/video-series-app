@@ -6,7 +6,7 @@
 - Mockk
 - Command/Query separation made clear
 
-
+2021/08/14 - Virtualization
 - Dockerize project
 - Test Containers
 

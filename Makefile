@@ -1,6 +1,8 @@
 build:
 	mvn clean install
 test:
+	mvn clean install -DskipTests
+	docker build video-series-command/. -t video-series-command
 	mvn test
 local:
 	mkdir -p bin

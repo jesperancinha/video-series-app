@@ -35,7 +35,6 @@ class VideoSeriesControllerITTest(
     private val testRestTemplate: TestRestTemplate,
 ) : WordSpec(
     {
-
         "should receive data and respond correctly" should {
             "should send a video title" {
                 val allDomainEvents = mongoTemplate

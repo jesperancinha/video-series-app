@@ -28,6 +28,7 @@ import org.testcontainers.images.builder.ImageFromDockerfile
 import org.testcontainers.images.builder.dockerfile.DockerfileBuilder
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
+import java.io.File
 
 
 @Testcontainers
@@ -64,13 +65,15 @@ class VideoSeriesControllerITTest(
         @JvmStatic
         val vsaContainer: GenericContainer<*> = GenericContainer<Nothing>(
             ImageFromDockerfile()
+                .withFileFromFile("video-series-command.jar",  File("video-series-command/target", "video-series-command-*.jar"))
+                .withFileFromFile("entrypoint.sh",  File("video-series-command", "entrypoint.sh"))
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
                         .from("adoptopenjdk/openjdk16")
                         .run("apt-get update")
-                        .copy("/video-series-command/target/video-series-command-*.jar",
+                        .copy("video-series-command.jar",
                             "/usr/local/bin/video-series-command.jar")
-                        .copy("/video-series-command/entrypoint.sh", "/usr/local/bin")
+                        .copy("entrypoint.sh", "/usr/local/bin")
                         .expose(8080)
                         .entryPoint("entrypoint.sh")
                         .build()

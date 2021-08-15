@@ -33,27 +33,9 @@ class VideoSeriesControllerITTest(
     private val mongoTemplate: MongoTemplate,
     @Autowired
     private val testRestTemplate: TestRestTemplate,
-) : WordSpec() {
+) : WordSpec(
+    {
 
-    companion object {
-        @Container
-        @JvmField
-        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:5")
-
-        @DynamicPropertySource
-        @JvmStatic
-        fun setProperties(registry: DynamicPropertyRegistry) {
-            mongoDBContainer.start()
-            registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl)
-            registry.add("spring.data.mongodb.port", mongoDBContainer::getFirstMappedPort)
-            registry.add("spring.data.mongodb.host", mongoDBContainer::getHost)
-            registry.add("spring.data.mongodb.database") { "axonframework" }
-        }
-    }
-
-    override fun listeners(): List<TestListener> = listOf(SpringListener)
-
-    init {
         "should receive data and respond correctly" should {
             "should send a video title" {
                 val allDomainEvents = mongoTemplate
@@ -67,14 +49,13 @@ class VideoSeriesControllerITTest(
                     .genre(Genre.HORROR)
                     .build()
 
-                val postForLocation = testRestTemplate.restTemplate.postForEntity<Any>("/video-series", film)
+                val responseEntity = testRestTemplate.restTemplate.postForEntity<Any>("/video-series", film)
 
-                postForLocation.statusCode shouldBe HttpStatus.OK
+                responseEntity.statusCode shouldBe HttpStatus.OK
                 val allPostDomainEvents = mongoTemplate
                     .find(Query.query(Criteria()), LinkedHashMap::class.java, "domainevents")
 
                 allPostDomainEvents shouldHaveSize 1
-
 
                 val filmOnEventQueue = allPostDomainEvents[0]["serializedPayload"].toString()
 
@@ -84,6 +65,28 @@ class VideoSeriesControllerITTest(
             }
         }
     }
+) {
+
+    companion object {
+        @Container
+        @JvmField
+        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:5")
+
+        init {
+            mongoDBContainer.start()
+        }
+
+        @DynamicPropertySource
+        @JvmStatic
+        fun setProperties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl)
+            registry.add("spring.data.mongodb.port", mongoDBContainer::getFirstMappedPort)
+            registry.add("spring.data.mongodb.host", mongoDBContainer::getHost)
+            registry.add("spring.data.mongodb.database") { "axonframework" }
+        }
+    }
+
+    override fun listeners(): List<TestListener> = listOf(SpringListener)
 
     override fun beforeEach(testCase: TestCase) {
         super.beforeEach(testCase)

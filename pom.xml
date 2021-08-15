@@ -42,7 +42,7 @@
         <springmockk.version>3.0.1</springmockk.version>
         <kotest-extensions-spring.version>1.0.0</kotest-extensions-spring.version>
         <mockk.version>1.12.0</mockk.version>
-        <kotest.version>4.4.0</kotest.version>
+        <kotest.version>4.4.3</kotest.version>
         <axon-spring-boot-starter.version>4.5.3</axon-spring-boot-starter.version>
         <axon-mongo.version>4.4</axon-mongo.version>
         <spring-boot-starter-test.version>${parent.version}</spring-boot-starter-test.version>
@@ -193,6 +193,18 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${testcontainers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-extensions-testcontainers</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-extensions-testcontainers-jvm</artifactId>
+                <version>${kotest.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

@@ -18,6 +18,8 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.springframework.test.context.jdbc.Sql
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD
 import org.testcontainers.containers.MongoDBContainer
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
@@ -26,7 +28,7 @@ import org.testcontainers.junit.jupiter.Testcontainers
 @Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("postgres")
-@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = ["classpath:data.sql"])
+@Sql(executionPhase = BEFORE_TEST_METHOD, scripts = ["classpath:data.sql"])
 class VideoSeriesControllerITTest(
     private val testRestTemplate: TestRestTemplate,
 ) : WordSpec({
@@ -34,7 +36,7 @@ class VideoSeriesControllerITTest(
     class VideoSeriesList : MutableList<VideoSeries> by ArrayList()
 
     "should receive data and respond correctly" should {
-        "return empty list when no data available" {
+        "return initial list when no data has been inserted" {
 
             val responseEntity = testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
 

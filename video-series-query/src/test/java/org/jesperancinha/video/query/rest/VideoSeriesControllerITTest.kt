@@ -24,7 +24,8 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METH
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.MongoDBContainer
 import org.testcontainers.containers.PostgreSQLContainer
-import org.testcontainers.images.PullPolicy
+import org.testcontainers.images.builder.ImageFromDockerfile
+import org.testcontainers.images.builder.dockerfile.DockerfileBuilder
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 
@@ -61,8 +62,20 @@ class VideoSeriesControllerITTest(
 
         @Container
         @JvmStatic
-        val vsaContainer: GenericContainer<*> = GenericContainer<Nothing>("video-series-command")
-            .withImagePullPolicy(PullPolicy.defaultPolicy())
+        val vsaContainer: GenericContainer<*> = GenericContainer<Nothing>(
+            ImageFromDockerfile()
+                .withDockerfileFromBuilder { builder: DockerfileBuilder ->
+                    builder
+                        .from("adoptopenjdk/openjdk16")
+                        .run("apt-get update")
+                        .copy("/video-series-command/target/video-series-command-*.jar",
+                            "/usr/local/bin/video-series-command.jar")
+                        .copy("/video-series-command/entrypoint.sh", "/usr/local/bin")
+                        .expose(8080)
+                        .entryPoint("entrypoint.sh")
+                        .build()
+                })
+            .withExposedPorts(80)
 
         @Container
         @JvmStatic

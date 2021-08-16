@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
-import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
@@ -23,12 +22,12 @@ import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.MongoDBContainer
+import org.testcontainers.containers.Network
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.images.builder.ImageFromDockerfile
 import org.testcontainers.images.builder.dockerfile.DockerfileBuilder
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import java.io.File
 
 
 @Testcontainers
@@ -36,7 +35,6 @@ import java.io.File
 @ActiveProfiles("postgres")
 @Sql(executionPhase = BEFORE_TEST_METHOD, scripts = ["classpath:data.sql"])
 class VideoSeriesControllerITTest(
-    private val mongoTemplate: MongoTemplate,
     private val testRestTemplate: TestRestTemplate,
     private val videoSeriesRepository: VideoSeriesRepository,
 ) : WordSpec({
@@ -57,35 +55,47 @@ class VideoSeriesControllerITTest(
 }) {
     companion object {
 
+        @JvmField
+        var network: Network = Network.newNetwork()
+
         @Container
         @JvmField
         val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:5")
+            .withNetwork(network)
+            .withNetworkAliases("mongo")
+            .withExposedPorts(27017)
 
         @Container
         @JvmStatic
         val vsaContainer: GenericContainer<*> = GenericContainer<Nothing>(
-            ImageFromDockerfile()
-                .withFileFromFile("video-series-command.jar",  File("video-series-command/target", "video-series-command-*.jar"))
-                .withFileFromFile("entrypoint.sh",  File("video-series-command", "entrypoint.sh"))
+            ImageFromDockerfile("vsa-test-image")
+                .withFileFromClasspath("entrypoint.sh", "video-series-command/entrypoint.sh")
+                .withFileFromClasspath("video-series-command-0.0.1-SNAPSHOT.jar",
+                    "/video-series-command/target/video-series-command-0.0.1-SNAPSHOT.jar")
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
                         .from("adoptopenjdk/openjdk16")
+                        .workDir("/usr/local/bin/")
                         .run("apt-get update")
-                        .copy("video-series-command.jar",
+                        .copy("video-series-command-0.0.1-SNAPSHOT.jar",
                             "/usr/local/bin/video-series-command.jar")
-                        .copy("entrypoint.sh", "/usr/local/bin")
+                        .copy("entrypoint.sh", "/usr/local/bin/entrypoint.sh")
+                        .run("chmod +x /usr/local/bin/entrypoint.sh")
                         .expose(8080)
                         .entryPoint("entrypoint.sh")
                         .build()
                 })
-            .withExposedPorts(80)
+            .withNetwork(network)
 
         @Container
         @JvmStatic
         val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer<Nothing>().apply {
+            withNetwork(network)
+            withNetworkAliases("postgres")
             withDatabaseName("vsa")
             withUsername("postgres")
             withPassword("admin")
+            withExposedPorts(5432)
         }
 
         @DynamicPropertySource

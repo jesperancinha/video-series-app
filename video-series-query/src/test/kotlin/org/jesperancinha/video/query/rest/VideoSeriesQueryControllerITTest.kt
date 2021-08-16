@@ -1,29 +1,35 @@
 package org.jesperancinha.video.query.rest
 
-import io.kotest.core.extensions.Extension
 import io.kotest.core.listeners.TestListener
 import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
-import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.kotest.spring.SpringListener
+import org.jesperancinha.video.core.data.Genre
+import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
+import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.core.query.Criteria
+import org.springframework.data.mongodb.core.query.Query
+import org.springframework.http.HttpStatus
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD
+import org.springframework.web.client.postForEntity
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.MongoDBContainer
 import org.testcontainers.containers.Network
@@ -32,6 +38,7 @@ import org.testcontainers.images.builder.ImageFromDockerfile
 import org.testcontainers.images.builder.dockerfile.DockerfileBuilder
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
+import java.math.BigDecimal
 
 
 @Testcontainers
@@ -41,6 +48,7 @@ import org.testcontainers.junit.jupiter.Testcontainers
 class VideoSeriesQueryControllerITTest(
     private val testRestTemplate: TestRestTemplate,
     private val videoSeriesRepository: VideoSeriesRepository,
+    private val mongoTemplate: MongoTemplate,
 ) : WordSpec(
     {
 
@@ -51,10 +59,37 @@ class VideoSeriesQueryControllerITTest(
                 val responseEntity =
                     testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
 
+
                 responseEntity.shouldNotBeNull()
                 val allVSAs = responseEntity.body as List<*>
                 allVSAs.shouldNotBeEmpty()
                 allVSAs shouldHaveSize 3
+
+                val allDomainEvents = mongoTemplate
+                    .find(Query.query(Criteria()), Any::class.java, "domainevents")
+
+                allDomainEvents shouldHaveSize 0
+
+                val film = VideoSeriesDto.builder()
+                    .name("Halloween")
+                    .cashValue(BigDecimal.valueOf(1_000_000))
+                    .genre(Genre.HORROR)
+                    .build()
+
+                val responseCreateEntity = testRestTemplate.restTemplate.postForEntity<Any>("http://localhost:${vsaContainer.firstMappedPort}/video-series", film)
+
+                responseCreateEntity.statusCode shouldBe HttpStatus.OK
+                val allPostDomainEvents = mongoTemplate
+                    .find(Query.query(Criteria()), LinkedHashMap::class.java, "domainevents")
+
+                allPostDomainEvents shouldHaveSize 1
+
+                val filmOnEventQueue = allPostDomainEvents[0]["serializedPayload"].toString()
+
+                filmOnEventQueue shouldContain "Halloween"
+                filmOnEventQueue shouldContain "HORROR"
+                filmOnEventQueue shouldContain "1000000"
+
             }
         }
 
@@ -74,7 +109,7 @@ class VideoSeriesQueryControllerITTest(
 
         @Container
         @JvmStatic
-        val vsaContainer: GenericContainer<*> = GenericContainer<Nothing>(
+        val vsaContainer: GenericContainer<*> = GenericContainer<GenericContainer<Nothing>>(
             ImageFromDockerfile("vsa-test-image")
                 .withFileFromClasspath("entrypoint.sh", "/entrypoint.sh")
                 .withFileFromClasspath("video-series-command.jar",
@@ -93,6 +128,7 @@ class VideoSeriesQueryControllerITTest(
                         .build()
                 })
             .withNetwork(network)
+            .withExposedPorts(8080)
 
         @Container
         @JvmStatic
@@ -136,8 +172,8 @@ class VideoSeriesQueryControllerITTest(
     }
 
     override fun afterSpec(spec: Spec) {
-        vsaContainer.stop()
-        postgreSQLContainer.stop()
-        mongoDBContainer.stop()
+        vsaContainer.close()
+        postgreSQLContainer.close()
+        mongoDBContainer.close()
     }
 }

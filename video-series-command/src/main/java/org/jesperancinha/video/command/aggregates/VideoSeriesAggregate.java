@@ -36,7 +36,7 @@ public class VideoSeriesAggregate {
 
     @EventSourcingHandler
     public void on(AddSeriesEvent event) {
-        this.id = event.id();
+        this.id = event.getId();
     }
 
 }

@@ -27,10 +27,10 @@ public class VideoSeriesEventHandler {
     public void on(AddSeriesEvent event) {
         videoSeriesRepository.save(VideoSeries
                 .builder()
-                .name(event.name())
-                .volumes(event.volumes())
-                .genre(event.genre())
-                .cashValue(event.cashValue())
+                .name(event.getName())
+                .volumes(event.getVolumes())
+                .genre(event.getGenre())
+                .cashValue(event.getCashValue())
                 .build());
     }
 

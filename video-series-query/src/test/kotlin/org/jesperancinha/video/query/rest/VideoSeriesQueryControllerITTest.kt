@@ -59,7 +59,6 @@ class VideoSeriesQueryControllerITTest(
                 val responseEntity =
                     testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
 
-
                 responseEntity.shouldNotBeNull()
                 val allVSAs = responseEntity.body as List<*>
                 allVSAs.shouldNotBeEmpty()
@@ -76,7 +75,9 @@ class VideoSeriesQueryControllerITTest(
                     .genre(Genre.HORROR)
                     .build()
 
-                val responseCreateEntity = testRestTemplate.restTemplate.postForEntity<Any>("http://localhost:${vsaContainer.firstMappedPort}/video-series", film)
+                val responseCreateEntity =
+                    testRestTemplate.restTemplate.postForEntity<Any>("http://localhost:${vsaContainer.firstMappedPort}/video-series",
+                        film)
 
                 responseCreateEntity.statusCode shouldBe HttpStatus.OK
                 val allPostDomainEvents = mongoTemplate
@@ -90,6 +91,13 @@ class VideoSeriesQueryControllerITTest(
                 filmOnEventQueue shouldContain "HORROR"
                 filmOnEventQueue shouldContain "1000000"
 
+                val responseResultEntity =
+                    testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
+
+                responseResultEntity.shouldNotBeNull()
+                val allVSAResults = responseResultEntity.body as List<*>
+                allVSAResults.shouldNotBeEmpty()
+                allVSAResults shouldHaveSize 4
             }
         }
 

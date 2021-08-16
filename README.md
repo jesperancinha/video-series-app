@@ -72,7 +72,7 @@ or
 docker composer up
 ```
 
-### Install Mongo (Optional)
+### Useful MAC-OS Commands
 
 ```bash
 brew tap mongodb/brew
@@ -80,6 +80,8 @@ brew tap mongodb/brew
 brew install mongodb-community@4.2
 
 brew services start mongodb-community@4.2
+
+brew link docker-compose
 ```
 
 ## Docker helper commands

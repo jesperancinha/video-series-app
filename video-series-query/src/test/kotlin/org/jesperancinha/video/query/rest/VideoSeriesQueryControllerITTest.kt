@@ -12,6 +12,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.spring.SpringListener
+import kotlinx.coroutines.delay
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
@@ -90,6 +91,8 @@ class VideoSeriesQueryControllerITTest(
                 filmOnEventQueue shouldContain "Halloween"
                 filmOnEventQueue shouldContain "HORROR"
                 filmOnEventQueue shouldContain "1000000"
+
+                delay(5000)
 
                 val responseResultEntity =
                     testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)

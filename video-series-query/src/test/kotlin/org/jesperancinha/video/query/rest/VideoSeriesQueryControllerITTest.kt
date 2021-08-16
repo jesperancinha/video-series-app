@@ -117,7 +117,7 @@ class VideoSeriesQueryControllerITTest(
 
         @Container
         @JvmStatic
-        val vsaContainer: GenericContainer<*> = GenericContainer<GenericContainer<Nothing>>(
+        val vsaContainer: GenericContainer<*> = GenericContainer<GenericContainer<*>>(
             ImageFromDockerfile("vsa-test-image")
                 .withFileFromClasspath("entrypoint.sh", "/entrypoint.sh")
                 .withFileFromClasspath("video-series-command.jar",
@@ -135,8 +135,8 @@ class VideoSeriesQueryControllerITTest(
                         .entryPoint("entrypoint.sh")
                         .build()
                 })
-            .withNetwork(network)
             .withExposedPorts(8080)
+            .withNetwork(network)
 
         @Container
         @JvmStatic
@@ -170,6 +170,7 @@ class VideoSeriesQueryControllerITTest(
     override fun listeners(): List<TestListener> = listOf(SpringListener)
 
     override fun beforeEach(testCase: TestCase) {
+        super.beforeEach(testCase)
         mongoDBContainer.isRunning.shouldBeTrue()
         postgreSQLContainer.isRunning.shouldBeTrue()
         vsaContainer.isRunning.shouldBeTrue()

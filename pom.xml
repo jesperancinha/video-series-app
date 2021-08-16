@@ -43,7 +43,7 @@
         <kotest.version>4.4.3</kotest.version>
         <axon-spring-boot-starter.version>4.5.3</axon-spring-boot-starter.version>
         <axon-mongo.version>4.4</axon-mongo.version>
-        <spring-boot-starter-test.version>${parent.version}</spring-boot-starter-test.version>
+        <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
         <postgresql.version>42.2.23</postgresql.version>
         <testcontainers.version>1.16.0</testcontainers.version>
     </properties>

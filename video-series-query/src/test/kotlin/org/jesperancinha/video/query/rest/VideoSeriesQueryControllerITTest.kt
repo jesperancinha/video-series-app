@@ -1,9 +1,12 @@
 package org.jesperancinha.video.query.rest
 
+import io.kotest.core.extensions.Extension
 import io.kotest.core.listeners.TestListener
+import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
+import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
@@ -11,6 +14,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.spring.SpringListener
 import org.jesperancinha.video.query.data.VideoSeries
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -34,25 +38,28 @@ import org.testcontainers.junit.jupiter.Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("postgres")
 @Sql(executionPhase = BEFORE_TEST_METHOD, scripts = ["classpath:data.sql"])
-class VideoSeriesControllerITTest(
+class VideoSeriesQueryControllerITTest(
     private val testRestTemplate: TestRestTemplate,
     private val videoSeriesRepository: VideoSeriesRepository,
-) : WordSpec({
+) : WordSpec(
+    {
 
-    class VideoSeriesList : MutableList<VideoSeries> by ArrayList()
+        class VideoSeriesList : MutableList<VideoSeries> by ArrayList()
 
-    "should receive data and respond correctly" should {
-        "return initial list when no data has been inserted" {
-            val responseEntity = testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
+        "should receive data and respond correctly" should {
+            "return initial list when no data has been inserted" {
+                val responseEntity =
+                    testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
 
-            responseEntity.shouldNotBeNull()
-            val allVSAs = responseEntity.body as List<*>
-            allVSAs.shouldNotBeEmpty()
-            allVSAs shouldHaveSize 3
+                responseEntity.shouldNotBeNull()
+                val allVSAs = responseEntity.body as List<*>
+                allVSAs.shouldNotBeEmpty()
+                allVSAs shouldHaveSize 3
+            }
         }
-    }
 
-}) {
+    }
+) {
     companion object {
 
         @JvmField
@@ -69,15 +76,15 @@ class VideoSeriesControllerITTest(
         @JvmStatic
         val vsaContainer: GenericContainer<*> = GenericContainer<Nothing>(
             ImageFromDockerfile("vsa-test-image")
-                .withFileFromClasspath("entrypoint.sh", "video-series-command/entrypoint.sh")
-                .withFileFromClasspath("video-series-command-0.0.1-SNAPSHOT.jar",
-                    "/video-series-command/target/video-series-command-0.0.1-SNAPSHOT.jar")
+                .withFileFromClasspath("entrypoint.sh", "/entrypoint.sh")
+                .withFileFromClasspath("video-series-command.jar",
+                    "/video-series-command-0.0.1-SNAPSHOT.jar")
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
                         .from("adoptopenjdk/openjdk16")
                         .workDir("/usr/local/bin/")
                         .run("apt-get update")
-                        .copy("video-series-command-0.0.1-SNAPSHOT.jar",
+                        .copy("video-series-command.jar",
                             "/usr/local/bin/video-series-command.jar")
                         .copy("entrypoint.sh", "/usr/local/bin/entrypoint.sh")
                         .run("chmod +x /usr/local/bin/entrypoint.sh")
@@ -89,7 +96,7 @@ class VideoSeriesControllerITTest(
 
         @Container
         @JvmStatic
-        val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer<Nothing>().apply {
+        val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer<Nothing>("postgres").apply {
             withNetwork(network)
             withNetworkAliases("postgres")
             withDatabaseName("vsa")
@@ -119,14 +126,18 @@ class VideoSeriesControllerITTest(
     override fun listeners(): List<TestListener> = listOf(SpringListener)
 
     override fun beforeEach(testCase: TestCase) {
-        super.beforeEach(testCase)
         mongoDBContainer.isRunning.shouldBeTrue()
         postgreSQLContainer.isRunning.shouldBeTrue()
         vsaContainer.isRunning.shouldBeTrue()
-
     }
 
     override fun afterEach(testCase: TestCase, result: TestResult) {
         videoSeriesRepository.deleteAll()
+    }
+
+    override fun afterSpec(spec: Spec) {
+        vsaContainer.stop()
+        postgreSQLContainer.stop()
+        mongoDBContainer.stop()
     }
 }

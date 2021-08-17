@@ -7,6 +7,7 @@ import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
 import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -46,7 +47,6 @@ import java.math.BigDecimal
 @Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("postgres")
-@Sql(executionPhase = BEFORE_TEST_METHOD, scripts = ["classpath:data.sql"])
 class VideoSeriesQueryControllerITTest(
     private val testRestTemplate: TestRestTemplate,
     private val videoSeriesRepository: VideoSeriesRepository,
@@ -63,8 +63,7 @@ class VideoSeriesQueryControllerITTest(
 
                 responseEntity.shouldNotBeNull()
                 val allVSAs = responseEntity.body as List<*>
-                allVSAs.shouldNotBeEmpty()
-                allVSAs shouldHaveSize 3
+                allVSAs.shouldBeEmpty()
 
                 val allDomainEvents = mongoTemplate
                     .find(Query.query(Criteria()), Any::class.java, "domainevents")
@@ -101,7 +100,7 @@ class VideoSeriesQueryControllerITTest(
                 responseResultEntity.shouldNotBeNull()
                 val allVSAResults = responseResultEntity.body as List<*>
                 allVSAResults.shouldNotBeEmpty()
-                allVSAResults shouldHaveSize 4
+                allVSAResults shouldHaveSize 1
             }
         }
 

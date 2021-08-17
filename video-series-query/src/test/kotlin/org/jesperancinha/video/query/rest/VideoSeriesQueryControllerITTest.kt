@@ -1,10 +1,12 @@
 package org.jesperancinha.video.query.rest
 
+import io.kotest.core.extensions.Extension
 import io.kotest.core.listeners.TestListener
 import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
+import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
@@ -172,16 +174,15 @@ class VideoSeriesQueryControllerITTest(
 
     override fun listeners(): List<TestListener> = listOf(SpringListener)
 
+    override fun extensions(): List<Extension> = listOf(SpringExtension)
+
     override fun beforeEach(testCase: TestCase) {
-        super.beforeEach(testCase)
         mongoDBContainer.isRunning.shouldBeTrue()
         postgreSQLContainer.isRunning.shouldBeTrue()
         vsaContainer.isRunning.shouldBeTrue()
     }
 
-
     override fun afterEach(testCase: TestCase, result: TestResult) {
-        super.afterEach(testCase, result)
         videoSeriesRepository.deleteAll()
     }
 

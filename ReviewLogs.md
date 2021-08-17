@@ -6,6 +6,9 @@
 - Mockk
 - Command/Query separation made clear
 
+2021/08/17 - Integration test
+- E2E Spring Integration test
+
 2021/08/14 - Virtualization
 - Dockerize project
 - Test Containers

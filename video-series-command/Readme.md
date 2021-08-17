@@ -2,8 +2,8 @@
 
 ## References
 
-- [MongoDB Testcontainers Setup for @DataMongoTest](https://rieckpil.de/mongodb-testcontainers-setup-for-datamongotest/)
-- [Test Containers](https://kotest.io/docs/extensions/test_containers.html)
+-   [MongoDB Testcontainers Setup for @DataMongoTest](https://rieckpil.de/mongodb-testcontainers-setup-for-datamongotest/)
+-   [Test Containers](https://kotest.io/docs/extensions/test_containers.html)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

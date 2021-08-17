@@ -179,11 +179,14 @@ class VideoSeriesQueryControllerITTest(
         vsaContainer.isRunning.shouldBeTrue()
     }
 
+
     override fun afterEach(testCase: TestCase, result: TestResult) {
+        super.afterEach(testCase, result)
         videoSeriesRepository.deleteAll()
     }
 
     override fun afterSpec(spec: Spec) {
+        super.afterSpec(spec)
         vsaContainer.close()
         postgreSQLContainer.close()
         mongoDBContainer.close()

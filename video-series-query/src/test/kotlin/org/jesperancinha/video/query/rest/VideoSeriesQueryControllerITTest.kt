@@ -2,7 +2,6 @@ package org.jesperancinha.video.query.rest
 
 import io.kotest.core.extensions.Extension
 import io.kotest.core.listeners.TestListener
-import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
@@ -177,6 +176,7 @@ class VideoSeriesQueryControllerITTest(
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
     override fun beforeEach(testCase: TestCase) {
+        super.beforeEach(testCase)
         mongoDBContainer.isRunning.shouldBeTrue()
         postgreSQLContainer.isRunning.shouldBeTrue()
         vsaContainer.isRunning.shouldBeTrue()

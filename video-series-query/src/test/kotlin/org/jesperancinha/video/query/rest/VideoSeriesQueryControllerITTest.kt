@@ -75,7 +75,7 @@ class VideoSeriesQueryControllerITTest(
                     .build()
 
                 val responseCreateEntity =
-                    testRestTemplate.restTemplate.postForEntity<Any>("http://localhost:${vsaContainer.firstMappedPort}/video-series",
+                    testRestTemplate.restTemplate.postForEntity<Any>("http://${vsaContainer.host}:${vsaContainer.firstMappedPort}/video-series",
                         film)
 
                 responseCreateEntity.statusCode shouldBe HttpStatus.OK

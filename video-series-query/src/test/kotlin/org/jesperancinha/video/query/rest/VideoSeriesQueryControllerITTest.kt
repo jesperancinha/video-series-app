@@ -185,10 +185,4 @@ class VideoSeriesQueryControllerITTest(
         videoSeriesRepository.deleteAll()
     }
 
-    override fun afterSpec(spec: Spec) {
-        super.afterSpec(spec)
-        vsaContainer.close()
-        postgreSQLContainer.close()
-        mongoDBContainer.close()
-    }
 }

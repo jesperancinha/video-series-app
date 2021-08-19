@@ -6,7 +6,7 @@ WORKDIR ${runningFolder}
 
 RUN apt-get update
 
-COPY target/video-series-query-*.jar ${runningFolder}/video-series-query.jar
+COPY ../bin/video-series-query*.jar ${runningFolder}/video-series-query.jar
 
 COPY entrypoint.sh ${runningFolder}
 

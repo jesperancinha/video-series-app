@@ -6,7 +6,7 @@ WORKDIR ${runningFolder}
 
 RUN apt-get update
 
-COPY target/video-series-command-*.jar ${runningFolder}/video-series-command.jar
+COPY ../bin/video-series-command*.jar ${runningFolder}/video-series-command.jar
 
 COPY entrypoint.sh ${runningFolder}
 

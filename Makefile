@@ -6,6 +6,9 @@ test:
 	mvn test | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"
 local:
 	mkdir -p bin
+	mvn clean install -DskipTests
+	cp video-series-command/target/video-series-command*.jar bin/video-series-command.jar
+	cp video-series-query/target/video-series-query*.jar bin/video-series-query.jar
 no-test:
 	mvn clean install -DskipTests
 docker:
@@ -13,6 +16,5 @@ docker:
 build-images:
 	docker build video-series-command/. -t video-series-command
 	docker build video-series-query/. -t video-series-query
-build-docker:
-	mvn clean install -DskipTests
+build-docker: local
 	docker-compose up -d --build --remove-orphans

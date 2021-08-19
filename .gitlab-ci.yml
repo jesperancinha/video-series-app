@@ -12,15 +12,6 @@
 services:
   - docker:dind
 
-stages:
-  - verify
-  - build
-  - coveralls
-  - codecov
-  - codacy
-  - jdk16
-  - verify:jdk16
-
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
   # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
@@ -66,6 +57,12 @@ verify:jdk16:
 # Please note: The GitLab Maven Repository is currently only available in GitLab Premium / Ultimate.
 # For `master` branch run `mvn deploy` automatically.
 deploy:jdk16:
+  stages:
+    - build
+    - coveralls
+    - codecov
+    - codacy
+
   stage: build
   script:
     - if [ ! -f ci_settings.xml ];

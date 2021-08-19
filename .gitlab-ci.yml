@@ -48,15 +48,14 @@ cache:
   except:
     - master
 
-verify:jdk16:
-  <<: *verify
+#verify:jdk16:
+#  <<: *verify
 
 stages:
   - build
   - coveralls
   - codecov
   - codacy
-  - .verify
 
 deploy:jdk16:
 

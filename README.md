@@ -7,7 +7,7 @@
 [![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/video-series-app/master)](https://gitlab.com/jesperancinha/video-series-app/-/pipelines)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/video-series-app&amp;utm_campaign=Badge_Grade)
-
+		
 [![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/video-series-app/badge.svg?branch=master)](https://coveralls.io/gitlab/jesperancinha/video-series-app?branch=master)
 [![codecov](https://codecov.io/gl/jesperancinha/video-series-app/branch/master/graph/badge.svg)](https://codecov.io/gl/jesperancinha/video-series-app)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/video-series-app&utm_campaign=Badge_Coverage)
@@ -18,6 +18,9 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/java-50.png "Java")](https://www.oracle.com/nl/java/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/lombok-50.png "Lombok")](https://projectlombok.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kotlin-50.png "Kotlin")](https://kotlinlang.org/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kotest-50.png "Kotest")](https://kotest.io/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/mockk-50.png "MockK")](https://mockk.io/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/jupiter5-50.png "Jupiter 5")](https://junit.org/junit5/docs/current/user-guide/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-50.png "Spring Framework")](https://spring.io/projects/spring-framework)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/spring-boot-50.png "Spring Boot")](https://spring.io/projects/spring-boot)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-50.png "Docker")](https://www.docker.com/)

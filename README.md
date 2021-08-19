@@ -38,6 +38,11 @@ This project is also the official support project of my article on medium:
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
 [CQRS — Command Query Responsibility Segregation](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
 
+This project is in constant innovation.
+
+Please have a look at my [Issues](./Issues.md) file to find out about improvements being made. This file contains a list of ongoing issues that on one hand do not block the development, but on the other hand they are a great nice to haves.
+
+All running issues are being solved in branch [feature/research_and_development](https://gitlab.com/jesperancinha/video-series-app/-/tree/feature/research_and_development).
 
 ## Requests
 

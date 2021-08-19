@@ -13,6 +13,7 @@ services:
   - docker:dind
 
 stages:
+  - verify
   - build
   - coveralls
   - codecov
@@ -54,7 +55,7 @@ cache:
   except:
     - master
 
-# Verify merge requests using JDK13
+# Verify merge requests using JDK16
 verify:jdk16:
   <<: *verify
 

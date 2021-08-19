@@ -57,14 +57,20 @@ verify:jdk16:
 # Please note: The GitLab Maven Repository is currently only available in GitLab Premium / Ultimate.
 # For `master` branch run `mvn deploy` automatically.
 deploy:jdk16:
-  stage: deploy
+  stage: build
   script:
     - if [ ! -f ci_settings.xml ];
         then echo "CI settings missing\! If deploying to GitLab Maven Repository, please see https://docs.gitlab.com/ee/user/project/packages/maven_repository.html#creating-maven-packages-with-gitlab-cicd for instructions.";
       fi
-    - 'mvn clean install package coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
+    - 'mvn clean install'
+  stage: coveralls
+  script:
+    - 'mvn package coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
+  stage: codecov
+  script:
     - 'bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN'
+  stage: codacy
+  script:
     - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
-
   only:
     - master

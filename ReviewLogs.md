@@ -2,6 +2,8 @@
 
 ## Roadmap to revision 2.0.0
 
+2021/08/19
+- Branch with faulty record example
 - Kotest
 - Mockk
 - Command/Query separation made clear

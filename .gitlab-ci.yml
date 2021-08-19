@@ -16,6 +16,7 @@ stages:
   - verify
   - test
   - build
+  - coverage
   - coveralls
   - codecov
   - codacy
@@ -63,19 +64,16 @@ build:
     - if [ ! -f ci_settings.xml ];
         then echo "CI settings missing\! If deploying to GitLab Maven Repository, please see https://docs.gitlab.com/ee/user/project/packages/maven_repository.html#creating-maven-packages-with-gitlab-cicd for instructions.";
       fi
-    - 'mvn clean install'
-coveralls:
+    - 'mvn clean install | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
+coverage:
   stage: coveralls
   script:
     - 'mvn package coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"'
-codecov:
   stage: codecov
   script:
     - 'bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN'
-codacy:
   stage: codacy
   script:
-    - 'mvn test jacoco:report'
     - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
   only:
     - master

@@ -16,4 +16,5 @@ build-images:
 	docker build video-series-command/. -t video-series-command
 	docker build video-series-query/. -t video-series-query
 build-docker: no-test
+	docker-compose down
 	docker-compose up -d --build --remove-orphans

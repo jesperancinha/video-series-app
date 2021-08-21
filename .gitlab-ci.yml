@@ -13,13 +13,13 @@ services:
   - docker:dind
 
 stages:
-  - test
-  - validate
   - build
   - coverage
   - coveralls
   - codecov
   - codacy
+  - verify
+  - test
 
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
@@ -51,17 +51,16 @@ cache:
     - video-series-core/target/
     - video-series-query/target/
 
-.validate: &validate
+.verify: &verify
   stage: test
   script:
-    - 'mvn $MAVEN_CLI_OPTS validate'
+    - 'mvn $MAVEN_CLI_OPTS verify'
   except:
     - master
     - /^feature.*/
-    - 2.0.0
 
-validate:
-  <<: *validate
+verify:
+  <<: *verify
 
 build:
   stage: build

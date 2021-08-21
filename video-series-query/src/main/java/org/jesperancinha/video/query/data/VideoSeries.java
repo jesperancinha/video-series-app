@@ -63,6 +63,6 @@ public class VideoSeries {
 
     @Override
     public int hashCode() {
-        return 950399058;
+        return Objects.hash(getId(), getName(), getVolumes(), getCashValue(), getGenre());
     }
 }

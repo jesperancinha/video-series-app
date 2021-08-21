@@ -54,7 +54,7 @@ cache:
 .verify: &verify
   stage: test
   script:
-    - 'mvn $MAVEN_CLI_OPTS verify'
+    - 'mvn verify'
   except:
     - master
     - /^feature.*/

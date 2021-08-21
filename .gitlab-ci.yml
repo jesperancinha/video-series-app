@@ -46,7 +46,8 @@ image: maven:3-openjdk-16
 # To keep cache across branches add 'key: "$CI_JOB_NAME"'
 cache:
   paths:
-    - .m2/repository
+    - .m2/repository/
+    - target/
 
 .verify: &verify
   stage: test

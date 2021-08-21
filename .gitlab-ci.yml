@@ -58,6 +58,7 @@ cache:
   except:
     - master
     - /^feature.*/
+    - 2.0.0
 
 validate:
   <<: *validate

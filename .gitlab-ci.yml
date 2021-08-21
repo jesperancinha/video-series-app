@@ -72,11 +72,10 @@ coveralls:
 codecov:
   stage: coverage
   script:
+    - 'mvn test jacoco:report'
     - 'bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN'
 codacy:
   stage: coverage
   script:
     - 'mvn test jacoco:report'
     - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
-  only:
-    - master

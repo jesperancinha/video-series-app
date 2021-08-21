@@ -57,7 +57,7 @@ cache:
     - 'mvn $MAVEN_CLI_OPTS verify'
   except:
     - master
-    - feature/*
+    - /^feature.*/
 
 verify:
   <<: *verify

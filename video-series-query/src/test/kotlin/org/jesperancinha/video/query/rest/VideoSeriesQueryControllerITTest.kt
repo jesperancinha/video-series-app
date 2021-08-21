@@ -124,7 +124,7 @@ class VideoSeriesQueryControllerITTest(
             ImageFromDockerfile("vsa-test-image")
                 .withFileFromClasspath("entrypoint.sh", "/entrypoint.sh")
                 .withFileFromClasspath("video-series-command.jar",
-                    "/video-series-command-0.0.1-SNAPSHOT.jar")
+                    "/video-series-command-2.0.0.jar")
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
                         .from("adoptopenjdk/openjdk16")

@@ -38,8 +38,6 @@ This project is also the official support project of my article on medium:
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
 [CQRS — Command Query Responsibility Segregation](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
 
-This project is in constant innovation.
-
 Please have a look at my [Issues](./Issues.md) file to find out about improvements being made. This file contains a list of ongoing issues that on one hand do not block the development, but on the other hand they are a great nice to haves.
 
 All running issues are being solved in branch [feature/research_and_development](https://gitlab.com/jesperancinha/video-series-app/-/tree/feature/research_and_development).
@@ -108,14 +106,14 @@ This will attempt to stop all running `mongodb` and `postgres` containers, all `
 4.  `no-test` - Makes a build without tests
 5.  `docker` - Starts docker compose
 6.  `docker-databases` - Starts the database containers (Postgres + MongoDB) - You then need to start the SpringBoot/jars manually
-7.  `docker-mongo` - Only starts the mongodb container - This is meant to be tested with the default profile ONLY. It uses and embedded H2 database instead of Postgres.
+7.  `docker-mongo` - Only starts the mongodb container - This is meant to be tested with the default profile ONLY. It uses an embedded H2 database instead of Postgres.
 8.  `build-images` - Builds the images to run the spring boot processes: `video-series-command` and `video-series-query`
 9.  `build-docker` - Makes a clean build, stops containers and relaunches docker-compose.
 10. `stop` - Makes a full stop of known containers. It is reused in many of the other commands.
 
 ## Profiles
 
-1.  Default - No need to mention the profile in the command line, and it needs MongoDB only. Data is stored in embedded `H2`
+1.  Default - No need to mention the profile in the command line, and it needs MongoDB only. Data is stored in an embedded `H2`
 2.  local - Specified with `-Dspring.profiles.active=local`. Needs Postgres and MongoDb. `localhost` is the common host locally
 3.  prod - Named after `Production` and runs with `-Dspring.profiles.active=prod`. Only used in docker-compose networks
 
@@ -131,17 +129,9 @@ docker system prune --all
 sudo lsof -i :5432
 ```
 
-## Roadmap to revision 2.0.0
+## Review Logs
 
--   Test Containers
--   Dockerize project
--   Migration to JDK 16
--   Upgrade to latest Axon libraries
--   Open issues - [Why H2 and UUID's explanation - Issue 1](https://gitlab.com/jesperancinha/video-series-app/-/issues/1)
--   Kotest
--   Mockk
--   Coverage
--   Mongo in Ubuntu and Windows
+Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
 
 ## References
 

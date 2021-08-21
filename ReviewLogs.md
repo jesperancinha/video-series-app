@@ -2,9 +2,10 @@
 
 ## Roadmap to revision 2.0.0
 
-- Audit tables for `association_value_entry`, `saga_entry` and `token_entry`
+2021/08/21
+- Audit tables for `association_value_entry`, `saga_entry` and `token_entry` (not continued - off-scope)
 
-2021/08/19
+- 2021/08/19
 - Issues file creation
 - Pipeline segregation
 - Branch with faulty record example

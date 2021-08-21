@@ -1,6 +1,7 @@
 package org.jesperancinha.video.command.rest;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.modelling.saga.StartSaga;
 import org.jesperancinha.video.command.commands.AddVideoSeriesCommand;
 import org.jesperancinha.video.core.data.VideoSeriesDto;
 import org.springframework.web.bind.annotation.PostMapping;

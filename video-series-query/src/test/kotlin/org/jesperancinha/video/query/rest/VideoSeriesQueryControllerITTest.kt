@@ -44,7 +44,7 @@ import java.math.BigDecimal
 
 @Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@ActiveProfiles("postgres")
+@ActiveProfiles("local")
 class VideoSeriesQueryControllerITTest(
     private val testRestTemplate: TestRestTemplate,
     private val videoSeriesRepository: VideoSeriesRepository,

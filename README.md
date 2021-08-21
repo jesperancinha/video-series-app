@@ -80,17 +80,25 @@ or
 docker composer up
 ```
 
-### Useful MAC-OS Commands
+There are many further options in the [Makefile](./Makefile).
+Please explore them to find the one that suits you best.
 
-```bash
-brew tap mongodb/brew
+In some cases you'll find that there will be a [bin](./bin) folder in the root.
+Namely, this will happen when running `make build-databases` or `make local`.
+This is where the jars of each application will go to. You can run them accordingly like this:
 
-brew install mongodb-community@4.2
-
-brew services start mongodb-community@4.2
-
-brew link docker-compose
+```shell
+java -jar -Dspring.profiles.active=local video-series-command.jar
+java -jar -Dspring.profiles.active=local video-series-query.jar
 ```
+
+Should there be any resource consumption issues running the containers you can try to run:
+
+```shell
+make stop
+```
+
+This will attempt to stop all running `mongodb` and `postgres` containers, all `video-series-app` containers and all containers in the `docker-compose` file.
 
 ## Docker helper commands
 
@@ -106,7 +114,6 @@ sudo lsof -i :5432
 
 ## Roadmap to revision 2.0.0
 
-- Audit tables for `association_value_entry`, `saga_entry` and `token_entry`
 - Test Containers
 - Dockerize project
 - Migration to JDK 16

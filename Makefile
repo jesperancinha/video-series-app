@@ -12,9 +12,24 @@ no-test:
 	mvn clean install -DskipTests
 docker:
 	docker-compose up -d --build --remove-orphans
+docker-databases: stop local
+	docker build ./docker-psql/. -t postgres-image
+	docker run --name postgres-standalone -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_MULTIPLE_DATABASES=vsa -p 5432:5432 -d postgres-image
+	docker run --name mongodb-standalone -p 27017:27017 -d mongo
 build-images:
 	docker build video-series-command/. -t video-series-command
 	docker build video-series-query/. -t video-series-query
-build-docker: no-test
-	docker-compose down
+build-docker: stop no-test
 	docker-compose up -d --build --remove-orphans
+stop:
+	docker-compose down
+	docker ps -a -q --filter="name=postgres" | xargs docker stop
+	docker ps -a -q --filter="name=postgres" | xargs docker rm
+	docker ps -a -q --filter="name=postgres-image" | xargs docker stop
+	docker ps -a -q --filter="name=postgres-image" | xargs docker rm
+	docker ps -a -q --filter="name=mongo" | xargs docker stop
+	docker ps -a -q --filter="name=mongo" | xargs docker rm
+	docker ps -a -q --filter="name=video-series-query" | xargs docker stop
+	docker ps -a -q --filter="name=video-series-query" | xargs docker rm
+	docker ps -a -q --filter="name=video-series-command" | xargs docker stop
+	docker ps -a -q --filter="name=video-series-command" | xargs docker rm

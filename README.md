@@ -115,9 +115,9 @@ This will attempt to stop all running `mongodb` and `postgres` containers, all `
 
 ## Profiles
 
-1. Default - No need to mention the profile in the command line, and it needs MongoDB only. Data is stored in embedded H2
+1. Default - No need to mention the profile in the command line, and it needs MongoDB only. Data is stored in embedded `H2`
 2. local - Specified with `-Dspring.profiles.active=local`. Needs Postgres and MongoDb. `localhost` is the common host locally
-3. prod - Named after `Production` and runs with `-Dspring.profiles.active=local`. Only used in docker-compose networks
+3. prod - Named after `Production` and runs with `-Dspring.profiles.active=prod`. Only used in docker-compose networks
 
 ## Docker helper commands
 

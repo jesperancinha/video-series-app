@@ -61,7 +61,7 @@ class VideoSeriesQueryControllerITTest(
 
                 responseEntity.shouldNotBeNull()
                 val allVSAs = responseEntity.body as List<*>
-                allVSAs.shouldBeEmpty()
+                allVSAs.shouldHaveSize(3)
 
                 val allDomainEvents = mongoTemplate
                     .find(Query.query(Criteria()), Any::class.java, "domainevents")
@@ -98,7 +98,7 @@ class VideoSeriesQueryControllerITTest(
                 responseResultEntity.shouldNotBeNull()
                 val allVSAResults = responseResultEntity.body as List<*>
                 allVSAResults.shouldNotBeEmpty()
-                allVSAResults shouldHaveSize 1
+                allVSAResults shouldHaveSize 4
             }
         }
 

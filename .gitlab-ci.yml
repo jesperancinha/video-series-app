@@ -47,7 +47,9 @@ image: maven:3-openjdk-16
 cache:
   paths:
     - .m2/repository/
-    - target/
+    - video-series-command/target/
+    - video-series-core/target/
+    - video-series-query/target/
 
 .verify: &verify
   stage: test

@@ -18,8 +18,8 @@ stages:
   - coveralls
   - codecov
   - codacy
-  - verify
-  - test
+#  - verify
+#  - test
 
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
@@ -51,16 +51,16 @@ cache:
     - video-series-core/target/
     - video-series-query/target/
 
-.verify: &verify
-  stage: test
-  script:
-    - 'mvn verify'
-  except:
-    - master
-    - /^feature.*/
+#.verify: &verify
+#  stage: test
+#  script:
+#    - 'mvn verify'
+#  except:
+#    - master
+#    - /^feature.*/
 
-verify:
-  <<: *verify
+#verify:
+#  <<: *verify
 
 build:
   stage: build

@@ -70,6 +70,7 @@ class VideoSeriesQueryControllerITTest(
 
                 val film = VideoSeriesDto.builder()
                     .name("Halloween")
+                    .volumes(6)
                     .cashValue(BigDecimal.valueOf(1_000_000))
                     .genre(Genre.HORROR)
                     .build()
@@ -87,6 +88,7 @@ class VideoSeriesQueryControllerITTest(
                 val filmOnEventQueue = allPostDomainEvents[0]["serializedPayload"].toString()
 
                 filmOnEventQueue shouldContain "Halloween"
+                filmOnEventQueue shouldContain "6"
                 filmOnEventQueue shouldContain "HORROR"
                 filmOnEventQueue shouldContain "1000000"
 

@@ -13,24 +13,8 @@ import org.springframework.jdbc.datasource.init.ScriptUtils;
 
 @SpringBootApplication
 @Import(AxonConfig.class)
-public class VideoAppQueryLauncher implements ApplicationRunner {
-    public VideoAppQueryLauncher(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
+public class VideoAppQueryLauncher {
     public static void main(String[] args) {
         SpringApplication.run(VideoAppQueryLauncher.class);
-    }
-
-    @Value("classpath:schema-after-load-postgres.sql")
-    private Resource script;
-
-    private final JdbcTemplate jdbcTemplate;
-
-
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-//        ScriptUtils
-//                .executeSqlScript(jdbcTemplate.getDataSource().getConnection(), script);
     }
 }

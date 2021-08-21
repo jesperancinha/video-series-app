@@ -1,5 +1,3 @@
-all:
-	mvn clean install | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"
 build:
 	mvn clean install | grep -v "com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire"
 test:
@@ -15,6 +13,7 @@ docker:
 docker-databases: stop local
 	docker build ./docker-psql/. -t postgres-image
 	docker run --name postgres-standalone -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_MULTIPLE_DATABASES=vsa -p 5432:5432 -d postgres-image
+docker-mongo: stop local
 	docker run --name mongodb-standalone -p 27017:27017 -d mongo
 build-images:
 	docker build video-series-command/. -t video-series-command

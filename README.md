@@ -133,6 +133,13 @@ sudo lsof -i :5432
 
 Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
 
+## Buy me a coffee
+
+I hope you enjoyed this repository. If you did please buy me a coffee which enables me to constantly improve and make new free content regularly for everyone. Thank you so much!
+
+<a href="https://www.buymeacoffee.com/jesperancinha" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+
 ## References
 
 -   [Working with Postgres Audit Triggers](https://www.enterprisedb.com/postgres-tutorials/working-postgres-audit-triggers)

@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.3</version>
+        <version>2.6.2</version>
         <relativePath/>
     </parent>
 
@@ -21,7 +21,7 @@
 
     <properties>
         <!-- External Dependency Versions -->
-        <java.version>16</java.version>
+        <java.version>17</java.version>
         <h2.version>2.0.206</h2.version>
         <lombok.version>1.18.22</lombok.version>
         <axon.version>4.5.6</axon.version>

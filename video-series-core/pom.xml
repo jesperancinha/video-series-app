@@ -58,18 +58,14 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls-maven-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jaxb-api</artifactId>
-                        <version>${jaxb-api.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+                <plugin>
+                    <groupId>org.jesperancinha.plugins</groupId>
+                    <artifactId>omni-coveragereporter-maven-plugin</artifactId>
+                    <version>${omni-coveragereporter-maven-plugin.version}</version>
+                    <configuration>
+                        <useCoverallsCount>false</useCoverallsCount>
+                    </configuration>
+                </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

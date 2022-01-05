@@ -22,7 +22,7 @@
     <properties>
         <!-- External Dependency Versions -->
         <java.version>16</java.version>
-        <h2.version>1.4.200</h2.version>
+        <h2.version>2.0.206</h2.version>
         <lombok.version>1.18.22</lombok.version>
         <axon.version>4.5.3</axon.version>
         <!-- Test Dependency Versions -->

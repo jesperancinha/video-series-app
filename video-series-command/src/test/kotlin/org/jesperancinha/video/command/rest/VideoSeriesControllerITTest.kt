@@ -1,13 +1,13 @@
 package org.jesperancinha.video.command.rest
 
-import io.kotest.core.listeners.TestListener
+import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
+import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import io.kotest.spring.SpringListener
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.springframework.beans.factory.annotation.Autowired
@@ -85,7 +85,7 @@ class VideoSeriesControllerITTest(
         }
     }
 
-    override fun listeners(): List<TestListener> = listOf(SpringListener)
+    override fun extensions(): List<Extension> = listOf(SpringExtension)
 
     override fun beforeEach(testCase: TestCase) {
         super.beforeEach(testCase)

@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.3</version>
+        <version>2.6.2</version>
         <relativePath/>
     </parent>
 
@@ -21,15 +21,15 @@
 
     <properties>
         <!-- External Dependency Versions -->
-        <java.version>16</java.version>
-        <h2.version>1.4.200</h2.version>
-        <lombok.version>1.18.20</lombok.version>
-        <axon.version>4.5.3</axon.version>
+        <java.version>17</java.version>
+        <h2.version>2.0.206</h2.version>
+        <lombok.version>1.18.22</lombok.version>
+        <axon.version>4.5.6</axon.version>
         <!-- Test Dependency Versions -->
-        <assertj-core.version>3.13.2</assertj-core.version>
+        <assertj-core.version>3.22.0</assertj-core.version>
         <mockito-all.version>1.10.19</mockito-all.version>
-        <junit-jupiter.version>5.5.2</junit-jupiter.version>
-        <mockito-junit-jupiter.version>3.1.0</mockito-junit-jupiter.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <mockito-junit-jupiter.version>4.2.0</mockito-junit-jupiter.version>
 
         <maven-compiler-plugin.source>${java.version}</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>${java.version}</maven-compiler-plugin.target>
@@ -37,15 +37,15 @@
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
-        <springmockk.version>3.0.1</springmockk.version>
+        <springmockk.version>3.1.0</springmockk.version>
         <kotest-extensions-spring.version>1.0.0</kotest-extensions-spring.version>
-        <mockk.version>1.12.0</mockk.version>
-        <kotest.version>4.4.3</kotest.version>
-        <axon-spring-boot-starter.version>4.5.3</axon-spring-boot-starter.version>
-        <axon-mongo.version>4.4</axon-mongo.version>
+        <mockk.version>1.12.2</mockk.version>
+        <kotest.version>5.0.3</kotest.version>
+        <axon-spring-boot-starter.version>4.5.6</axon-spring-boot-starter.version>
+        <axon-mongo.version>4.5</axon-mongo.version>
         <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
-        <postgresql.version>42.2.23</postgresql.version>
-        <testcontainers.version>1.16.0</testcontainers.version>
+        <postgresql.version>42.3.1</postgresql.version>
+        <testcontainers.version>1.16.2</testcontainers.version>
         <omni-coveragereporter-maven-plugin.version>0.0.6</omni-coveragereporter-maven-plugin.version>
     </properties>
 

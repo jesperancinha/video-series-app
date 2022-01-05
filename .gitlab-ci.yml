@@ -18,6 +18,7 @@ stages:
   - codacy
   - verify
   - test
+  - update
 
 variables:
   # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
@@ -78,5 +79,14 @@ codacy:
   stage: coverage
   script:
     - 'bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Java $(find **/jacoco*.xml -printf ''-r %p '')'
+  only:
+    - master
+
+update-dependencies:
+  image: renovate/renovate
+  stage: update
+  script:
+    - export RENOVATE_CONFIG=$(< renovate.json)
+    - renovate
   only:
     - master

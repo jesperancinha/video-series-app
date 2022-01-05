@@ -28,7 +28,7 @@
         <!-- Test Dependency Versions -->
         <assertj-core.version>3.13.2</assertj-core.version>
         <mockito-all.version>1.10.19</mockito-all.version>
-        <junit-jupiter.version>5.5.2</junit-jupiter.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <mockito-junit-jupiter.version>3.1.0</mockito-junit-jupiter.version>
 
         <maven-compiler-plugin.source>${java.version}</maven-compiler-plugin.source>

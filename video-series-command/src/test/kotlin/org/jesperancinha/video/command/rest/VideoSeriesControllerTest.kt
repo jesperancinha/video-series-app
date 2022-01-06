@@ -2,11 +2,11 @@ package org.jesperancinha.video.command.rest
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.ninjasquad.springmockk.MockkBean
-import io.kotest.core.listeners.TestListener
+import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
+import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.spring.SpringListener
 import io.mockk.Called
 import io.mockk.slot
 import io.mockk.verify
@@ -42,7 +42,7 @@ class VideoSeriesControllerTest(
     @MockkBean(relaxed = true)
     lateinit var commandGateway: CommandGateway
 
-    override fun listeners(): List<TestListener> = listOf(SpringListener)
+    override fun extensions(): List<Extension> = listOf(SpringExtension)
 
     init {
         "should receive data and responde correctly" should {

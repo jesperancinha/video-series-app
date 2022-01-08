@@ -24,7 +24,7 @@
         <java.version>17</java.version>
         <h2.version>2.0.206</h2.version>
         <lombok.version>1.18.22</lombok.version>
-        <axon.version>4.5.6</axon.version>
+        <axon.version>4.5.7</axon.version>
         <!-- Test Dependency Versions -->
         <assertj-core.version>3.22.0</assertj-core.version>
         <mockito-all.version>1.10.19</mockito-all.version>
@@ -41,7 +41,7 @@
         <kotest-extensions-spring.version>1.1.0</kotest-extensions-spring.version>
         <mockk.version>1.12.2</mockk.version>
         <kotest.version>5.0.3</kotest.version>
-        <axon-spring-boot-starter.version>4.5.6</axon-spring-boot-starter.version>
+        <axon-spring-boot-starter.version>4.5.7</axon-spring-boot-starter.version>
         <axon-mongo.version>4.5</axon-mongo.version>
         <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
         <postgresql.version>42.3.1</postgresql.version>

@@ -46,7 +46,7 @@
         <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
         <postgresql.version>42.3.1</postgresql.version>
         <testcontainers.version>1.16.2</testcontainers.version>
-        <omni-coveragereporter-maven-plugin.version>0.0.6</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.0.8</omni-coveragereporter-maven-plugin.version>
     </properties>
 
     <dependencyManagement>

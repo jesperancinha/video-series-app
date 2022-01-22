@@ -47,6 +47,7 @@
         <postgresql.version>42.3.1</postgresql.version>
         <testcontainers.version>1.16.3</testcontainers.version>
         <omni-coveragereporter-maven-plugin.version>0.0.11</omni-coveragereporter-maven-plugin.version>
+        <kotlin.version>1.6.10-RC</kotlin.version>
     </properties>
 
     <dependencyManagement>
@@ -206,11 +207,6 @@
         <dependency>
             <groupId>io.kotest.extensions</groupId>
             <artifactId>kotest-extensions-spring</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.kotest</groupId>
-            <artifactId>kotest-runner-junit5-jvm</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

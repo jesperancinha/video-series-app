@@ -6,6 +6,7 @@ stages:
   - reporting
   - verify
   - test
+  - docker-compose
   - update
 
 variables:

@@ -17,6 +17,7 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
+
 image: maven:3-openjdk-17
 
 cache:
@@ -62,7 +63,7 @@ coverage:
 
 reporting:
   image: maven:3.8-openjdk-17-slim
-  stage: 'reporting'
+  stage: reporting
   cache:
     - key: MAVEN
       paths:

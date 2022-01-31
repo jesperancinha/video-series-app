@@ -3,9 +3,7 @@ services:
 stages:
   - build
   - coverage
-  - coveralls
-  - codecov
-  - codacy
+  - reporting
   - verify
   - test
   - update
@@ -19,7 +17,6 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
-
 image: maven:3-openjdk-17
 
 cache:

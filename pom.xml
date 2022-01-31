@@ -262,7 +262,7 @@
                     <artifactId>omni-coveragereporter-maven-plugin</artifactId>
                     <version>${omni-coveragereporter-maven-plugin.version}</version>
                     <configuration>
-                        <useCoverallsCount>true</useCoverallsCount>
+                        <useCoverallsCount>false</useCoverallsCount>
                     </configuration>
                 </plugin>
             </plugins>

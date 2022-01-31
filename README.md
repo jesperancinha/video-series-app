@@ -7,10 +7,10 @@
 [![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/video-series-app/master)](https://gitlab.com/jesperancinha/video-series-app/-/pipelines)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/video-series-app&amp;utm_campaign=Badge_Grade)
-		
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/video-series-app&utm_campaign=Badge_Coverage)
 [![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/video-series-app/badge.svg?branch=master)](https://coveralls.io/gitlab/jesperancinha/video-series-app?branch=master)
 [![codecov](https://codecov.io/gl/jesperancinha/video-series-app/branch/master/graph/badge.svg)](https://codecov.io/gl/jesperancinha/video-series-app)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/video-series-app&utm_campaign=Badge_Coverage)
 ---
 
 ## Technologies used

@@ -11,7 +11,9 @@ import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
@@ -169,15 +171,17 @@ class VideoSeriesQueryControllerITTest(
 
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
-    override fun beforeEach(testCase: TestCase) {
+    override suspend fun beforeEach(testCase: TestCase) {
         super.beforeEach(testCase)
         mongoDBContainer.isRunning.shouldBeTrue()
         postgreSQLContainer.isRunning.shouldBeTrue()
         vsaContainer.isRunning.shouldBeTrue()
     }
 
-    override fun afterEach(testCase: TestCase, result: TestResult) {
+    override suspend fun afterEach(testCase: TestCase, result: TestResult) {
         super.afterEach(testCase, result)
-        videoSeriesRepository.deleteAll()
+        withContext(Dispatchers.IO) {
+            videoSeriesRepository.deleteAll()
+        }
     }
 }

@@ -48,6 +48,7 @@
         <testcontainers.version>1.16.3</testcontainers.version>
         <kotlin.version>1.6.10</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <kotlin-coroutines.version>1.6.0</kotlin-coroutines.version>
     </properties>
 
     <dependencyManagement>
@@ -205,6 +206,12 @@
                 <groupId>org.jetbrains.kotlinx</groupId>
                 <artifactId>kotlinx-coroutines-core-jvm</artifactId>
                 <version>${kotlin-coroutines.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-framework-api-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

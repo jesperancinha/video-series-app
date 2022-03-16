@@ -48,7 +48,7 @@
         <testcontainers.version>1.16.3</testcontainers.version>
         <kotlin.version>1.6.10</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
-        <kotlin-coroutines.version>1.6.0</kotlin-coroutines.version>
+        <kotlin-coroutines.version>1.6.0-native-mt</kotlin-coroutines.version>
     </properties>
 
     <dependencyManagement>

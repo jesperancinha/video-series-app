@@ -87,7 +87,7 @@ class VideoSeriesControllerITTest(
 
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
-    override fun beforeEach(testCase: TestCase) {
+    override suspend fun beforeEach(testCase: TestCase) {
         super.beforeEach(testCase)
         mongoDBContainer.isRunning.shouldBeTrue()
 

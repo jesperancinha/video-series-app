@@ -40,7 +40,7 @@
         <springmockk.version>3.1.1</springmockk.version>
         <kotest-extensions-spring.version>1.1.0</kotest-extensions-spring.version>
         <mockk.version>1.12.3</mockk.version>
-        <kotest.version>5.1.0</kotest.version>
+        <kotest.version>5.2.1</kotest.version>
         <axon-spring-boot-starter.version>4.5.8</axon-spring-boot-starter.version>
         <axon-mongo.version>4.5</axon-mongo.version>
         <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
@@ -48,6 +48,7 @@
         <testcontainers.version>1.16.3</testcontainers.version>
         <kotlin.version>1.6.10</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <kotlin-coroutines.version>1.6.0</kotlin-coroutines.version>
     </properties>
 
     <dependencyManagement>
@@ -193,6 +194,22 @@
             <dependency>
                 <groupId>io.kotest</groupId>
                 <artifactId>kotest-extensions-testcontainers-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-core</artifactId>
+                <version>${kotlin-coroutines.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-core-jvm</artifactId>
+                <version>${kotlin-coroutines.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-framework-api-jvm</artifactId>
                 <version>${kotest.version}</version>
                 <scope>test</scope>
             </dependency>

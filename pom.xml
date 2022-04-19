@@ -23,7 +23,7 @@
         <!-- External Dependency Versions -->
         <java.version>17</java.version>
         <h2.version>2.1.212</h2.version>
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
         <axon.version>4.5.9</axon.version>
         <!-- Test Dependency Versions -->
         <assertj-core.version>3.22.0</assertj-core.version>

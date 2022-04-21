@@ -38,7 +38,7 @@
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <springmockk.version>3.1.1</springmockk.version>
-        <kotest-extensions-spring.version>1.1.0</kotest-extensions-spring.version>
+        <kotest-extensions-spring.version>1.1.1</kotest-extensions-spring.version>
         <mockk.version>1.12.3</mockk.version>
         <kotest.version>5.2.3</kotest.version>
         <axon-spring-boot-starter.version>4.5.9</axon-spring-boot-starter.version>

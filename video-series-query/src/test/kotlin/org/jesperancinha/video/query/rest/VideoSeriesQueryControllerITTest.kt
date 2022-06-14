@@ -75,8 +75,10 @@ class VideoSeriesQueryControllerITTest(
                     .build()
 
                 val responseCreateEntity =
-                    testRestTemplate.restTemplate.postForEntity<Any>("http://${vsaContainer.host}:${vsaContainer.firstMappedPort}/video-series",
-                        film)
+                    testRestTemplate.restTemplate.postForEntity<Any>(
+                        "http://${vsaContainer.host}:${vsaContainer.firstMappedPort}/video-series",
+                        film
+                    )
 
                 responseCreateEntity.statusCode shouldBe HttpStatus.OK
                 val allPostDomainEvents = mongoTemplate
@@ -119,18 +121,22 @@ class VideoSeriesQueryControllerITTest(
 
         @Container
         @JvmStatic
-        val vsaContainer: GenericContainer<*> = GenericContainer<GenericContainer<*>>(
+        val vsaContainer: GenericContainer<*> = GenericContainer(
             ImageFromDockerfile("vsa-test-image")
                 .withFileFromClasspath("entrypoint.sh", "/entrypoint.sh")
-                .withFileFromClasspath("video-series-command.jar",
-                    "/video-series-command-2.0.0.jar")
+                .withFileFromClasspath(
+                    "video-series-command.jar",
+                    "/video-series-command-2.0.0.jar"
+                )
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
                         .from("adoptopenjdk/openjdk16")
                         .workDir("/usr/local/bin/")
                         .run("apt-get update")
-                        .copy("video-series-command.jar",
-                            "/usr/local/bin/video-series-command.jar")
+                        .copy(
+                            "video-series-command.jar",
+                            "/usr/local/bin/video-series-command.jar"
+                        )
                         .copy("entrypoint.sh", "/usr/local/bin/entrypoint.sh")
                         .run("chmod +x /usr/local/bin/entrypoint.sh")
                         .expose(8080)

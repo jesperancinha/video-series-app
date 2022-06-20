@@ -26,6 +26,20 @@
         "@types"
       ],
       "automerge": true
+    },
+    {
+      "groupName": "Axon Framework Group",
+      "matchPackagePrefixes": [
+        "org.axonframework"
+      ],
+      "automerge": true
+    },
+    {
+      "groupName": "JetBrains Groups",
+      "matchPackagePrefixes": [
+        "org.jetbrains"
+      ],
+      "automerge": true
     }
   ]
 }

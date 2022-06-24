@@ -48,17 +48,10 @@
         <testcontainers.version>1.17.2</testcontainers.version>
         <kotlin.version>1.7.0</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
-        <kotlinx-coroutines-bom.version>1.6.3-native-mt</kotlinx-coroutines-bom.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.jetbrains.kotlinx</groupId>
-                <artifactId>kotlinx-coroutines-bom</artifactId>
-                <version>${kotlinx-coroutines-bom.version}</version>
-                <scope>import</scope>
-            </dependency>
             <!-- Inner dependencies -->
             <dependency>
                 <groupId>org.jesperancinha.video</groupId>

@@ -24,6 +24,7 @@ public class VideoSeriesEventHandler {
     }
 
     @EventHandler
+    @SuppressWarnings("unused")
     public void on(AddSeriesEvent event) {
         videoSeriesRepository.save(VideoSeries
                 .builder()
@@ -35,6 +36,7 @@ public class VideoSeriesEventHandler {
     }
 
     @QueryHandler
+    @SuppressWarnings("unused")
     public List<VideoSeriesDto> handle(FindAllVideoSeriesQuery query) {
         return videoSeriesRepository.findAll().stream().map(
                 videoSeries -> VideoSeriesDto.builder()

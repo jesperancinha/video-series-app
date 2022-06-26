@@ -32,3 +32,9 @@ stop:
 	docker ps -a -q --filter="name=video-series-query" | xargs docker rm
 	docker ps -a -q --filter="name=video-series-command" | xargs docker stop
 	docker ps -a -q --filter="name=video-series-command" | xargs docker rm
+dcup-light:
+	docker-compose up -d postgres
+dcup: dcd
+	docker-compose up -d --build --remove-orphans
+dcd:
+	docker-compose down

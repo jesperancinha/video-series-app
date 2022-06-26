@@ -44,16 +44,42 @@ All running issues are being solved in branch [feature/research_and_development]
 
 ## Requests
 
-1.  List all
+1. List all
 
 ```shell
 curl localhost:8090/video-series
 ```
 
-2.  Create new records
+2. Create new records
 
 ```shell
 curl -d '{ "name":"True Blood", "volumes":30, "cashValue": 1323.2, "genre": "DRAMA"}' -H "Content-Type: application/json" -X POST http://localhost:8080/video-series
+```
+
+## Swagger
+
+You can also test this application using swagger.
+
+Just run:
+
+```shell
+make build-docker dcup
+```
+
+And then finally access the API you wish to test:
+
+1. [Command API](http://localhost:8080/swagger-ui/index.html)
+2. [Query API](http://localhost:8090/swagger-ui/index.html)
+
+Example payload for Command API:
+
+```json
+{
+  "name": "True Blood",
+  "volumes": 30,
+  "cashValue": 1323.2,
+  "genre": "DRAMA"
+}
 ```
 
 ## Installation notes
@@ -72,7 +98,7 @@ or
 docker-composer up
 ```
 
-or 
+or
 
 ```shell
 docker composer up
@@ -100,22 +126,22 @@ This will attempt to stop all running `mongodb` and `postgres` containers, all `
 
 ## Makefile options in detail
 
-1.  `build` - Builds all java bytecode
-2.  `test` - Runs the local tests (they take long in this project)
-3.  `local` - Makes a build without tests and places all jars in a /bin folder
-4.  `no-test` - Makes a build without tests
-5.  `docker` - Starts docker compose
-6.  `docker-databases` - Starts the database containers (Postgres + MongoDB) - You then need to start the SpringBoot/jars manually
-7.  `docker-mongo` - Only starts the mongodb container - This is meant to be tested with the default profile ONLY. It uses an embedded H2 database instead of Postgres.
-8.  `build-images` - Builds the images to run the spring boot processes: `video-series-command` and `video-series-query`
-9.  `build-docker` - Makes a clean build, stops containers and relaunches docker-compose.
+1. `build` - Builds all java bytecode
+2. `test` - Runs the local tests (they take long in this project)
+3. `local` - Makes a build without tests and places all jars in a /bin folder
+4. `no-test` - Makes a build without tests
+5. `docker` - Starts docker compose
+6. `docker-databases` - Starts the database containers (Postgres + MongoDB) - You then need to start the SpringBoot/jars manually
+7. `docker-mongo` - Only starts the mongodb container - This is meant to be tested with the default profile ONLY. It uses an embedded H2 database instead of Postgres.
+8. `build-images` - Builds the images to run the spring boot processes: `video-series-command` and `video-series-query`
+9. `build-docker` - Makes a clean build, stops containers and relaunches docker-compose.
 10. `stop` - Makes a full stop of known containers. It is reused in many of the other commands.
 
 ## Profiles
 
-1.  Default - No need to mention the profile in the command line, and it needs MongoDB only. Data is stored in an embedded `H2`
-2.  local - Specified with `-Dspring.profiles.active=local`. Needs Postgres and MongoDb. `localhost` is the common host locally
-3.  prod - Named after `Production` and runs with `-Dspring.profiles.active=prod`. Only used in docker-compose networks
+1. Default - No need to mention the profile in the command line, and it needs MongoDB only. Data is stored in an embedded `H2`
+2. local - Specified with `-Dspring.profiles.active=local`. Needs Postgres and MongoDb. `localhost` is the common host locally
+3. prod - Named after `Production` and runs with `-Dspring.profiles.active=prod`. Only used in docker-compose networks
 
 ## Docker helper commands
 
@@ -135,17 +161,17 @@ Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
 
 ## References
 
--   [Working with Postgres Audit Triggers](https://www.enterprisedb.com/postgres-tutorials/working-postgres-audit-triggers)
--   [Apply simplified CQRS and DDD patterns in a microservice](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/apply-simplified-microservice-cqrs-ddd-patterns)
--   [Platforms JVM Records](https://kotlinlang.org/docs/jvm-records.html)
--   [Mongo Axon Reference Guide](https://docs.axoniq.io/reference-guide/extensions/mongo)
--   [CQRS Microservice Sampler by Ben Wilcock on GitHub](https://github.com/benwilcock/cqrs-microservice-sampler)
--   [Patrick Gillespie's Text to Ascii Art Generator](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
--   [Microservices With Spring Boot, Axon CQRS/ES, and Docker by Ben Wilcock](https://dzone.com/articles/microservices-with-spring-boot-axon-cqrses-anddock)
--   [Advanced Message Queuing Protocol](https://www.amqp.org/)
--   [Install MongoDB on Mac OS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
--   [Object-Oriented Software Construction by Bertrand Meyer](https://www.amazon.com/gp/product/0136291554?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0136291554)
--   [CQRS Journey by Microsoft](https://docs.microsoft.com/en-gb/previous-versions/msp-n-p/jj554200%28v%3Dpandp.10%29)
+- [Working with Postgres Audit Triggers](https://www.enterprisedb.com/postgres-tutorials/working-postgres-audit-triggers)
+- [Apply simplified CQRS and DDD patterns in a microservice](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/apply-simplified-microservice-cqrs-ddd-patterns)
+- [Platforms JVM Records](https://kotlinlang.org/docs/jvm-records.html)
+- [Mongo Axon Reference Guide](https://docs.axoniq.io/reference-guide/extensions/mongo)
+- [CQRS Microservice Sampler by Ben Wilcock on GitHub](https://github.com/benwilcock/cqrs-microservice-sampler)
+- [Patrick Gillespie's Text to Ascii Art Generator](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
+- [Microservices With Spring Boot, Axon CQRS/ES, and Docker by Ben Wilcock](https://dzone.com/articles/microservices-with-spring-boot-axon-cqrses-anddock)
+- [Advanced Message Queuing Protocol](https://www.amqp.org/)
+- [Install MongoDB on Mac OS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+- [Object-Oriented Software Construction by Bertrand Meyer](https://www.amazon.com/gp/product/0136291554?ie=UTF8&tag=martinfowlerc-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0136291554)
+- [CQRS Journey by Microsoft](https://docs.microsoft.com/en-gb/previous-versions/msp-n-p/jj554200%28v%3Dpandp.10%29)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 

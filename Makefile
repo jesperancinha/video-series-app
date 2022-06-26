@@ -18,7 +18,7 @@ docker-mongo: stop local
 build-images:
 	docker build video-series-command/. -t video-series-command
 	docker build video-series-query/. -t video-series-query
-build-docker: stop no-test
+build-docker: dcd stop no-test
 	docker-compose up -d --build --remove-orphans
 stop:
 	docker-compose down
@@ -32,9 +32,15 @@ stop:
 	docker ps -a -q --filter="name=video-series-query" | xargs docker rm
 	docker ps -a -q --filter="name=video-series-command" | xargs docker stop
 	docker ps -a -q --filter="name=video-series-command" | xargs docker rm
+pull:
+	docker-compose pull
 dcup-light:
 	docker-compose up -d postgres
 dcup: dcd
 	docker-compose up -d --build --remove-orphans
 dcd:
 	docker-compose down
+logs-command:
+	docker-compose logs -f command
+logs-quey:
+	docker-compose logs -f query

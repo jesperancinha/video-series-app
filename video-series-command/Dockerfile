@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk16
+FROM openjdk:17-slim-buster
 
 ENV runningFolder /usr/local/bin/
 
@@ -6,7 +6,7 @@ WORKDIR ${runningFolder}
 
 RUN apt-get update
 
-COPY target/video-series-command-*.jar ${runningFolder}/video-series-command.jar
+COPY target/video-series-command.jar ${runningFolder}/video-series-command.jar
 
 COPY entrypoint.sh ${runningFolder}
 

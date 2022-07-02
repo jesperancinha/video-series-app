@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version>
+        <version>2.7.1</version>
         <relativePath/>
     </parent>
 
@@ -55,12 +55,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.jetbrains.kotlinx</groupId>
-                <artifactId>kotlinx-coroutines-bom</artifactId>
-                <version>${kotlinx-coroutines-bom.version}</version>
-                <scope>import</scope>
-            </dependency>
             <!-- Inner dependencies -->
             <dependency>
                 <groupId>org.jesperancinha.video</groupId>
@@ -209,16 +203,6 @@
                 <artifactId>kotest-extensions-testcontainers-jvm</artifactId>
                 <version>${kotest.version}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlinx</groupId>
-                <artifactId>kotlinx-coroutines-core</artifactId>
-                <version>${kotlin-coroutines.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlinx</groupId>
-                <artifactId>kotlinx-coroutines-core-jvm</artifactId>
-                <version>${kotlin-coroutines.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.kotest</groupId>

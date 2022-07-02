@@ -50,7 +50,7 @@
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-bom.version>1.6.3-native-mt</kotlinx-coroutines-bom.version>
         <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
-        <kotlinx-coroutines-debug.version>1.6.3</kotlinx-coroutines-debug.version>
+        <kotlinx-coroutines-debug.version>1.6.3-native-mt</kotlinx-coroutines-debug.version>
     </properties>
 
     <dependencyManagement>

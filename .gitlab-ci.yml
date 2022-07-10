@@ -175,9 +175,9 @@ reporting:
   needs:
     - coverage
     - vma-series-edge-e2e
-    - vma-series-edge-chrome
-    - vma-series-edge-firefox
-    - vma-series-edge-electron
+    - vma-series-chrome-e2e
+    - vma-series-firefox-e2e
+    - vma-series-electron-e2e
 
 update-dependencies:
   image: renovate/renovate

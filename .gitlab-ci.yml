@@ -90,6 +90,8 @@ vma-series-electron-e2e:
         - video-series-command/target/
         - video-series-core/target/
         - video-series-query/target/
+  allow_failure: true
+  timeout: 10m
 
 vma-series-chrome-e2e:
   image: node:16

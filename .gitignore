@@ -37,3 +37,13 @@ build/
 ### SDK ###
 Snap.**.trc
 javacore.**.txt
+
+# Node
+node_modules
+
+## Cypress
+videos
+screenshots
+
+# OS
+.DS_Store

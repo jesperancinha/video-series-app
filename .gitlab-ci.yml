@@ -2,6 +2,8 @@ services:
   - docker:dind
 stages:
   - build
+  - qa
+  - e2e
   - coverage
   - reporting
   - verify
@@ -34,6 +36,18 @@ cache:
 verify:
   <<: *verify
 
+before_script:
+  - apt-get update -y
+  - apt-get upgrade -y
+  - apt-get install build-essential -y
+  - bash latest-compose.sh
+#  - apt-get install -y docker-compose
+#  - apt-get install -y npm
+#  - npm install --global yarn
+#  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+#  - source ~/.bashrc
+#  - nvm install --lts
+
 build:
   image: maven:3.8-openjdk-17-slim
   stage: build
@@ -44,7 +58,90 @@ build:
         - video-series-core/target/
         - video-series-query/target/
   script:
-    - mvn clean install
+    - make no-test
+
+qa:
+  image: maven:3.8-openjdk-17-slim
+  stage: build
+  cache:
+    - key: MAVEN
+      paths:
+        - video-series-command/target/
+        - video-series-core/target/
+        - video-series-query/target/
+  script:
+    - mvn test
+  needs:
+    - build
+      
+vma-series-electron-e2e:
+  image: node:16
+  stage: e2e
+  script:
+    - make dcup-full-action
+    - make cypress-electron
+  only:
+    - master
+  needs:
+    - qa
+  cache:
+    - key: MAVEN
+      paths:
+        - video-series-command/target/
+        - video-series-core/target/
+        - video-series-query/target/
+
+vma-series-chrome-e2e:
+  image: node:16
+  stage: e2e
+  script:
+    - make dcup-full-action
+    - make cypress-chrome
+  only:
+    - master
+  needs:
+    - qa
+  cache:
+    - key: MAVEN
+      paths:
+        - video-series-command/target/
+        - video-series-core/target/
+        - video-series-query/target/
+
+vma-series-firefox-e2e:
+  image: node:16
+  stage: e2e
+  script:
+    - make dcup-full-action
+    - make cypress-firefox
+  only:
+    - master
+  needs:
+    - qa
+  cache:
+    - key: MAVEN
+      paths:
+        - video-series-command/target/
+        - video-series-core/target/
+        - video-series-query/target/
+
+vma-series-edge-e2e:
+  image: node:16
+  stage: e2e
+  script:
+    - make dcup-full-action
+    - make cypress-edge
+  only:
+    - master
+  needs:
+    - qa
+  cache:
+    - key: MAVEN
+      paths:
+        - video-series-command/target/
+        - video-series-core/target/
+        - video-series-query/target/
+
 
 coverage:
   image: maven:3.8-openjdk-17-slim
@@ -77,6 +174,10 @@ reporting:
     - master
   needs:
     - coverage
+    - vma-series-edge-e2e
+    - vma-series-edge-chrome
+    - vma-series-edge-firefox
+    - vma-series-edge-electron
 
 update-dependencies:
   image: renovate/renovate

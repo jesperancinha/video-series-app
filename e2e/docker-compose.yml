@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  e2e-electron:
+    image: "cypress/included:10.3.0"
+    working_dir: /e2e
+    command: "--browser electron --env host=favourite-lyrics-nginx"
+    volumes:
+      - ./e2e:/e2e
+
+  e2e-chrome:
+    image: "cypress/included:10.3.0"
+    working_dir: /e2e
+    command: "--browser chrome --env host=favourite-lyrics-nginx"
+    volumes:
+      - ./e2e:/e2e
+
+  e2e-firefox:
+    image: "cypress/included:10.3.0"
+    working_dir: /e2e
+    command: "--browser firefox --env host=favourite-lyrics-nginx"
+    volumes:
+      - ./e2e:/e2e
+
+  e2e-edge:
+    image: "cypress/included:10.3.0"
+    working_dir: /e2e
+    command: "--browser edge --env host=favourite-lyrics-nginx"
+    volumes:
+      - ./e2e:/e2e

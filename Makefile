@@ -47,6 +47,7 @@ dcup-light:
 	docker-compose up -d postgres
 dcup: dcd
 	docker-compose up -d --build --remove-orphans
+	bash vsa_wait.sh
 dcd:
 	docker-compose down
 dcup-full: docker-clean-build-start vsa-wait

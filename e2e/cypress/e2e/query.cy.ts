@@ -1,6 +1,7 @@
 describe('empty spec', () => {
     it('should perform a GET request to Query and receive QAF', () => {
-        cy.request("GET", "http://localhost:8090/video-series").its("body").should(body => {
+        let host = Cypress.env('host.query') ? Cypress.env('host.query') : 'localhost';
+        cy.request("GET", `http://${host.command}:8090/video-series`).its("body").should(body => {
             const expected = {
                 "name": "Glee",
                 "volumes": 121,

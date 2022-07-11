@@ -23,3 +23,5 @@ function checkServiceByNameAndMessage() {
 }
 
 checkServiceByNameAndMessage postgres 'database system is ready to accept connections'
+checkServiceByNameAndMessage command 'Started VideoAppCommandLauncher in'
+checkServiceByNameAndMessage query 'Started VideoAppQueryLauncher in'

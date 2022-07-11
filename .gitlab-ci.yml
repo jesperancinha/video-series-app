@@ -77,7 +77,7 @@ qa:
     - build
       
 vma-series-electron-e2e:
-  image: node:16
+  image: node:18
   stage: e2e
   script:
     - make dcup-full-action
@@ -94,7 +94,7 @@ vma-series-electron-e2e:
   timeout: 10m
 
 vma-series-chrome-e2e:
-  image: node:16
+  image: node:18
   stage: e2e
   script:
     - make dcup-full-action
@@ -109,7 +109,7 @@ vma-series-chrome-e2e:
         - video-series-query/target/
 
 vma-series-firefox-e2e:
-  image: node:16
+  image: node:18
   stage: e2e
   script:
     - make dcup-full-action
@@ -124,7 +124,7 @@ vma-series-firefox-e2e:
         - video-series-query/target/
 
 vma-series-edge-e2e:
-  image: node:16
+  image: node:18
   stage: e2e
   script:
     - make dcup-full-action

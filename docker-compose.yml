@@ -8,8 +8,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
       - POSTGRES_MULTIPLE_DATABASES=vsa
-    ports:
-      - "5432:5432"
+
+  mongo:
+    hostname: mongo
+    image: mongo
 
   command:
     hostname: command
@@ -24,9 +26,3 @@ services:
       context: ./video-series-query/.
     ports:
       - "8090:8090"
-
-  mongo:
-    hostname: mongo
-    image: mongo
-    ports:
-      - "27017:27017"

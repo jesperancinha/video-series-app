@@ -1,4 +1,4 @@
-FROM postgres:11.5-alpine
+FROM postgres:14.4-alpine
 
 COPY postgresql.conf /etc/postgresql/postgresql.conf
 

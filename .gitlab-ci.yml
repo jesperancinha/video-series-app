@@ -35,6 +35,8 @@ cache:
     - master
 verify:
   <<: *verify
+  before_script:
+    - ''
 
 before_script:
   - apt-get update -y
@@ -80,8 +82,6 @@ vma-series-electron-e2e:
   script:
     - make dcup-full-action
     - make cypress-electron
-  only:
-    - master
   needs:
     - qa
   cache:
@@ -99,8 +99,6 @@ vma-series-chrome-e2e:
   script:
     - make dcup-full-action
     - make cypress-chrome
-  only:
-    - master
   needs:
     - qa
   cache:
@@ -116,8 +114,6 @@ vma-series-firefox-e2e:
   script:
     - make dcup-full-action
     - make cypress-firefox
-  only:
-    - master
   needs:
     - qa
   cache:
@@ -133,8 +129,6 @@ vma-series-edge-e2e:
   script:
     - make dcup-full-action
     - make cypress-edge
-  only:
-    - master
   needs:
     - qa
   cache:

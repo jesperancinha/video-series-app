@@ -1,28 +1,28 @@
 version: '3.7'
 services:
   e2e-electron:
-    image: "cypress/included:10.4.0"
+    image: "cypress/included:10.5.0"
     working_dir: /e2e
     command: "--browser electron --env host.command=command,host.query=query"
     volumes:
       - ./e2e:/e2e
 
   e2e-chrome:
-    image: "cypress/included:10.4.0"
+    image: "cypress/included:10.5.0"
     working_dir: /e2e
     command: "--browser chrome --env host.command=command,host.query=query"
     volumes:
       - ./e2e:/e2e
 
   e2e-firefox:
-    image: "cypress/included:10.4.0"
+    image: "cypress/included:10.5.0"
     working_dir: /e2e
     command: "--browser firefox --env host.command=command,host.query=query"
     volumes:
       - ./e2e:/e2e
 
   e2e-edge:
-    image: "cypress/included:10.4.0"
+    image: "cypress/included:10.5.0"
     working_dir: /e2e
     command: "--browser edge --env host.command=command,host.query=query"
     volumes:

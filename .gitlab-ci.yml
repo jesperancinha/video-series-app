@@ -81,6 +81,7 @@ vma-series-electron-e2e:
         - video-series-query/target/
   allow_failure: true
   timeout: 10m
+  retry: 2
 
 vma-series-chrome-e2e:
   image: node:18
@@ -96,6 +97,7 @@ vma-series-chrome-e2e:
         - video-series-command/target/
         - video-series-core/target/
         - video-series-query/target/
+  retry: 2
 
 vma-series-firefox-e2e:
   image: node:18
@@ -111,6 +113,7 @@ vma-series-firefox-e2e:
         - video-series-command/target/
         - video-series-core/target/
         - video-series-query/target/
+  retry: 2
 
 vma-series-edge-e2e:
   image: node:18
@@ -126,7 +129,7 @@ vma-series-edge-e2e:
         - video-series-command/target/
         - video-series-core/target/
         - video-series-query/target/
-
+  retry: 2
 
 coverage:
   image: maven:3.8-openjdk-17-slim

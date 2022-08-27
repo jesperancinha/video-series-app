@@ -50,6 +50,8 @@ build:
         - video-series-query/target/
   script:
     - make no-test
+  except:
+    - schedules
 
 qa:
   image: maven:3.8-openjdk-17-slim
@@ -64,7 +66,9 @@ qa:
     - mvn test
   needs:
     - build
-      
+  except:
+    - schedules
+
 vma-series-electron-e2e:
   image: node:18
   stage: e2e
@@ -82,6 +86,8 @@ vma-series-electron-e2e:
   allow_failure: true
   timeout: 10m
   retry: 2
+  except:
+    - schedules
 
 vma-series-chrome-e2e:
   image: node:18
@@ -98,6 +104,8 @@ vma-series-chrome-e2e:
         - video-series-core/target/
         - video-series-query/target/
   retry: 2
+  except:
+    - schedules
 
 vma-series-firefox-e2e:
   image: node:18
@@ -114,6 +122,8 @@ vma-series-firefox-e2e:
         - video-series-core/target/
         - video-series-query/target/
   retry: 2
+  except:
+    - schedules
 
 vma-series-edge-e2e:
   image: node:18
@@ -130,6 +140,8 @@ vma-series-edge-e2e:
         - video-series-core/target/
         - video-series-query/target/
   retry: 2
+  except:
+    - schedules
 
 coverage:
   image: maven:3.8-openjdk-17-slim
@@ -146,6 +158,8 @@ coverage:
     - master
   needs:
     - build
+  except:
+    - schedules
 
 reporting:
   image: maven:3.8-openjdk-17-slim
@@ -166,6 +180,8 @@ reporting:
     - vma-series-chrome-e2e
     - vma-series-firefox-e2e
     - vma-series-electron-e2e
+  except:
+    - schedules
 
 update-dependencies:
   image: renovate/renovate
@@ -176,5 +192,5 @@ update-dependencies:
     - export RENOVATE_CONFIG=$(< renovate.json)
     - renovate
   only:
-    - master
+    - schedules
   needs: []

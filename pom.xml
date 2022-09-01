@@ -39,7 +39,7 @@
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <springmockk.version>3.1.1</springmockk.version>
         <kotest-extensions-spring.version>1.1.2</kotest-extensions-spring.version>
-        <mockk.version>1.12.5</mockk.version>
+        <mockk.version>1.12.7</mockk.version>
         <kotest.version>5.4.2</kotest.version>
         <axon-spring-boot-starter.version>4.5.15</axon-spring-boot-starter.version>
         <axon-mongo.version>4.5</axon-mongo.version>
@@ -125,7 +125,7 @@
 
             <dependency>
                 <groupId>io.mockk</groupId>
-                <artifactId>mockk</artifactId>
+                <artifactId>mockk-jvm</artifactId>
                 <version>${mockk.version}</version>
                 <scope>test</scope>
             </dependency>
@@ -215,7 +215,7 @@
     <dependencies>
         <dependency>
             <groupId>io.mockk</groupId>
-            <artifactId>mockk</artifactId>
+            <artifactId>mockk-jvm</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

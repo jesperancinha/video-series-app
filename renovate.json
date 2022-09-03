@@ -13,16 +13,23 @@
       "automerge": true
     },
     {
-      "groupName": "Angular Group",
+      "groupName": "Angular and types updates",
       "matchPackagePrefixes": [
-        "@angular/"
-      ],
-      "automerge": true
-    },
-    {
-      "groupName": "Node Types Group",
-      "matchPackagePrefixes": [
-        "@types"
+        "@angular/",
+        "@angular-devkit/",
+        "@babel/",
+        "@material/",
+        "@ngx-translate/",
+        "@okta/",
+        "@testing-library/",
+        "@types",
+        "ngx-markdown/",
+        "moment",
+        "tslib",
+        "typescript",
+        "rxjs",
+        "codelyzer",
+        "d3-color"
       ],
       "automerge": true
     },

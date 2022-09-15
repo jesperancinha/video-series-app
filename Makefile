@@ -66,3 +66,5 @@ logs-command:
 	docker-compose logs -f command
 logs-quey:
 	docker-compose logs -f query
+install:
+	sudo npm install -g npm-check-updates

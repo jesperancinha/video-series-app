@@ -1,4 +1,3 @@
-version: "3.7"
 services:
   postgres:
     hostname: postgres
@@ -8,21 +7,37 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
       - POSTGRES_MULTIPLE_DATABASES=vsa
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   mongo:
     hostname: mongo
     image: mongo
+    healthcheck:
+      test: [ "CMD","echo","db.adminCommand('ping')", ">","script.js", "mongosh", "<", "script.js" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
   command:
     hostname: command
     build:
       context: ./video-series-command/.
-    ports:
-      - "8080:8080"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
 
   query:
     hostname: query
     build:
       context: ./video-series-query/.
-    ports:
-      - "8090:8090"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy

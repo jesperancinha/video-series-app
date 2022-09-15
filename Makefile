@@ -19,7 +19,7 @@ docker-mongo: stop local
 docker-clean:
 	docker-compose down -v
 	docker-compose rm -svf
-docker-clean-build-start: docker-clean b docker
+docker-clean-build-start: docker-clean no-test docker
 docker-action:
 	docker-compose -f docker-compose.yml up -d --build --remove-orphans
 build-images:

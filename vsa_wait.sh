@@ -23,5 +23,6 @@ function checkServiceByNameAndMessage() {
 }
 
 checkServiceByNameAndMessage postgres 'database system is ready to accept connections'
+checkServiceByNameAndMessage mongo 'Connection accepted'
 checkServiceByNameAndMessage command 'Started VideoAppCommandLauncher in'
 checkServiceByNameAndMessage query 'Started VideoAppQueryLauncher in'

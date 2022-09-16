@@ -1,10 +1,10 @@
-FROM openjdk:20-slim-buster
+FROM openjdk:19-alpine
 
 ENV runningFolder /usr/local/bin/
 
 WORKDIR ${runningFolder}
 
-RUN apt-get update
+RUN apk --no-cache add curl
 
 COPY target/video-series-query.jar ${runningFolder}/video-series-query.jar
 

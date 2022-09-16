@@ -22,6 +22,8 @@ docker-clean:
 docker-clean-build-start: docker-clean no-test docker
 docker-action:
 	docker-compose -f docker-compose.yml up -d --build --remove-orphans
+docker-stop-all:
+	docker ps -a --format '{{.ID}}' | xargs -I {}  docker stop {}
 build-images:
 	docker build video-series-command/. -t video-series-command
 	docker build video-series-query/. -t video-series-query

@@ -19,11 +19,13 @@ docker-mongo: stop local
 docker-clean:
 	docker-compose down -v
 	docker-compose rm -svf
-docker-clean-build-start: docker-clean no-test docker
+docker-clean-build-start: docker-clean stop no-test docker
 docker-action:
 	docker-compose -f docker-compose.yml up -d --build --remove-orphans
 docker-stop-all:
 	docker ps -a --format '{{.ID}}' | xargs -I {}  docker stop {}
+docker-remove-all:
+	docker ps -a --format '{{.ID}}' | xargs -I {}  docker rm {}
 build-images:
 	docker build video-series-command/. -t video-series-command
 	docker build video-series-query/. -t video-series-query
@@ -31,16 +33,16 @@ build-docker: dcd stop no-test
 	docker-compose up -d --build --remove-orphans
 stop:
 	docker-compose down
-	docker ps -a -q --filter="name=postgres" | xargs docker stop
-	docker ps -a -q --filter="name=postgres" | xargs docker rm
-	docker ps -a -q --filter="name=postgres-image" | xargs docker stop
-	docker ps -a -q --filter="name=postgres-image" | xargs docker rm
-	docker ps -a -q --filter="name=mongo" | xargs docker stop
-	docker ps -a -q --filter="name=mongo" | xargs docker rm
-	docker ps -a -q --filter="name=video-series-query" | xargs docker stop
-	docker ps -a -q --filter="name=video-series-query" | xargs docker rm
-	docker ps -a -q --filter="name=video-series-command" | xargs docker stop
-	docker ps -a -q --filter="name=video-series-command" | xargs docker rm
+	docker ps -a -q --filter="name=postgres" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=postgres" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=postgres-image" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=postgres-image" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=mongo" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=mongo" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=video-series-query" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=video-series-query" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=video-series-command" | xargs -I {} docker stop {}
+	docker ps -a -q --filter="name=video-series-command" | xargs -I {} docker stop {}
 pull:
 	docker-compose pull
 vsa-wait:

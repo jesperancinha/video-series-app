@@ -1,5 +1,14 @@
 # Video series app
 
+2022/09/19
+
+- [Axon Framework issue 2365](https://github.com/AxonFramework/AxonFramework/issues/2365#event-7412299709)
+- [Notice on Mongo Extensions](https://docs.axoniq.io/reference-guide/extensions/mongo)
+
+New Goals:
+- Remove `Mongo`
+- Axon's `JacksonSerializer`
+
 ## Roadmap to revision 2.0.0
 
 2021/08/21

@@ -32,6 +32,9 @@
 
 ## Introduction
 
+> Note: Please have a look at [the log book](./LogBook.md) to keep up with current changes of this project.
+> On a quick note, this project is undergoing changes to replace MongoDB and XStream. Issue, [Axon Framework issue 2365](https://github.com/AxonFramework/AxonFramework/issues/2365#event-7412299709), has triggered renovations on this project.
+
 This is an example project to to offer you a very simple example of a CQRS architecture.
 
 This project is also the official support project of my article on medium:
@@ -158,7 +161,7 @@ sudo lsof -i :5432
 
 ## Review Logs
 
-Follow the updates on the [ReviewLogs](./ReviewLogs.md) file.
+Follow the updates on the [ReviewLogs](./LogBook.md) file.
 
 ## References
 

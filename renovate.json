@@ -6,11 +6,11 @@
   "packageRules": [
     {
       "matchPackageNames": ["com.thoughtworks.xstream:xstream"],
-      "allowedVersions": "!/\\1\\.4\\.19$/"
+      "allowedVersions": "!/1\\.4\\.19$/"
     },
     {
       "matchPackageNames": ["com.thoughtworks.xstream:xstream"],
-      "allowedVersions": "!/\\1\\.4\\.18$/"
+      "allowedVersions": "!/1\\.4\\.18$/"
     },
     {
       "matchUpdateTypes": [

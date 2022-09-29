@@ -33,7 +33,7 @@
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <springmockk.version>3.1.1</springmockk.version>
         <kotest-extensions-spring.version>1.1.2</kotest-extensions-spring.version>
-        <mockk.version>1.13.1</mockk.version>
+        <mockk.version>1.13.2</mockk.version>
         <kotest.version>5.4.2</kotest.version>
 
         <axon.version>4.6.0</axon.version>

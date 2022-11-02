@@ -70,7 +70,7 @@ qa:
     - schedules
 
 vma-series-electron-e2e:
-  image: node:18
+  image: node:19
   stage: e2e
   script:
     - make dcup-full-action
@@ -90,7 +90,7 @@ vma-series-electron-e2e:
     - schedules
 
 vma-series-chrome-e2e:
-  image: node:18
+  image: node:19
   stage: e2e
   script:
     - make dcup-full-action
@@ -108,7 +108,7 @@ vma-series-chrome-e2e:
     - schedules
 
 vma-series-firefox-e2e:
-  image: node:18
+  image: node:19
   stage: e2e
   script:
     - make dcup-full-action
@@ -126,7 +126,7 @@ vma-series-firefox-e2e:
     - schedules
 
 vma-series-edge-e2e:
-  image: node:18
+  image: node:19
   stage: e2e
   script:
     - make dcup-full-action

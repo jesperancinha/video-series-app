@@ -39,7 +39,7 @@ public class CommandConfiguration {
         DefaultConfigurer.defaultConfiguration()
                 .configureSerializer(configuration -> xStreamSerializer)
                 .configureMessageSerializer(configuration -> xStreamSerializer)
-                .configureEventSerializer(configuration -> xStreamSerializer);
+                .configureEventSerializer(configuration -> xStreamSerializer).start();
         return xStreamSerializer;
     }
 }

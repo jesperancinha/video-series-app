@@ -14,6 +14,15 @@ import org.springframework.context.annotation.Configuration;
 public class QueryConfiguration {
 
     @Bean
+    public CommandGateway commandGateway() {
+        return DefaultCommandGateway.builder()
+                .commandBus(AsynchronousCommandBus
+                        .builder()
+                        .build())
+                .build();
+    }
+
+    @Bean
     public XStream xStream() {
         XStream xStream = new XStream();
         xStream.allowTypesByWildcard(new String[]{
@@ -29,7 +38,7 @@ public class QueryConfiguration {
         DefaultConfigurer.defaultConfiguration()
                 .configureSerializer(configuration -> xStreamSerializer)
                 .configureMessageSerializer(configuration -> xStreamSerializer)
-                .configureEventSerializer(configuration -> xStreamSerializer);
+                .configureEventSerializer(configuration -> xStreamSerializer).start();
         return xStreamSerializer;
     }
 }

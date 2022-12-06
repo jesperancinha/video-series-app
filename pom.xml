@@ -42,7 +42,7 @@
 
         <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
         <postgresql.version>42.5.0</postgresql.version>
-        <testcontainers.version>1.17.5</testcontainers.version>
+        <testcontainers.version>1.17.6</testcontainers.version>
         <kotlin.version>1.7.20</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-bom.version>1.6.3-native-mt</kotlinx-coroutines-bom.version>

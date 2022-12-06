@@ -9,7 +9,6 @@ import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.xml.XStreamSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.serializer.DefaultSerializer;
 
 @Configuration
 public class CommandConfiguration {

@@ -48,6 +48,12 @@
         </dependency>
 
         <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.kotest</groupId>
             <artifactId>kotest-runner-junit5-jvm</artifactId>
             <scope>test</scope>
@@ -184,14 +190,14 @@
                     </execution>
                 </executions>
             </plugin>
-                <plugin>
-                    <groupId>org.jesperancinha.plugins</groupId>
-                    <artifactId>omni-coveragereporter-maven-plugin</artifactId>
-                    <version>${omni-coveragereporter-maven-plugin.version}</version>
-                    <configuration>
-                        <useCoverallsCount>false</useCoverallsCount>
-                    </configuration>
-                </plugin>
+            <plugin>
+                <groupId>org.jesperancinha.plugins</groupId>
+                <artifactId>omni-coveragereporter-maven-plugin</artifactId>
+                <version>${omni-coveragereporter-maven-plugin.version}</version>
+                <configuration>
+                    <useCoverallsCount>false</useCoverallsCount>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

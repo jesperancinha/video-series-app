@@ -2,15 +2,20 @@
 
 ---
 
-[![Generic badge](https://img.shields.io/static/v1.svg?label=GitLab&message=Video%20Series%20Apps&color=informational)](https://gitlab.com/jesperancinha/video-series-app)
-[![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=Checkout%20this%20%40gitlab%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//gitlab.com/jesperancinha/video-series-app)
-[![Gitlab pipeline status (branch)](https://img.shields.io/gitlab/pipeline/jesperancinha/video-series-app/master)](https://gitlab.com/jesperancinha/video-series-app/-/pipelines)
+[![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=Checkout%20this%20%github%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//github.com/jesperancinha/video-series-app)
+[![Generic badge](https://img.shields.io/static/v1.svg?label=GitLab&message=Video%20Series%20Apps&color=informational)](https://github.com/jesperancinha/video-series-app)
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/video-series-app&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c37d762c19014f54b55ce48771b11453)](https://www.codacy.com/gh/jesperancinha/video-series-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/video-series-app&amp;utm_campaign=Badge_Grade)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c591f713eab546b0a7ff4150017bca8a)](https://www.codacy.com/gl/jesperancinha/video-series-app/dashboard?utm_source=gitlab.com&utm_medium=referral&utm_content=jesperancinha/video-series-app&utm_campaign=Badge_Coverage)
-[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/video-series-app/badge.svg?)](https://coveralls.io/gitlab/jesperancinha/video-series-app?branch=HEAD)
 [![codecov](https://codecov.io/gl/jesperancinha/video-series-app/branch/master/graph/badge.svg)](https://codecov.io/gl/jesperancinha/video-series-app/branch/master)
+[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/video-series-app/badge.svg?)](https://coveralls.io/gitlab/jesperancinha/video-series-app?branch=HEAD)
+
+
+[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/video-series-app.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/video-series-app.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/video-series-app.svg)](#)
+
 ---
 
 ## Technologies used
@@ -44,7 +49,7 @@ This project is also the official support project of my article on medium:
 
 Please have a look at my [Issues](./Issues.md) file to find out about improvements being made. This file contains a list of ongoing issues that on one hand do not block the development, but on the other hand they are a great nice to haves.
 
-All running issues are being solved in branch [feature/research_and_development](https://gitlab.com/jesperancinha/video-series-app/-/tree/feature/research_and_development).
+All running issues are being solved in branch [feature/research_and_development](https://github.com/jesperancinha/video-series-app/-/tree/feature/research_and_development).
 
 ## Requests
 

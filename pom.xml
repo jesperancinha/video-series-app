@@ -42,13 +42,13 @@
 
         <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
         <postgresql.version>42.5.0</postgresql.version>
-        <testcontainers.version>1.17.5</testcontainers.version>
+        <testcontainers.version>1.17.6</testcontainers.version>
         <kotlin.version>1.7.20</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <kotlinx-coroutines-bom.version>1.6.3-native-mt</kotlinx-coroutines-bom.version>
-        <springdoc-openapi-ui.version>1.6.12</springdoc-openapi-ui.version>
         <kotlinx-coroutines-debug.version>1.6.4</kotlinx-coroutines-debug.version>
         <spring-boot-starter-parent.version>2.7.5</spring-boot-starter-parent.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.0.0</springdoc-openapi-starter-webmvc-ui.version>
     </properties>
 
     <dependencyManagement>
@@ -175,8 +175,8 @@
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${springdoc-openapi-ui.version}</version>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.testcontainers</groupId>

@@ -78,10 +78,10 @@ class VideoSeriesControllerITTest(
         @DynamicPropertySource
         @JvmStatic
         fun setProperties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl)
+            registry.add("spring.data.mongodb.uri", mongoDBContainer::getConnectionString)
             registry.add("spring.data.mongodb.port", mongoDBContainer::getFirstMappedPort)
             registry.add("spring.data.mongodb.host", mongoDBContainer::getHost)
-            registry.add("spring.data.mongodb.database") { "axonframework" }
+            registry.add("spring.data.mongodb.database") { "cqrs" }
         }
     }
 

@@ -58,7 +58,7 @@ dcup: dcd
 dcd:
 	docker-compose -p ${GITHUB_RUN_ID} down
 dcup-full: docker-clean-build-start vsa-wait
-dcup-full-action: docker-clean b docker-action vsa-wait
+dcup-full-action: docker-clean no-test docker-action vsa-wait
 cypress-open:
 	cd e2e && yarn && npm run cypress
 cypress-electron:

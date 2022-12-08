@@ -46,8 +46,17 @@ public class AxonConfig {
     }
 
     @Bean
-    public EventStorageEngine eventStorageEngine(MongoClient client) {
-        return MongoEventStorageEngine.builder().mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build()).build();
+    public EventStorageEngine eventStorageEngine(MongoClient client, Serializer serializer) {
+        return MongoEventStorageEngine
+                .builder()
+                .mongoTemplate(
+                        DefaultMongoTemplate
+                                .builder()
+                                .mongoDatabase(client)
+                                .build())
+                .eventSerializer(serializer)
+                .snapshotSerializer(serializer)
+                .build();
     }
 
     @Bean

@@ -23,16 +23,6 @@ public class CommandConfiguration {
     }
 
     @Bean
-    public XStream xStream() {
-        XStream xStream = new XStream();
-        xStream.allowTypesByWildcard(new String[]{
-                "org.axonframework.**",
-                "org.jesperancinha.**"
-		});
-        return new XStream();
-    }
-
-    @Bean
     public Serializer serializer(XStream xStream) {
         XStreamSerializer xStreamSerializer = XStreamSerializer.builder().xStream(xStream).build();
         DefaultConfigurer.defaultConfiguration()

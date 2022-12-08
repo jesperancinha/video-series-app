@@ -1,9 +1,6 @@
 package org.jesperancinha.video.query.config;
 
 import com.thoughtworks.xstream.XStream;
-import org.axonframework.commandhandling.AsynchronousCommandBus;
-import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.commandhandling.gateway.DefaultCommandGateway;
 import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.queryhandling.DefaultQueryGateway;
 import org.axonframework.queryhandling.QueryGateway;
@@ -23,16 +20,6 @@ public class QueryConfiguration {
                         .builder()
                         .build())
                 .build();
-    }
-
-    @Bean
-    public XStream xStream() {
-        XStream xStream = new XStream();
-        xStream.allowTypesByWildcard(new String[]{
-                "org.axonframework.**",
-                "org.jesperancinha.**"
-        });
-        return new XStream();
     }
 
     @Bean

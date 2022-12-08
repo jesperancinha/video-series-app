@@ -36,12 +36,16 @@ public class AxonConfig {
     private String mongoDatabase;
 
     @Bean
-    public TokenStore tokenStore(Serializer serializer, XStream xstream) {
-        xstream.addPermission(NoTypePermission.NONE);
-        xstream.addPermission(NullPermission.NULL);
-        xstream.addPermission(PrimitiveTypePermission.PRIMITIVES);
-        xstream.allowTypes(new Class[]{AddSeriesEvent.class});
-        xstream.allowTypeHierarchy(Collection.class);
+    public TokenStore tokenStore(Serializer serializer, XStream xStream) {
+        xStream.allowTypesByWildcard(new String[]{
+                "org.axonframework.**",
+                "org.jesperancinha.**"
+        });
+        xStream.addPermission(NoTypePermission.NONE);
+        xStream.addPermission(NullPermission.NULL);
+        xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
+        xStream.allowTypes(new Class[]{AddSeriesEvent.class});
+        xStream.allowTypeHierarchy(Collection.class);
         return MongoTokenStore.builder().mongoTemplate(axonMongoTemplate()).serializer(serializer).build();
     }
 

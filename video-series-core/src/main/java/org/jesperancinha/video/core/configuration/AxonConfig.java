@@ -8,6 +8,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.NullPermission;
 import com.thoughtworks.xstream.security.PrimitiveTypePermission;
+import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventhandling.tokenstore.TokenStore;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.extensions.mongo.DefaultMongoTemplate;
@@ -15,6 +16,7 @@ import org.axonframework.extensions.mongo.MongoTemplate;
 import org.axonframework.extensions.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
 import org.axonframework.extensions.mongo.eventsourcing.tokenstore.MongoTokenStore;
 import org.axonframework.serialization.Serializer;
+import org.axonframework.serialization.xml.XStreamSerializer;
 import org.jesperancinha.video.core.events.AddSeriesEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +38,12 @@ public class AxonConfig {
     private String mongoDatabase;
 
     @Bean
+    public Serializer serializer(XStream xStream) {
+        return XStreamSerializer.builder().xStream(xStream).build();
+
+    }
+
+    @Bean
     public TokenStore tokenStore(Serializer serializer, XStream xStream) {
         xStream.allowTypesByWildcard(new String[]{
                 "org.axonframework.**",
@@ -46,6 +54,10 @@ public class AxonConfig {
         xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
         xStream.allowTypes(new Class[]{AddSeriesEvent.class});
         xStream.allowTypeHierarchy(Collection.class);
+        DefaultConfigurer.defaultConfiguration()
+                .configureSerializer(configuration -> serializer)
+                .configureMessageSerializer(configuration -> serializer)
+                .configureEventSerializer(configuration -> serializer).start();
         return MongoTokenStore.builder().mongoTemplate(axonMongoTemplate()).serializer(serializer).build();
     }
 

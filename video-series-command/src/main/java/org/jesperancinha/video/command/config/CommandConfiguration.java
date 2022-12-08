@@ -22,13 +22,4 @@ public class CommandConfiguration {
                 .build();
     }
 
-    @Bean
-    public Serializer serializer(XStream xStream) {
-        XStreamSerializer xStreamSerializer = XStreamSerializer.builder().xStream(xStream).build();
-        DefaultConfigurer.defaultConfiguration()
-                .configureSerializer(configuration -> xStreamSerializer)
-                .configureMessageSerializer(configuration -> xStreamSerializer)
-                .configureEventSerializer(configuration -> xStreamSerializer).start();
-        return xStreamSerializer;
-    }
 }

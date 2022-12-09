@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import({AxonConfig.class, XStreamAutoConfiguration.class, EventProcessingAutoConfiguration.class, SpringAxonConfiguration.class, InfraConfiguration.class})
+@Import({AxonConfig.class, XStreamAutoConfiguration.class, EventProcessingAutoConfiguration.class, InfraConfiguration.class})
 //@OpenAPIDefinition(
 //        info = @Info(title = "OpenAPI definition"),
 //        servers = @Server(url = "${vsa.server.url}",

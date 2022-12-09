@@ -8,9 +8,12 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.NullPermission;
 import com.thoughtworks.xstream.security.PrimitiveTypePermission;
+import org.axonframework.common.jdbc.ConnectionProvider;
+import org.axonframework.common.transaction.NoTransactionManager;
 import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventhandling.tokenstore.TokenStore;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
+import org.axonframework.eventsourcing.eventstore.jdbc.JdbcEventStorageEngine;
 import org.axonframework.extensions.mongo.DefaultMongoTemplate;
 import org.axonframework.extensions.mongo.MongoTemplate;
 import org.axonframework.extensions.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
@@ -88,5 +91,14 @@ public class AxonConfig {
                                 builder.hosts(List.of(
                                         new ServerAddress(mongoHost, mongoPort))))
                         .build());
+    }
+
+    @Bean
+    public JdbcEventStorageEngine eventStorageEngine(ConnectionProvider connectionProvider) {
+        return JdbcEventStorageEngine
+                .builder()
+                .connectionProvider(connectionProvider)
+                .transactionManager(NoTransactionManager.INSTANCE)
+                .build();
     }
 }

@@ -1,6 +1,7 @@
 package org.jesperancinha.video.command.aggregates;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -28,10 +29,7 @@ public class VideoSeriesAggregate {
         return id;
     }
 
-    public VideoSeriesAggregate() {
-        System.out.println("Whatever");
-
-    }
+    public VideoSeriesAggregate(){}
 
     @CommandHandler(payloadType = AddVideoSeriesCommand.class)
     public VideoSeriesAggregate(AddVideoSeriesCommand command) {

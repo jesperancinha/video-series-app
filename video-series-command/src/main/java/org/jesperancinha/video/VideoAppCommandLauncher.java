@@ -4,10 +4,11 @@ package org.jesperancinha.video;
 //import io.swagger.v3.oas.annotations.info.Info;
 //import io.swagger.v3.oas.annotations.servers.Server;
 
-import org.jesperancinha.video.core.configuration.AxonConfig;
+import org.axonframework.config.Configurer;
+import org.axonframework.config.DefaultConfigurer;
+import org.jesperancinha.video.command.aggregates.VideoSeriesAggregate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 //@OpenAPIDefinition(
@@ -17,6 +18,10 @@ import org.springframework.context.annotation.Import;
 //)
 public class VideoAppCommandLauncher {
     public static void main(String[] args) {
+        DefaultConfigurer.defaultConfiguration()
+                .buildConfiguration();
+        Configurer configurer = DefaultConfigurer.defaultConfiguration();
+        configurer.registerCommandHandler(c->  new VideoSeriesAggregate());
         SpringApplication.run(VideoAppCommandLauncher.class);
     }
 }

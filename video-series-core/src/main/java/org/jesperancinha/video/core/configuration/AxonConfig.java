@@ -26,7 +26,8 @@ import java.util.Collection;
 @Configuration
 public class AxonConfig {
     @Bean
-    public Serializer serializer(XStream xStream) {
+    public Serializer serializer() {
+        XStream xStream = new XStream();
         xStream.allowTypesByWildcard(new String[]{
                 "org.axonframework.**",
                 "org.jesperancinha.**"
@@ -36,7 +37,12 @@ public class AxonConfig {
         xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
         xStream.allowTypes(new Class[]{AddSeriesEvent.class});
         xStream.allowTypeHierarchy(Collection.class);
-        return XStreamSerializer.builder().xStream(xStream).build();
+        XStreamSerializer xStreamSerializer = XStreamSerializer.builder().xStream(xStream).build();
+        DefaultConfigurer.defaultConfiguration()
+                .configureSerializer(configuration -> xStreamSerializer)
+                .configureMessageSerializer(configuration ->xStreamSerializer)
+                .configureEventSerializer(configuration -> xStreamSerializer);
+        return xStreamSerializer;
 
     }
 

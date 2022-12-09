@@ -32,9 +32,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
-            <scope>compile</scope>
         </dependency>
-        
+
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-spring-boot-autoconfigure</artifactId>
+            <version>4.6.1</version>
+        </dependency>
     </dependencies>
 
     <build>

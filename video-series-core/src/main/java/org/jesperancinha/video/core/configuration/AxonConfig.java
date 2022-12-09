@@ -1,5 +1,9 @@
 package org.jesperancinha.video.core.configuration;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.security.NoTypePermission;
+import com.thoughtworks.xstream.security.NullPermission;
+import com.thoughtworks.xstream.security.PrimitiveTypePermission;
 import org.axonframework.axonserver.connector.event.axon.AxonServerEventStore;
 import org.axonframework.common.jdbc.ConnectionProvider;
 import org.axonframework.common.jdbc.DataSourceConnectionProvider;
@@ -11,16 +15,28 @@ import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.eventsourcing.eventstore.jdbc.JdbcEventStorageEngine;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.json.JacksonSerializer;
+import org.axonframework.serialization.xml.XStreamSerializer;
+import org.jesperancinha.video.core.events.AddSeriesEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
+import java.util.Collection;
 
 @Configuration
 public class AxonConfig {
     @Bean
-    public Serializer serializer() {
-        return JacksonSerializer.builder().build();
+    public Serializer serializer(XStream xStream) {
+        xStream.allowTypesByWildcard(new String[]{
+                "org.axonframework.**",
+                "org.jesperancinha.**"
+        });
+        xStream.addPermission(NoTypePermission.NONE);
+        xStream.addPermission(NullPermission.NULL);
+        xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
+        xStream.allowTypes(new Class[]{AddSeriesEvent.class});
+        xStream.allowTypeHierarchy(Collection.class);
+        return XStreamSerializer.builder().xStream(xStream).build();
 
     }
 

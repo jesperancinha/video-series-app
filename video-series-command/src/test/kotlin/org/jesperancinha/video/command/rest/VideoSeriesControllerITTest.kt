@@ -1,15 +1,20 @@
 package org.jesperancinha.video.command.rest
 
+import com.jayway.jsonpath.Criteria
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.extensions.spring.SpringExtension
+import org.jesperancinha.video.core.data.Genre
+import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.web.client.postForEntity
 import org.testcontainers.junit.jupiter.Testcontainers
+import java.math.BigDecimal
 
 @Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -26,14 +31,14 @@ class VideoSeriesControllerITTest(
 //                    .query(Query.query(Criteria()), Any::class.java, "domainevents")
 //
 //                allDomainEvents shouldHaveSize 0
-//
-//                val film = VideoSeriesDto.builder()
-//                    .name("Nightmare on Elm Street I")
-//                    .cashValue(BigDecimal.valueOf(1_000_000))
-//                    .genre(Genre.HORROR)
-//                    .build()
-//
-//                val responseEntity = testRestTemplate.restTemplate.postForEntity<Any>("/video-series", film)
+
+                val film = VideoSeriesDto.builder()
+                    .name("Nightmare on Elm Street I")
+                    .cashValue(BigDecimal.valueOf(1_000_000))
+                    .genre(Genre.HORROR)
+                    .build()
+
+                val responseEntity = testRestTemplate.restTemplate.postForEntity<VideoSeriesDto>("/video-series", film)
 //
 //                responseEntity.statusCode shouldBe HttpStatus.OK
 //                val allPostDomainEvents = jdbcTemplate

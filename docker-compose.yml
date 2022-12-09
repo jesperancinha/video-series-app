@@ -13,21 +13,27 @@ services:
       timeout: 5s
       retries: 10
 
-  mongo:
-    hostname: mongo
-    image: mongo
+  postgres-es:
+    hostname: postgres-es
+    build:
+      context: ./docker-psql/.
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_MULTIPLE_DATABASES=vsa
     healthcheck:
-      test: [ "CMD","echo","db.adminCommand('ping')", ">","script.js", "mongosh", "<", "script.js" ]
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 10s
       timeout: 5s
       retries: 10
+
 
   command:
     hostname: command
     build:
       context: ./video-series-command/.
     depends_on:
-      mongo:
+      postgres-es:
         condition: service_healthy
       postgres:
         condition: service_healthy
@@ -37,7 +43,7 @@ services:
     build:
       context: ./video-series-query/.
     depends_on:
-      mongo:
+      postgres-es:
         condition: service_healthy
       postgres:
         condition: service_healthy

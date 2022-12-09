@@ -38,7 +38,6 @@
 
         <axon.version>4.6.0</axon.version>
         <axon-spring-boot-starter.version>${axon.version}</axon-spring-boot-starter.version>
-        <axon-mongo.version>${axon.version}</axon-mongo.version>
 
         <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
         <postgresql.version>42.5.0</postgresql.version>
@@ -69,11 +68,6 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.axonframework.extensions.mongo</groupId>
-                <artifactId>axon-mongo-parent</artifactId>
-                <version>${axon.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
@@ -89,12 +83,6 @@
                         <artifactId>axon-server-connector</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.axonframework.extensions.mongo</groupId>
-                <artifactId>axon-mongo</artifactId>
-                <version>${axon-mongo.version}</version>
             </dependency>
 
             <dependency>
@@ -187,12 +175,6 @@
             <dependency>
                 <groupId>org.testcontainers</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>${testcontainers.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>mongodb</artifactId>
                 <version>${testcontainers.version}</version>
                 <scope>test</scope>
             </dependency>

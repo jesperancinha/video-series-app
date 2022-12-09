@@ -10,6 +10,19 @@ As mention in Axon
 Framework [website](https://docs.axoniq.io/reference-guide/v/3.3/part-iii-infrastructure-components/repository-and-event-store#mongodb-event-storage-engine),
 from Axon Version 3 onwards it is no longer advisable to use Mongo as the event store database.
 
+Old mongo docker-compose declaration:
+
+```yaml
+  mongo:
+    hostname: mongo
+    image: mongo
+    healthcheck:
+      test: [ "CMD","echo","db.adminCommand('ping')", ">","script.js", "mongosh", "<", "script.js" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+```
+
 2022/09/19
 
 - [Axon Framework issue 2365](https://github.com/AxonFramework/AxonFramework/issues/2365#event-7412299709)

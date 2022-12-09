@@ -30,7 +30,7 @@ import java.math.BigDecimal
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 class VideoSeriesControllerITTest(
     @Autowired
-    private val mongoTemplate: MongoTemplate,
+    private val jdbcTemplate: JdbcTemplate,
     @Autowired
     private val testRestTemplate: TestRestTemplate,
 ) : WordSpec(

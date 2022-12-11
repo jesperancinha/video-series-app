@@ -19,6 +19,7 @@
 		<maven-compiler-plugin.target>${java.version}</maven-compiler-plugin.target>
 		<jackson.version>2.14.0</jackson.version>
 		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -137,6 +138,15 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jesperancinha.plugins</groupId>
+				<artifactId>omni-coveragereporter-maven-plugin</artifactId>
+				<version>${omni-coveragereporter-maven-plugin.version}</version>
+				<configuration>
+					<useCoverallsCount>false</useCoverallsCount>
+					<fetchBranchNameFromEnv>true</fetchBranchNameFromEnv>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

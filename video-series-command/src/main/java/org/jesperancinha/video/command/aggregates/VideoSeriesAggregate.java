@@ -1,5 +1,7 @@
 package org.jesperancinha.video.command.aggregates;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,18 +11,20 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.jesperancinha.video.command.commands.AddVideoSeriesCommand;
 import org.jesperancinha.video.core.events.AddSeriesEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
-@Slf4j
-@NoArgsConstructor
-@Aggregate
 @Data
+@Aggregate
+@Entity
+@NoArgsConstructor
 public class VideoSeriesAggregate {
 
     @AggregateIdentifier
+    @Id
     private String id;
 
     @CommandHandler

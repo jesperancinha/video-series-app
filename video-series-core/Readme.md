@@ -1,5 +1,10 @@
 # video-series-core
 
+## References
+
+-   [Why would I need a specialized Event Store?](https://www.axoniq.io/blog/why-would-i-need-a-specialized-event-store)
+-   [AxonFramework and PostgreSQL without TOAST](https://developer.axoniq.io/w/axonframework-and-postgresql-without-toast)
+
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)

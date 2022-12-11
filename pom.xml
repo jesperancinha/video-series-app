@@ -41,8 +41,8 @@
 
         <axon.version>4.6.0</axon.version>
         <axon-spring-boot-starter.version>${axon.version}</axon-spring-boot-starter.version>
-
-        <postgresql.version>42.5.0</postgresql.version>
+        <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
+        <postgresql.version>42.5.1</postgresql.version>
         <testcontainers.version>1.17.6</testcontainers.version>
         <kotlin.version>1.7.22</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>

@@ -23,8 +23,7 @@ import javax.sql.DataSource;
 public class AxonConfig {
 
     @Bean
-    @Qualifier("messageSerializer")
-    public Serializer messageSerializer() {
+    public Serializer serializer() {
         return JacksonSerializer.defaultSerializer();
     }
 
@@ -40,6 +39,7 @@ public class AxonConfig {
                 .builder()
                 .connectionProvider(connectionProvider)
                 .snapshotSerializer(serializer)
+                .eventSerializer(serializer)
                 .transactionManager(NoTransactionManager.INSTANCE)
                 .build();
     }

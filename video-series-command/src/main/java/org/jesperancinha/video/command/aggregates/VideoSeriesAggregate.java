@@ -16,22 +16,14 @@ import java.util.UUID;
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 @Aggregate
+@Data
+@NoArgsConstructor
 public class VideoSeriesAggregate {
 
     @AggregateIdentifier
     private String id;
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public VideoSeriesAggregate(){}
-
-    @CommandHandler(payloadType = AddVideoSeriesCommand.class)
+    @CommandHandler
     public VideoSeriesAggregate(AddVideoSeriesCommand command) {
         apply(AddSeriesEvent.builder()
                 .id(UUID.randomUUID().toString())

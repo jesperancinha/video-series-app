@@ -4,6 +4,7 @@ import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.extensions.spring.SpringExtension
+import io.kotest.matchers.shouldBe
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.slf4j.Logger
@@ -14,8 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDO
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.http.HttpStatusCode
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.support.TestPropertySourceUtils
 import org.springframework.web.client.postForEntity
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait.forListeningPort
@@ -49,8 +52,8 @@ class VideoSeriesControllerITTest(
                     .build()
 
                 val responseEntity = testRestTemplate.restTemplate.postForEntity<VideoSeriesDto>("/video-series", film)
-//
-//                responseEntity.statusCode shouldBe HttpStatus.OK
+
+                responseEntity.statusCode shouldBe HttpStatusCode.valueOf(200)
 //                val allPostDomainEvents = jdbcTemplate
 //                    .find(Query.query(Criteria()), LinkedHashMap::class.java, "domainevents")
 //
@@ -102,12 +105,22 @@ class VideoSeriesControllerITTest(
                 .also { it.start() }
         }
 
-        override fun initialize(applicationContextx: ConfigurableApplicationContext) {
+        override fun initialize(applicationContext: ConfigurableApplicationContext) {
             logger.info("Starting IT -> ${LocalDateTime.now()}")
-            logger.info("Starting service 1 at ${dockerCompose.getServiceHost("postgres_1", 5432)}")
+            val postgres1Host = dockerCompose.getServiceHost("postgres_1", 5432)
+            val postgres1Port = dockerCompose.getServicePort("postgres_1", 5432)
+            logger.info("Starting service 1 at $postgres1Host")
             logger.info("Starting service 1 at ${dockerCompose.getServiceHost("postgres-es_1", 5432)}")
             logger.info("End IT -> ${LocalDateTime.now()}")
             logger.info("Time Elapsed IT -> ${ChronoUnit.MILLIS.between(startup, LocalDateTime.now())} ms")
+            TestPropertySourceUtils
+                .addInlinedPropertiesToEnvironment(
+                    applicationContext,
+                    "spring.datasource.url=jdbc:postgresql://$postgres1Host:$postgres1Port/vsa",
+                    "spring.datasource.username=postgres",
+                    "spring.datasource.password=admin"
+                )
+
         }
 
         companion object {
@@ -115,6 +128,7 @@ class VideoSeriesControllerITTest(
             private val startup: LocalDateTime = LocalDateTime.now()
         }
     }
+
     private class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
 
 }

@@ -113,10 +113,12 @@ class VideoSeriesControllerITTest(
             logger.info("Starting service 1 at ${dockerCompose.getServiceHost("postgres-es_1", 5432)}")
             logger.info("End IT -> ${LocalDateTime.now()}")
             logger.info("Time Elapsed IT -> ${ChronoUnit.MILLIS.between(startup, LocalDateTime.now())} ms")
+            val jdbcConnection1 = "jdbc:postgresql://$postgres1Host:$postgres1Port/vsa"
+            logger.info("JDBC connection 1 -> $jdbcConnection1")
             TestPropertySourceUtils
                 .addInlinedPropertiesToEnvironment(
                     applicationContext,
-                    "spring.datasource.url=jdbc:postgresql://$postgres1Host:$postgres1Port/vsa",
+                    "spring.datasource.url=$jdbcConnection1",
                     "spring.datasource.username=postgres",
                     "spring.datasource.password=admin"
                 )

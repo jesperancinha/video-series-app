@@ -1,5 +1,7 @@
 package org.jesperancinha.video.command.aggregates;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +17,14 @@ import java.util.UUID;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
-@Aggregate
 @Data
+@Aggregate
+@Entity
 @NoArgsConstructor
 public class VideoSeriesAggregate {
 
     @AggregateIdentifier
+    @Id
     private String id;
 
     @CommandHandler

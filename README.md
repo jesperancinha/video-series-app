@@ -56,6 +56,7 @@ branch [feature/research_and_development](https://github.com/jesperancinha/video
 
 - [1.0.0](https://github.com/jesperancinha/video-series-app/tree/1.0.0) - [10271cee0b49da1cb80bdcd115851de94f928774](https://github.com/jesperancinha/video-series-app/tree/1.0.0)
 - [2.0.0](https://github.com/jesperancinha/video-series-app/tree/2.0.0) - [98eb81756c02d63d03c19e8ae87fc8023d513e0a](https://github.com/jesperancinha/video-series-app/tree/2.0.0)
+- [3.0.0](https://github.com/jesperancinha/video-series-app/tree/3.0.0) - [696472601c04a6a26c01e83fcf464eafee4305f4](https://github.com/jesperancinha/video-series-app/tree/3.0.0)
 
 ## Requests
 

@@ -14,6 +14,7 @@ import org.axonframework.commandhandling.gateway.CommandGateway
 import org.axonframework.eventhandling.tokenstore.TokenStore
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine
 import org.jesperancinha.video.command.commands.AddVideoSeriesCommand
+import org.jesperancinha.video.command.commands.VsaCommandGateway
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.springframework.beans.factory.annotation.Autowired
@@ -40,7 +41,7 @@ class VideoSeriesControllerTest(
     lateinit var eventStorageEngine: EventStorageEngine
 
     @MockkBean(relaxed = true)
-    lateinit var commandGateway: CommandGateway
+    lateinit var vsaCommandGateway: VsaCommandGateway
 
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
@@ -60,7 +61,7 @@ class VideoSeriesControllerTest(
                         .andExpect(status().isOk)
                 }
 
-                verify { commandGateway.send<AddVideoSeriesCommand>(capture(slotFilm)) }
+                verify { vsaCommandGateway.sendCommand(capture(slotFilm)) }
                 verify { tokenStore wasNot Called }
                 verify { eventStorageEngine wasNot Called }
 

@@ -3,9 +3,12 @@
 
     <groupId>org.jesperancinha.video</groupId>
     <artifactId>video-series-app</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.0-SNAPSHOT</version>
+
+    <name>VSA :: Parent Library</name>
 
     <modules>
+        <module>video-series-mono</module>
         <module>video-series-command</module>
         <module>video-series-query</module>
         <module>video-series-core</module>

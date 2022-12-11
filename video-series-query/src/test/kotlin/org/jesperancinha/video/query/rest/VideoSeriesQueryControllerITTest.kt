@@ -4,7 +4,7 @@ import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.core.test.TestResult
-import io.kotest.extensions.spring.SpringExtension
+//import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
@@ -18,6 +18,7 @@ import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -40,9 +41,9 @@ import java.math.BigDecimal
 @Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("local")
-class VideoSeriesQueryControllerITTest(
-    private val testRestTemplate: TestRestTemplate,
-    private val videoSeriesRepository: VideoSeriesRepository,
+class VideoSeriesQueryControllerITTest @Autowired constructor(
+//    private val testRestTemplate: TestRestTemplate,
+//    private val videoSeriesRepository: VideoSeriesRepository,
 //    private val mongoTemplate: MongoTemplate,
 ) : WordSpec(
     {

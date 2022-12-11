@@ -1,5 +1,6 @@
 package org.jesperancinha.video.command.rest
 
+import com.github.dockerjava.zerodep.shaded.org.apache.hc.core5.http.HttpStatus
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
@@ -15,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDO
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.http.HttpStatusCode
+import org.springframework.http.HttpStatus.OK
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.support.TestPropertySourceUtils
@@ -53,7 +54,7 @@ class VideoSeriesControllerITTest(
 
                 val responseEntity = testRestTemplate.restTemplate.postForEntity<VideoSeriesDto>("/video-series", film)
 
-                responseEntity.statusCode shouldBe HttpStatusCode.valueOf(200)
+                responseEntity.statusCode shouldBe OK
 //                val allPostDomainEvents = jdbcTemplate
 //                    .find(Query.query(Criteria()), LinkedHashMap::class.java, "domainevents")
 //

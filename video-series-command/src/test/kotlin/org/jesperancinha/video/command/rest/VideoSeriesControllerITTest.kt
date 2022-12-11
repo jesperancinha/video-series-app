@@ -1,137 +1,78 @@
 package org.jesperancinha.video.command.rest
 
-import com.github.dockerjava.zerodep.shaded.org.apache.hc.core5.http.HttpStatus
+//import org.springframework.data.mongodb.core.query.Query
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.mongodb.MongoClient
+import com.mongodb.client.FindIterable
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
-import io.kotest.core.test.TestCase
 import io.kotest.extensions.spring.SpringExtension
+import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
+import org.bson.Document
+import org.jesperancinha.video.command.aggregates.VideoSeriesAggregate
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.context.ApplicationContextInitializer
-import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.HttpStatus.OK
-import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.support.TestPropertySourceUtils
 import org.springframework.web.client.postForEntity
-import org.testcontainers.containers.DockerComposeContainer
-import org.testcontainers.containers.wait.strategy.Wait.forListeningPort
-import org.testcontainers.junit.jupiter.Testcontainers
-import java.io.File
 import java.math.BigDecimal
-import java.time.LocalDateTime
-import java.time.temporal.ChronoUnit
 
-@Testcontainers
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@ContextConfiguration(initializers = [VideoSeriesControllerITTest.VideoSeriesCommandInitializer::class])
+@ContextConfiguration(initializers = [VideoSeriesCommandInitializer::class])
 class VideoSeriesControllerITTest(
     @Autowired
-    private val jdbcTemplate: JdbcTemplate,
-    @Autowired
     private val testRestTemplate: TestRestTemplate,
+    @Autowired
+    private val mongoClient: MongoClient,
 ) : WordSpec(
     {
         "should receive data and respond correctly" should {
             "should send a video title" {
-//                val allDomainEvents = jdbcTemplate
-//                    .query(Query.query(Criteria()), Any::class.java, "domainevents")
-//
-//                allDomainEvents shouldHaveSize 0
+
+                mongoClient
+                    .getDatabase("axonframework")
+                    .getCollection("domainevents")
+                    .find().toList()
+                    .shouldBeEmpty()
 
                 val film = VideoSeriesDto.builder()
                     .name("Nightmare on Elm Street I")
                     .cashValue(BigDecimal.valueOf(1_000_000))
+                    .volumes(1)
                     .genre(Genre.HORROR)
                     .build()
 
                 val responseEntity = testRestTemplate.restTemplate.postForEntity<VideoSeriesDto>("/video-series", film)
 
                 responseEntity.statusCode shouldBe OK
-//                val allPostDomainEvents = jdbcTemplate
-//                    .find(Query.query(Criteria()), LinkedHashMap::class.java, "domainevents")
-//
-//                allPostDomainEvents shouldHaveSize 1
-//
-//                val filmOnEventQueue = allPostDomainEvents[0]["serializedPayload"].toString()
-//
-//                filmOnEventQueue shouldContain "Nightmare on Elm Street I"
-//                filmOnEventQueue shouldContain "HORROR"
-//                filmOnEventQueue shouldContain "1000000"
+
+                val resultingDocumentList = mongoClient
+                    .getDatabase("axonframework")
+                    .getCollection("domainevents")
+                    .find()
+                resultingDocumentList.toList()
+                    .shouldHaveSize(1)
+                val filmOnEventQueue: VideoSeriesAggregate = resultingDocumentList.findFirstDocumentInCollection()
+                filmOnEventQueue.id.shouldNotBeNull()
+                filmOnEventQueue.name shouldBe "Nightmare on Elm Street I"
+                filmOnEventQueue.genre shouldBe Genre.HORROR
+                filmOnEventQueue.cashValue shouldBe BigDecimal.valueOf(1000000)
+                filmOnEventQueue.volumes shouldBe 1
             }
         }
     }
 ) {
-
-//    companion object {
-//        @Container
-//        @JvmField
-//        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:5")
-//
-//        init {
-//            mongoDBContainer.start()
-//        }
-//
-//        @DynamicPropertySource
-//        @JvmStatic
-//        fun setProperties(registry: DynamicPropertyRegistry) {
-//            registry.add("spring.data.mongodb.uri", mongoDBContainer::getConnectionString)
-//            registry.add("spring.data.mongodb.port", mongoDBContainer::getFirstMappedPort)
-//            registry.add("spring.data.mongodb.host", mongoDBContainer::getHost)
-//            registry.add("spring.data.mongodb.database") { "cqrs" }
-//        }
-//    }
-
     override fun extensions(): List<Extension> = listOf(SpringExtension)
-
-    override suspend fun beforeEach(testCase: TestCase) {
-        super.beforeEach(testCase)
-//        mongoDBContainer.isRunning.shouldBeTrue()
-
-    }
-
-    class VideoSeriesCommandInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
-        private val dockerCompose by lazy {
-            DockerCompose(listOf(File("../docker-compose-db.yml")))
-                .withExposedService("postgres_1", 5432, forListeningPort())
-                .withExposedService("postgres-es_1", 5432, forListeningPort())
-                .withLocalCompose(true)
-                .also { it.start() }
-        }
-
-        override fun initialize(applicationContext: ConfigurableApplicationContext) {
-            logger.info("Starting IT -> ${LocalDateTime.now()}")
-            val postgres1Host = dockerCompose.getServiceHost("postgres_1", 5432)
-            val postgres1Port = dockerCompose.getServicePort("postgres_1", 5432)
-            logger.info("Starting service 1 at $postgres1Host")
-            logger.info("Starting service 1 at ${dockerCompose.getServiceHost("postgres-es_1", 5432)}")
-            logger.info("End IT -> ${LocalDateTime.now()}")
-            logger.info("Time Elapsed IT -> ${ChronoUnit.MILLIS.between(startup, LocalDateTime.now())} ms")
-            val jdbcConnection1 = "jdbc:postgresql://$postgres1Host:$postgres1Port/vsa"
-            logger.info("JDBC connection 1 -> $jdbcConnection1")
-            TestPropertySourceUtils
-                .addInlinedPropertiesToEnvironment(
-                    applicationContext,
-                    "spring.datasource.url=$jdbcConnection1",
-                    "spring.datasource.username=postgres",
-                    "spring.datasource.password=admin"
-                )
-
-        }
-
-        companion object {
-            val logger: Logger = LoggerFactory.getLogger(VideoSeriesControllerITTest::class.java)
-            private val startup: LocalDateTime = LocalDateTime.now()
-        }
-    }
-
-    private class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
-
 }
+
+private fun <TResult : Document> FindIterable<TResult>.findFirstDocumentInCollection(): VideoSeriesAggregate =
+    XmlMapper().readValue(first()["serializedPayload"].toString(), VideoSeriesAggregate::class.java)

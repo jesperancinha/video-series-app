@@ -4,13 +4,8 @@ package org.jesperancinha.video;
 //import io.swagger.v3.oas.annotations.info.Info;
 //import io.swagger.v3.oas.annotations.servers.Server;
 
-import org.axonframework.spring.config.SpringAxonConfiguration;
-import org.axonframework.springboot.autoconfig.EventProcessingAutoConfiguration;
-import org.axonframework.springboot.autoconfig.InfraConfiguration;
-import org.jesperancinha.video.core.configuration.AxonConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 //@OpenAPIDefinition(

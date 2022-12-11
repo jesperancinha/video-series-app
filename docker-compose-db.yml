@@ -13,16 +13,11 @@ services:
       timeout: 5s
       retries: 10
 
-  postgres-es:
-    hostname: postgres-es
-    build:
-      context: ./docker-psql/.
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_MULTIPLE_DATABASES=vsa
+  mongo:
+    hostname: mongo
+    image: mongo:3.0.0
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      test: [ "CMD","echo","db.adminCommand('ping')", ">","script.js", "mongosh", "<", "script.js" ]
       interval: 10s
       timeout: 5s
       retries: 10

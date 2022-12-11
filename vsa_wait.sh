@@ -4,7 +4,7 @@ GITHUB_RUN_ID=${GITHUB_RUN_ID:-123}
 function checkServiceByNameAndMessage() {
     name=$1
     message=$2
-    docker-compose -p "${GITHUB_RUN_ID}" logs "$name" > "logs"
+    docker-compose -p "${GITHUB_RUN_ID}" -f docker-compose.yml -f docker-compose-db.yml logs "$name" > "logs"
     string=$(cat logs)
     counter=0
     echo "Project $GITHUB_RUN_ID"
@@ -12,7 +12,7 @@ function checkServiceByNameAndMessage() {
     while [[ "$string" != *"$message"* ]]
     do
       echo -e -n "\e[93m-\e[39m"
-      docker-compose -p "${GITHUB_RUN_ID}" logs "$name" > "logs"
+      docker-compose -p "${GITHUB_RUN_ID}" -f docker-compose.yml -f docker-compose-db.yml logs "$name" > "logs"
       string=$(cat logs)
       sleep 1
       counter=$((counter+1))
@@ -27,6 +27,7 @@ function checkServiceByNameAndMessage() {
 }
 
 checkServiceByNameAndMessage postgres 'database system is ready to accept connections'
-checkServiceByNameAndMessage mongo 'Connection accepted'
+#checkServiceByNameAndMessage mongo 'Connection accepted'
+checkServiceByNameAndMessage mongo 'waiting for connections'
 checkServiceByNameAndMessage command 'Started VideoAppCommandLauncher in'
 checkServiceByNameAndMessage query 'Started VideoAppQueryLauncher in'

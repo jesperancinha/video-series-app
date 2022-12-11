@@ -11,9 +11,9 @@
 	<properties>
 		<java.version>17</java.version>
 		<axon.version>4.0.3</axon.version>
+		<axon-mongo.version>4.2</axon-mongo.version>
 		<spring-boot-parent.version>2.5.0</spring-boot-parent.version>
 		<xstream.version>1.4.17</xstream.version>
-		<axon-mongo.version>4.2</axon-mongo.version>
 		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
 		<maven-compiler-plugin.source>${java.version}</maven-compiler-plugin.source>
 		<maven-compiler-plugin.target>${java.version}</maven-compiler-plugin.target>
@@ -106,6 +106,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

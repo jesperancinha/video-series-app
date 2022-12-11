@@ -13,18 +13,18 @@ local: no-test
 no-test:
 	mvn clean install -DskipTests
 docker:
-	docker-compose -p ${GITHUB_RUN_ID} up -d --build --remove-orphans
+	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose-db.yml -f docker-compose.yml -f docker-compose.override.yml up -d --build --remove-orphans
 docker-databases: stop local
 	docker build ./docker-psql/. -t postgres-image
 	docker run --name postgres-standalone -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_MULTIPLE_DATABASES=vsa -p 5432:5432 -d postgres-image
 docker-mongo: stop local
 	docker run --name mongodb-standalone -p 27017:27017 -d mongo
 docker-clean:
-	docker-compose -p ${GITHUB_RUN_ID} down -v
-	docker-compose -p ${GITHUB_RUN_ID} rm -svf
+	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml down -v
+	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml rm -svf
 docker-clean-build-start: docker-clean stop no-test docker
 docker-action:
-	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml up -d --build --remove-orphans
+	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml up -d --build --remove-orphans
 docker-stop-all:
 	docker ps -a --format '{{.ID}}' | xargs -I {}  docker stop {}
 docker-remove-all:
@@ -35,7 +35,7 @@ build-images:
 build-docker: dcd stop no-test
 	docker-compose -p ${GITHUB_RUN_ID} up -d --build --remove-orphans
 stop:
-	docker-compose -p ${GITHUB_RUN_ID} down
+	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml down
 	docker ps -a -q --filter="name=postgres" | xargs -I {} docker stop {}
 	docker ps -a -q --filter="name=postgres" | xargs -I {} docker stop {}
 	docker ps -a -q --filter="name=postgres-image" | xargs -I {} docker stop {}
@@ -56,7 +56,7 @@ dcup: dcd
 	docker-compose -p ${GITHUB_RUN_ID} up -d --build --remove-orphans
 	bash vsa_wait.sh
 dcd:
-	docker-compose -p ${GITHUB_RUN_ID} down
+	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml down
 dcup-full: docker-clean-build-start vsa-wait
 dcup-full-action: docker-clean no-test docker-action vsa-wait
 cypress-open:

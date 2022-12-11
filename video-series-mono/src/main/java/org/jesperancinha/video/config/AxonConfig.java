@@ -19,7 +19,7 @@ public class AxonConfig {
 
 	@Bean
 	public MongoClient mongoClient(){
-		return new MongoClient("localhost", 27017);
+		return new MongoClient("localhost", mongoPort.intValue());
 	}
 	
 	@Bean

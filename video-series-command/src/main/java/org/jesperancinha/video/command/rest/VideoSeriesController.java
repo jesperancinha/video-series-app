@@ -1,11 +1,7 @@
 package org.jesperancinha.video.command.rest;
 
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.modelling.command.AggregateLifecycle;
-import org.axonframework.modelling.saga.StartSaga;
-import org.jesperancinha.video.command.aggregates.VideoSeriesAggregate;
 import org.jesperancinha.video.command.commands.AddVideoSeriesCommand;
-import org.jesperancinha.video.command.commands.VsaCommandGateway;
 import org.jesperancinha.video.core.data.VideoSeriesDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,18 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/video-series")
 public class VideoSeriesController {
 
-    private final VsaCommandGateway commandGateway;
+    private final CommandGateway commandGateway;
 
-    public VideoSeriesController(VsaCommandGateway commandGateway) {
+    public VideoSeriesController(CommandGateway commandGateway) {
         this.commandGateway = commandGateway;
     }
 
     @PostMapping
     public void postNewVideoSeries(
             @RequestBody
-                    VideoSeriesDto videoSeriesDto) throws Exception {
-        commandGateway.sendCommand(
+                    VideoSeriesDto videoSeriesDto) {
+        commandGateway.send(
                 AddVideoSeriesCommand.builder()
+                        .id(videoSeriesDto.id())
                         .name(videoSeriesDto.name())
                         .volumes(videoSeriesDto.volumes())
                         .genre(videoSeriesDto.genre())

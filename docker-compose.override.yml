@@ -11,3 +11,7 @@ services:
   query:
     ports:
       - "8090:8090"
+
+  mongo:
+    ports:
+      - "27017:27017"

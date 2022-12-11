@@ -4,7 +4,7 @@ services:
     build:
       context: ./video-series-command/.
     depends_on:
-      postgres-es:
+      mongo:
         condition: service_healthy
       postgres:
         condition: service_healthy
@@ -14,7 +14,7 @@ services:
     build:
       context: ./video-series-query/.
     depends_on:
-      postgres-es:
+      mongo:
         condition: service_healthy
       postgres:
         condition: service_healthy

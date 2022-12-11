@@ -1,5 +1,26 @@
 # Video series app
 
+<ins>2022/12/11</ins>
+
+It has been observed that the newest version of Axon works very differently. In the same way so does Spring 3.0.0.
+
+There is a lot of work to do to upgrade all versions and hopefully make a change.
+
+For now version 3.0.0 of this project has been made as a setback and a fresh start on a stable version.
+
+Needs to be done:
+
+- Reinstate Swagger
+- Organize dependencies.
+
+##### Old message on the [Readme.md](README.md)
+
+> Note: Please have a look at [the log book](./LogBook.md) to keep up with current changes of this project.
+> On a quick note, this project is undergoing changes to replace MongoDB and XStream.
+> Issue, [Axon Framework issue 2365](https://github.com/AxonFramework/AxonFramework/issues/2365#event-7412299709), has
+> triggered renovations on this project.
+> Once the working version is done, it will be tagged as 3.0.0. Plase see below for older working version
+
 <ins>2022/12/09</ins> - Spring Boot Release 3
 
 Spring Boot 3.0.0, albeit being a fantastic release, it did forced to rethink the whole project.

@@ -49,7 +49,6 @@
         <mockk.version>1.13.3</mockk.version>
         <kotest.version>5.5.3</kotest.version>
 
-        <spring-boot-starter-test.version>${project.parent.version}</spring-boot-starter-test.version>
         <postgresql.version>42.5.1</postgresql.version>
         <testcontainers.version>1.17.6</testcontainers.version>
         <kotlin.version>1.7.22</kotlin.version>
@@ -61,6 +60,7 @@
         <springdoc-openapi-ui.version>1.6.13</springdoc-openapi-ui.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <versions-maven-plugin.version>2.13.0</versions-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -97,6 +97,17 @@
                 <groupId>org.axonframework</groupId>
                 <artifactId>axon-spring-boot-starter</artifactId>
                 <version>${axon.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
 
             <dependency>
@@ -186,16 +197,6 @@
                 <version>${springdoc-openapi-ui.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-test-autoconfigure</artifactId>
-                <scope>test</scope>
-            </dependency>
             <!-- This Dependency is added as a workaround for the following issue -->
             <!--- https://github.com/Kotlin/kotlinx.coroutines/issues/3334 -->
             <dependency>
@@ -225,35 +226,45 @@
         </dependencies>
     </dependencyManagement>
     <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>report</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.jesperancinha.plugins</groupId>
-                    <artifactId>omni-coveragereporter-maven-plugin</artifactId>
-                    <version>${omni-coveragereporter-maven-plugin.version}</version>
-                    <configuration>
-                        <useCoverallsCount>false</useCoverallsCount>
-                        <fetchBranchNameFromEnv>true</fetchBranchNameFromEnv>
-                    </configuration>
-                </plugin>
-            </plugins>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jesperancinha.plugins</groupId>
+                <artifactId>omni-coveragereporter-maven-plugin</artifactId>
+                <version>${omni-coveragereporter-maven-plugin.version}</version>
+                <configuration>
+                    <useCoverallsCount>false</useCoverallsCount>
+                    <fetchBranchNameFromEnv>true</fetchBranchNameFromEnv>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>org.apache.commons:commons-collections4</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

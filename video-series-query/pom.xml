@@ -13,12 +13,6 @@
 
     <name>VSA :: Query Service</name>
 
-    <properties>
-        <xstream.version>1.4.17</xstream.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <jackson.version>2.14.0</jackson.version>
-     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>

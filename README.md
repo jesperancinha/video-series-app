@@ -49,9 +49,6 @@ This project is also the official support project of my article on medium:
 Please have a look at my [Issues](./Issues.md) file to find out about improvements being made. This file contains a list
 of ongoing issues that on one hand do not block the development, but on the other hand they are a great nice to haves.
 
-All running issues are being solved in
-branch [feature/research_and_development](https://github.com/jesperancinha/video-series-app/-/tree/feature/research_and_development).
-
 #### Stable releases
 
 - [1.0.0](https://github.com/jesperancinha/video-series-app/tree/1.0.0) - [10271cee0b49da1cb80bdcd115851de94f928774](https://github.com/jesperancinha/video-series-app/tree/1.0.0)

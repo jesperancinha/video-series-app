@@ -21,6 +21,7 @@
 		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 		<omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
 		<testcontainers.version>1.17.6</testcontainers.version>
+		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -108,8 +109,25 @@
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<useFile>false</useFile>
+					<includes>
+						<include>**/*Tests</include>
+						<include>**/*Test</include>
+						<include>**/*Spec</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot-parent.version}</version>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

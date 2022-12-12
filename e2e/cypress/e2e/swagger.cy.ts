@@ -1,4 +1,4 @@
-describe('Favorite Lyrics E2E Tests', () => {
+describe('Video Series App E2E Tests', () => {
   it('shows swagger for Command', () => {
     cy.log("Test Disabled");
     let host = Cypress.env('host.command') ?  Cypress.env('host.command') : 'localhost';

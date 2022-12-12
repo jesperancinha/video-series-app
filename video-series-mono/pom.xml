@@ -3,47 +3,25 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jesperancinha.video</groupId>
+
+	<parent>
+		<artifactId>video-series-app</artifactId>
+		<groupId>org.jesperancinha.video</groupId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+
 	<artifactId>video-series-mono</artifactId>
-	<version>2.0.0-SNAPSHOT</version>
 	<name>VSA :: Mono Control Service</name>
 	<description>Single control project to keep green as a checkup for Axon</description>
-	<properties>
-		<java.version>17</java.version>
-		<axon.version>4.0.3</axon.version>
-		<axon-mongo.version>4.2</axon-mongo.version>
-		<spring-boot-parent.version>2.5.0</spring-boot-parent.version>
-		<xstream.version>1.4.17</xstream.version>
-		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-		<maven-compiler-plugin.source>${java.version}</maven-compiler-plugin.source>
-		<maven-compiler-plugin.target>${java.version}</maven-compiler-plugin.target>
-		<jackson.version>2.14.0</jackson.version>
-		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
-		<omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
-		<testcontainers.version>1.17.6</testcontainers.version>
-		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
-	</properties>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-parent</artifactId>
-				<version>${spring-boot-parent.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -71,7 +49,6 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>${axon.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.axonframework</groupId>
@@ -86,12 +63,10 @@
 		<dependency>
 			<groupId>org.axonframework.extensions.mongo</groupId>
 			<artifactId>axon-mongo</artifactId>
-			<version>${axon-mongo.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
-			<version>${xstream.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -101,7 +76,6 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>testcontainers</artifactId>
-			<version>${testcontainers.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -124,7 +98,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot-parent.version}</version>
+				<version>${spring-boot.version}</version>
 				<configuration>
 					<executable>true</executable>
 				</configuration>

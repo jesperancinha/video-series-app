@@ -10,11 +10,7 @@
     <artifactId>video-series-command</artifactId>
     <name>VSA :: Command Service</name>
     <modelVersion>4.0.0</modelVersion>
-    <properties>
-        <xstream.version>1.4.17</xstream.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <jackson.version>2.14.0</jackson.version>
-    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -75,7 +71,7 @@
             <groupId>org.axonframework.extensions.mongo</groupId>
             <artifactId>axon-mongo</artifactId>
             <version>${axon-mongo.version}</version>
-         </dependency>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>

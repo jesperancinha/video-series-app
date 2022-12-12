@@ -20,3 +20,7 @@ jobs:
 
     - name: Build with Maven
       run:  mvn clean install jacoco:prepare-agent package jacoco:report
+
+    - name: Version statuses
+      run: make version-status
+

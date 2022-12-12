@@ -61,6 +61,7 @@
         <springdoc-openapi-ui.version>1.6.13</springdoc-openapi-ui.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -263,6 +264,16 @@
                 <configuration>
                     <useCoverallsCount>false</useCoverallsCount>
                     <fetchBranchNameFromEnv>true</fetchBranchNameFromEnv>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>org.apache.commons:commons-collections4</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>

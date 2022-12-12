@@ -75,3 +75,9 @@ logs-quey:
 	docker-compose -p ${GITHUB_RUN_ID} logs -f query
 install:
 	sudo npm install -g npm-check-updates
+version-status:
+	mvn versions:display-dependency-updates
+version-update-maven:
+	mvn versions:use-next-releases
+	mvn versions:use-latest-releases
+	mvn versions:use-releases

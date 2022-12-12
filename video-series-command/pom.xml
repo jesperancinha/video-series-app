@@ -141,7 +141,20 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>${project.basedir}/src/test/kotlin</source>
+                                <source>src/test/kotlin</source>
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <source>src/main/java</source>
+                                <source>target/generated-sources/annotations</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -209,6 +222,18 @@
                 <configuration>
                     <useCoverallsCount>false</useCoverallsCount>
                     <fetchBranchNameFromEnv>true</fetchBranchNameFromEnv>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <includes>
+                        <include>**/*Test</include>
+                        <include>**/*Spec</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>

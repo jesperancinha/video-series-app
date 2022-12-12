@@ -17,7 +17,6 @@
         <dependency>
             <groupId>org.jesperancinha.video</groupId>
             <artifactId>video-series-core</artifactId>
-            <version>2.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -48,7 +47,6 @@
         <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
-            <version>${axon.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.axonframework</groupId>
@@ -65,13 +63,10 @@
             <artifactId>kotest-runner-junit5-jvm</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.axonframework.extensions.mongo/axon-mongo -->
         <dependency>
             <groupId>org.axonframework.extensions.mongo</groupId>
             <artifactId>axon-mongo</artifactId>
-            <version>${axon-mongo.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>

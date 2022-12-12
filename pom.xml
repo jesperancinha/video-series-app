@@ -35,6 +35,7 @@
 
         <h2.version>2.1.214</h2.version>
         <lombok.version>1.18.24</lombok.version>
+
         <!-- Test Dependency Versions -->
         <assertj-core.version>3.23.1</assertj-core.version>
         <mockito-all.version>1.10.19</mockito-all.version>
@@ -87,16 +88,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.axonframework.extensions.mongo</groupId>
-                <artifactId>axon-mongo-parent</artifactId>
-                <version>${axon.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.axonframework</groupId>
                 <artifactId>axon-spring-boot-starter</artifactId>
                 <version>${axon.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.axonframework.extensions.mongo</groupId>
+                <artifactId>axon-mongo</artifactId>
+                <version>${axon-mongo.version}</version>
             </dependency>
 
             <dependency>

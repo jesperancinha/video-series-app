@@ -17,7 +17,6 @@ import org.jesperancinha.video.event.VideoSeriesEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 import java.util.Collection;
 
@@ -37,8 +36,8 @@ public class AxonConfig {
     }
 
     @Bean
-    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration, XStreamSerializer xStreamSerializer) {
-        XStream xStream =  xStreamSerializer.getXStream();
+    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration, Serializer serializer) {
+        XStream xStream = ((XStreamSerializer) serializer).getXStream();
         xStream.allowTypesByWildcard(new String[]{
                 "org.axonframework.**",
                 "org.jesperancinha.**"

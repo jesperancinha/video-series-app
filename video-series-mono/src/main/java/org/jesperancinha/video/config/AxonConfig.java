@@ -7,13 +7,11 @@ import com.thoughtworks.xstream.security.NullPermission;
 import com.thoughtworks.xstream.security.PrimitiveTypePermission;
 import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
-import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.extensions.mongo.DefaultMongoTemplate;
 import org.axonframework.extensions.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
 import org.axonframework.messaging.MetaData;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.xml.XStreamSerializer;
-import org.axonframework.spring.config.AxonConfiguration;
 import org.jesperancinha.video.event.VideoSeriesEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -41,7 +39,7 @@ public class AxonConfig {
         xStream.addPermission(NoTypePermission.NONE);
         xStream.addPermission(NullPermission.NULL);
         xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
-        xStream.allowTypes(new Class[]{VideoSeriesEvent.class, MetaData.class});
+        xStream.allowTypes(new Class[]{VideoSeriesEvent.class, MetaData.class, String.class});
         xStream.allowTypeHierarchy(Collection.class);
         return MongoEventStorageEngine.builder()
                 .eventSerializer(serializer)
@@ -50,10 +48,7 @@ public class AxonConfig {
     }
 
     @Bean
-    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration) {
-        return EmbeddedEventStore.builder()
-                .storageEngine(storageEngine)
-                .messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore"))
-                .build();
+    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine) {
+        return EmbeddedEventStore.builder().storageEngine(storageEngine).build();
     }
 }

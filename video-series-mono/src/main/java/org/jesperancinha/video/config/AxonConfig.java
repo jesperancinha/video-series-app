@@ -26,9 +26,9 @@ public class AxonConfig {
     @Value("${video.series.mongo.port}")
     private Long mongoPort;
 
-    @Bean
     @Primary
-    public Serializer serializer() {
+    @Bean(name = "eventSerializer")
+    public Serializer eventSerializer() {
         XStream xStream = new XStream();
         xStream.allowTypesByWildcard(new String[]{
                 "org.axonframework.**",

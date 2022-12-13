@@ -10,6 +10,7 @@ import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.extensions.mongo.DefaultMongoTemplate;
 import org.axonframework.extensions.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
+import org.axonframework.messaging.MetaData;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.xml.XStreamSerializer;
 import org.axonframework.spring.config.AxonConfiguration;
@@ -40,7 +41,7 @@ public class AxonConfig {
         xStream.addPermission(NoTypePermission.NONE);
         xStream.addPermission(NullPermission.NULL);
         xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
-        xStream.allowTypes(new Class[]{VideoSeriesEvent.class});
+        xStream.allowTypes(new Class[]{VideoSeriesEvent.class, MetaData.class});
         xStream.allowTypeHierarchy(Collection.class);
         return MongoEventStorageEngine.builder()
                 .eventSerializer(serializer)

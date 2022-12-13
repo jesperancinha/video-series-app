@@ -75,7 +75,7 @@ class VsaMonoApplicationTests {
 
         @Override
         public void initialize(ConfigurableApplicationContext configurableApplicationContext) {
-            log.info("Starting IT -> ${LocalDateTime.now()}");
+            log.info("Starting IT -> {}", LocalDateTime.now());
             val mongoPort = dockerCompose.getServicePort("mongo_1", 27017);
             TestPropertySourceUtils
                     .addInlinedPropertiesToEnvironment(

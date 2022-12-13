@@ -10,6 +10,7 @@ import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.extensions.mongo.DefaultMongoTemplate;
 import org.axonframework.extensions.mongo.eventsourcing.eventstore.MongoEventStorageEngine;
+import org.axonframework.messaging.MetaData;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.serialization.xml.XStreamSerializer;
 import org.axonframework.spring.config.AxonConfiguration;
@@ -29,8 +30,13 @@ public class AxonConfig {
     private String mongoHost;
 
     @Bean
-    public Serializer serializer() {
-        XStream xStream = new XStream();
+    public MongoClient mongoClient(){
+        return new MongoClient(mongoHost, mongoPort.intValue());
+    }
+
+    @Bean
+    public EventStorageEngine storageEngine(MongoClient client, Serializer serializer) {
+        XStream xStream = ((XStreamSerializer) serializer).getXStream();
         xStream.allowTypesByWildcard(new String[]{
                 "org.axonframework.**",
                 "org.jesperancinha.**"
@@ -38,18 +44,8 @@ public class AxonConfig {
         xStream.addPermission(NoTypePermission.NONE);
         xStream.addPermission(NullPermission.NULL);
         xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
-        xStream.allowTypes(new Class[]{AddSeriesEvent.class});
+        xStream.allowTypes(new Class[]{AddSeriesEvent.class, MetaData.class});
         xStream.allowTypeHierarchy(Collection.class);
-        return XStreamSerializer.builder().xStream(xStream).build();
-    }
-
-    @Bean
-    public MongoClient mongoClient(){
-        return new MongoClient(mongoHost, mongoPort.intValue());
-    }
-
-    @Bean
-    public EventStorageEngine storageEngine(MongoClient client) {
         return MongoEventStorageEngine.builder().mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build()).build();
     }
 

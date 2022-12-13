@@ -32,7 +32,7 @@ public class AxonConfig {
     }
 
     @Bean
-    public EventStorageEngine storageEngine(MongoClient client,Serializer serializer) {
+    public EventStorageEngine storageEngine(MongoClient client, Serializer serializer) {
         XStream xStream = ((XStreamSerializer) serializer).getXStream();
         xStream.allowTypesByWildcard(new String[]{
                 "org.axonframework.**",

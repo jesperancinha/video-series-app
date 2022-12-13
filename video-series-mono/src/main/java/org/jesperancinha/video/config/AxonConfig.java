@@ -31,12 +31,7 @@ public class AxonConfig {
     }
 
     @Bean
-    public EventStorageEngine storageEngine(MongoClient client) {
-        return MongoEventStorageEngine.builder().mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build()).build();
-    }
-
-    @Bean
-    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration, Serializer serializer) {
+    public EventStorageEngine storageEngine(MongoClient client,Serializer serializer) {
         XStream xStream = ((XStreamSerializer) serializer).getXStream();
         xStream.allowTypesByWildcard(new String[]{
                 "org.axonframework.**",
@@ -47,6 +42,14 @@ public class AxonConfig {
         xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
         xStream.allowTypes(new Class[]{VideoSeriesEvent.class});
         xStream.allowTypeHierarchy(Collection.class);
+        return MongoEventStorageEngine.builder()
+                .eventSerializer(serializer)
+                .snapshotSerializer(serializer)
+                .mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build()).build();
+    }
+
+    @Bean
+    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration) {
         return EmbeddedEventStore.builder()
                 .storageEngine(storageEngine)
                 .messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore"))

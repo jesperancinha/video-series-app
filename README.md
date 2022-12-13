@@ -55,6 +55,7 @@ of ongoing issues that on one hand do not block the development, but on the othe
 - [2.0.0](https://github.com/jesperancinha/video-series-app/tree/2.0.0) - [98eb81756c02d63d03c19e8ae87fc8023d513e0a](https://github.com/jesperancinha/video-series-app/tree/2.0.0)
 - [3.0.0](https://github.com/jesperancinha/video-series-app/tree/3.0.0) - [696472601c04a6a26c01e83fcf464eafee4305f4](https://github.com/jesperancinha/video-series-app/tree/3.0.0)
 - [3.0.1](https://github.com/jesperancinha/video-series-app/tree/3.0.1) - [022a709a1fe65b57c89c68974d6577d029039eb2](https://github.com/jesperancinha/video-series-app/tree/3.0.1) - Refactoring Maven (Known working dependencies)
+- [3.0.2](https://github.com/jesperancinha/video-series-app/tree/3.0.2) - [3a922f4a64c6602566b3c81f4811c40cc2c119e0](https://github.com/jesperancinha/video-series-app/tree/3.0.2) - Spring Boot 2.6.14 Update
 
 ## Requests
 

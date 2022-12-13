@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.NullPermission;
 import com.thoughtworks.xstream.security.PrimitiveTypePermission;
+import lombok.val;
 import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
@@ -30,30 +31,25 @@ public class AxonConfig {
     private String mongoHost;
 
     @Bean
-    public MongoClient mongoClient(){
+    public MongoClient mongoClient() {
         return new MongoClient(mongoHost, mongoPort.intValue());
     }
 
     @Bean
     public EventStorageEngine storageEngine(MongoClient client, Serializer serializer) {
-        XStream xStream = ((XStreamSerializer) serializer).getXStream();
-        xStream.allowTypesByWildcard(new String[]{
-                "org.axonframework.**",
-                "org.jesperancinha.**"
-        });
+        val xStream = ((XStreamSerializer) serializer).getXStream();
+        xStream.allowTypesByWildcard(new String[]{"org.axonframework.**", "org.jesperancinha.**"});
         xStream.addPermission(NoTypePermission.NONE);
         xStream.addPermission(NullPermission.NULL);
         xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
-        xStream.allowTypes(new Class[]{AddSeriesEvent.class, MetaData.class});
+        xStream.allowTypes(new Class[]{AddSeriesEvent.class, MetaData.class, String.class});
         xStream.allowTypeHierarchy(Collection.class);
-        return MongoEventStorageEngine.builder().mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build()).build();
+        val defaultMongoTemplate = DefaultMongoTemplate.builder().mongoDatabase(client).build();
+        return MongoEventStorageEngine.builder().snapshotSerializer(serializer).eventSerializer(serializer).mongoTemplate(defaultMongoTemplate).build();
     }
 
     @Bean
     public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration) {
-        return EmbeddedEventStore.builder()
-                .storageEngine(storageEngine)
-                .messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore"))
-                .build();
+        return EmbeddedEventStore.builder().storageEngine(storageEngine).messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore")).build();
     }
 }

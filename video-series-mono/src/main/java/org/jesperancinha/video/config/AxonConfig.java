@@ -26,22 +26,6 @@ public class AxonConfig {
     @Value("${video.series.mongo.port}")
     private Long mongoPort;
 
-    @Primary
-    @Bean(name = "eventSerializer")
-    public Serializer eventSerializer() {
-        XStream xStream = new XStream();
-        xStream.allowTypesByWildcard(new String[]{
-                "org.axonframework.**",
-                "org.jesperancinha.**"
-        });
-        xStream.addPermission(NoTypePermission.NONE);
-        xStream.addPermission(NullPermission.NULL);
-        xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
-        xStream.allowTypes(new Class[]{VideoSeriesEvent.class});
-        xStream.allowTypeHierarchy(Collection.class);
-        return XStreamSerializer.builder().xStream(xStream).build();
-    }
-
     @Bean
     public MongoClient mongoClient() {
         return new MongoClient("localhost", mongoPort.intValue());
@@ -53,7 +37,17 @@ public class AxonConfig {
     }
 
     @Bean
-    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration) {
+    public EmbeddedEventStore eventStore(EventStorageEngine storageEngine, AxonConfiguration configuration, XStreamSerializer xStreamSerializer) {
+        XStream xStream =  xStreamSerializer.getXStream();
+        xStream.allowTypesByWildcard(new String[]{
+                "org.axonframework.**",
+                "org.jesperancinha.**"
+        });
+        xStream.addPermission(NoTypePermission.NONE);
+        xStream.addPermission(NullPermission.NULL);
+        xStream.addPermission(PrimitiveTypePermission.PRIMITIVES);
+        xStream.allowTypes(new Class[]{VideoSeriesEvent.class});
+        xStream.allowTypeHierarchy(Collection.class);
         return EmbeddedEventStore.builder()
                 .storageEngine(storageEngine)
                 .messageMonitor(configuration.messageMonitor(EventStore.class, "eventStore"))

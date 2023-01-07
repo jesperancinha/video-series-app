@@ -1,4 +1,4 @@
-name: VSA Pull Request
+name: VSA Mono Build
 
 on:
   pull_request:
@@ -18,9 +18,8 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    - name: Build with Maven
-      run:  mvn clean install jacoco:prepare-agent package jacoco:report
+    - name: Build fast
+      run:  mvn clean install -DskipTests
 
-    - name: Version statuses
-      run: make version-status
-
+    - name: Build mono
+      run: cd video-series-mono && mvn clean install

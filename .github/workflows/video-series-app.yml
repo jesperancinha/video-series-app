@@ -1,4 +1,4 @@
-name: video-series-app
+name: VSA Build and reporting
 
 on:
   push:

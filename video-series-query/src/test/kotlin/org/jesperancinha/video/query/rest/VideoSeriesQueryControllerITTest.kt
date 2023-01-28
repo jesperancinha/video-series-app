@@ -127,7 +127,7 @@ class VideoSeriesQueryControllerITTest(
                 .withFileFromClasspath("entrypoint.sh", "/entrypoint.sh")
                 .withFileFromClasspath(
                     "video-series-command.jar",
-                    "/video-series-command-2.0.0.jar"
+                    "/video-series-command.jar"
                 )
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder

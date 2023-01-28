@@ -40,7 +40,7 @@ class VideoSeriesControllerTest(
     @Autowired
     private val commandGateway: DefaultCommandGateway
 
-    ) : WordSpec() {
+) : WordSpec() {
 
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
@@ -57,12 +57,14 @@ class VideoSeriesControllerTest(
             "should send a video title" {
 //                every { commandGateway.send<VideoSeriesDto>(any<AddVideoSeriesCommand>()) }
 //                val slotFilm = slot<AddVideoSeriesCommand>()
-                val film = VideoSeriesDto.builder()
-                    .id("1")
-                    .name("Silence of the Lambs")
-                    .cashValue(BigDecimal.valueOf(1_000_000))
-                    .genre(Genre.HORROR)
-                    .build()
+                val film = VideoSeriesDto(
+                    id = "1",
+                    name = "Silence of the Lambs",
+                    volumes = 1,
+                    cashValue = BigDecimal.valueOf(1_000_000),
+                    genre = Genre.HORROR
+                )
+
                 with(mvc) {
                     perform(
                         post("/video-series")

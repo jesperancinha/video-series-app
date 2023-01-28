@@ -16,6 +16,7 @@ import io.kotest.matchers.shouldNotBe
 import org.bson.Document
 import org.jesperancinha.video.command.aggregates.VideoSeriesAggregate
 import org.jesperancinha.video.core.data.Genre
+import org.jesperancinha.video.core.data.Genre.HORROR
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -44,12 +45,12 @@ class VideoSeriesControllerITTest(
                     .find().toList()
                     .shouldBeEmpty()
 
-                val film = VideoSeriesDto.builder()
-                    .name("Nightmare on Elm Street I")
-                    .cashValue(BigDecimal.valueOf(1_000_000))
-                    .volumes(1)
-                    .genre(Genre.HORROR)
-                    .build()
+                val film = VideoSeriesDto(
+                    name = "Nightmare on Elm Street I",
+                    cashValue = BigDecimal.valueOf(1_000_000),
+                    volumes = 1,
+                    genre = HORROR
+                )
 
                 val responseEntity = testRestTemplate.restTemplate.postForEntity<VideoSeriesDto>("/video-series", film)
 
@@ -64,7 +65,7 @@ class VideoSeriesControllerITTest(
                 val filmOnEventQueue: VideoSeriesAggregate = resultingDocumentList.findFirstDocumentInCollection()
                 filmOnEventQueue.id.shouldNotBeNull()
                 filmOnEventQueue.name shouldBe "Nightmare on Elm Street I"
-                filmOnEventQueue.genre shouldBe Genre.HORROR
+                filmOnEventQueue.genre shouldBe HORROR
                 filmOnEventQueue.cashValue shouldBe BigDecimal.valueOf(1000000)
                 filmOnEventQueue.volumes shouldBe 1
             }

@@ -27,7 +27,7 @@ class VideoSeriesAggregate {
     @CommandHandler
     constructor(command: AddVideoSeriesCommand) {
         logger.info("Created addVideoSeriesCommand {}", command)
-        val event =             AddSeriesEvent(
+        val event = AddSeriesEvent(
             id = UUID.randomUUID().toString(),
             cashValue = requireNotNull(command.cashValue),
             genre = requireNotNull(command.genre),

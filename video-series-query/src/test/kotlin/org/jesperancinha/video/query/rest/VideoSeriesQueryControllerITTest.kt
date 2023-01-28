@@ -44,7 +44,6 @@ import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("local")
-@ContextConfiguration(initializers = [VideoSeriesInitializer::class])
 class VideoSeriesQueryControllerITTest(
     @Autowired private val testRestTemplate: TestRestTemplate,
     @Autowired private val videoSeriesRepository: VideoSeriesRepository,
@@ -78,7 +77,7 @@ class VideoSeriesQueryControllerITTest(
 
                 val responseCreateEntity =
                     testRestTemplate.restTemplate.postForEntity<Any>(
-                        "http://${vsaContainer.host}:${vsaContainer.firstMappedPort}/video-series",
+                        "http://${vsaContainer.host}:${vsaContainer.getMappedPort(8080)}/video-series",
                         film
                     )
 
@@ -92,10 +91,10 @@ class VideoSeriesQueryControllerITTest(
                     .shouldHaveSize(1)
                 val filmOnEventQueue: VideoSeriesDto = resultingDocumentList.findFirstDocumentInCollection()
                 filmOnEventQueue.id.shouldNotBeNull()
-                filmOnEventQueue.name shouldBe "Nightmare on Elm Street I"
+                filmOnEventQueue.name shouldBe "Halloween"
                 filmOnEventQueue.genre shouldBe HORROR
                 filmOnEventQueue.cashValue shouldBe BigDecimal.valueOf(1000000)
-                filmOnEventQueue.volumes shouldBe 1
+                filmOnEventQueue.volumes shouldBe 6
 
                 delay(5000)
                 val responseResultEntity =
@@ -117,7 +116,7 @@ class VideoSeriesQueryControllerITTest(
 
         @Container
         @JvmField
-        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:5")
+        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:3.0.0")
             .withNetwork(network)
             .withNetworkAliases("mongo")
             .withExposedPorts(27017)
@@ -164,8 +163,8 @@ class VideoSeriesQueryControllerITTest(
         @DynamicPropertySource
         @JvmStatic
         fun setProperties(registry: DynamicPropertyRegistry) {
-            registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl)
             registry.add("spring.data.mongodb.port", mongoDBContainer::getFirstMappedPort)
+            registry.add("video.series.mongo.port", mongoDBContainer::getFirstMappedPort)
             registry.add("spring.data.mongodb.host", mongoDBContainer::getHost)
             registry.add("spring.data.mongodb.database") { "axonframework" }
             registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl)

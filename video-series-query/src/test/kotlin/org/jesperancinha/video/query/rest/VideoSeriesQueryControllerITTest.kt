@@ -3,6 +3,7 @@ package org.jesperancinha.video.query.rest
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.mongodb.MongoClient
 import com.mongodb.client.FindIterable
+import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
 import io.kotest.extensions.spring.SpringExtension
@@ -120,6 +121,7 @@ class VideoSeriesQueryControllerITTest(
             .withNetwork(network)
             .withNetworkAliases("mongo")
             .withExposedPorts(27017)
+            .also { it.start() }
 
         @Container
         @JvmStatic
@@ -147,6 +149,7 @@ class VideoSeriesQueryControllerITTest(
                 })
             .withExposedPorts(8080)
             .withNetwork(network)
+            .also { it.start() }
 
         @Container
         @JvmStatic
@@ -157,7 +160,7 @@ class VideoSeriesQueryControllerITTest(
             withUsername("postgres")
             withPassword("admin")
             withExposedPorts(5432)
-        }
+        }.also { it.start() }
 
         @DynamicPropertySource
         @JvmStatic
@@ -168,16 +171,9 @@ class VideoSeriesQueryControllerITTest(
             registry.add("spring.data.mongodb.database") { "axonframework" }
             registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl)
         }
-
-        init {
-            mongoDBContainer.start()
-            postgreSQLContainer.start()
-            vsaContainer.start()
-        }
-
     }
 
-    override fun extensions(): List<io.kotest.core.extensions.Extension> = listOf(SpringExtension)
+    override fun extensions(): List<Extension> = listOf(SpringExtension)
 
     override suspend fun beforeEach(testCase: TestCase) {
         super.beforeEach(testCase)

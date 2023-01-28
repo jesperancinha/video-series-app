@@ -51,13 +51,14 @@ of ongoing issues that on one hand do not block the development, but on the othe
 
 #### Stable releases
 
--   [1.0.0](https://github.com/jesperancinha/video-series-app/tree/1.0.0) - [10271cee0b49da1cb80bdcd115851de94f928774](https://github.com/jesperancinha/video-series-app/tree/1.0.0)
--   [2.0.0](https://github.com/jesperancinha/video-series-app/tree/2.0.0) - [98eb81756c02d63d03c19e8ae87fc8023d513e0a](https://github.com/jesperancinha/video-series-app/tree/2.0.0)
--   [3.0.0](https://github.com/jesperancinha/video-series-app/tree/3.0.0) - [696472601c04a6a26c01e83fcf464eafee4305f4](https://github.com/jesperancinha/video-series-app/tree/3.0.0)
--   [3.0.1](https://github.com/jesperancinha/video-series-app/tree/3.0.1) - [022a709a1fe65b57c89c68974d6577d029039eb2](https://github.com/jesperancinha/video-series-app/tree/3.0.1) - Refactoring Maven (Known working dependencies)
--   [3.0.2](https://github.com/jesperancinha/video-series-app/tree/3.0.2) - [3a922f4a64c6602566b3c81f4811c40cc2c119e0](https://github.com/jesperancinha/video-series-app/tree/3.0.2) - Spring Boot 2.6.14 Update
--   [3.0.3](https://github.com/jesperancinha/video-series-app/tree/3.0.3) - [9f53922e9be7e1a110ac9059a556a9a9571a1921](https://github.com/jesperancinha/video-series-app/tree/3.0.3) - Spring Boot 2.7.6 Update, JDK19 and mono module converted to Kotlin
--   [3.0.4](https://github.com/jesperancinha/video-series-app/tree/3.0.4) - [ba5104f6593b7e8001f5302904b0a5f14a5697c4](https://github.com/jesperancinha/video-series-app/tree/3.0.4) - Spring Boot 3.0.2 Update
+-   [1.0.0](https://github.com/jesperancinha/video-series-app/tree/1.0.0) - [10271cee0b49da1cb80bdcd115851de94f928774](https://github.com/jesperancinha/video-series-app/tree/1.0.0) - Java
+-   [2.0.0](https://github.com/jesperancinha/video-series-app/tree/2.0.0) - [98eb81756c02d63d03c19e8ae87fc8023d513e0a](https://github.com/jesperancinha/video-series-app/tree/2.0.0) - Java
+-   [3.0.0](https://github.com/jesperancinha/video-series-app/tree/3.0.0) - [696472601c04a6a26c01e83fcf464eafee4305f4](https://github.com/jesperancinha/video-series-app/tree/3.0.0) - Java
+-   [3.0.1](https://github.com/jesperancinha/video-series-app/tree/3.0.1) - [022a709a1fe65b57c89c68974d6577d029039eb2](https://github.com/jesperancinha/video-series-app/tree/3.0.1) - Java / Refactoring Maven (Known working dependencies)
+-   [3.0.2](https://github.com/jesperancinha/video-series-app/tree/3.0.2) - [3a922f4a64c6602566b3c81f4811c40cc2c119e0](https://github.com/jesperancinha/video-series-app/tree/3.0.2) - Java / Spring Boot 2.6.14 Update
+-   [3.0.3](https://github.com/jesperancinha/video-series-app/tree/3.0.3) - [9f53922e9be7e1a110ac9059a556a9a9571a1921](https://github.com/jesperancinha/video-series-app/tree/3.0.3) - Java / Spring Boot 2.7.6 Update, JDK19 and mono module converted to Kotlin
+-   [3.0.4](https://github.com/jesperancinha/video-series-app/tree/3.0.4) - [ba5104f6593b7e8001f5302904b0a5f14a5697c4](https://github.com/jesperancinha/video-series-app/tree/3.0.4) - Java / Spring Boot 3.0.2 Update
+-   [4.0.0](https://github.com/jesperancinha/video-series-app/tree/4.0.0) - [15f2abfa5e17dc881e66b2761f5a2672fd87005a](https://github.com/jesperancinha/video-series-app/tree/4.0.0) - Full Kotlin 1.8.0 / JDK19
 
 ## Requests
 

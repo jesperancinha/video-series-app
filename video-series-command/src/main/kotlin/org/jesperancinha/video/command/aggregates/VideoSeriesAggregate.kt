@@ -8,11 +8,13 @@ import org.axonframework.spring.stereotype.Aggregate
 import org.jesperancinha.video.command.commands.AddVideoSeriesCommand
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.events.AddSeriesEvent
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.math.BigDecimal
 import java.util.*
 
 @Aggregate
-class VideoSeriesAggregate @CommandHandler constructor(command: AddVideoSeriesCommand) {
+class VideoSeriesAggregate {
     @AggregateIdentifier
     var id: String? = null
     var name: String? = null
@@ -20,16 +22,19 @@ class VideoSeriesAggregate @CommandHandler constructor(command: AddVideoSeriesCo
     var cashValue: BigDecimal? = null
     var genre: Genre? = null
 
-    init {
-        AggregateLifecycle.apply(
-            AddSeriesEvent(
-                id = UUID.randomUUID().toString(),
-                cashValue = requireNotNull(command.cashvalue),
-                genre = requireNotNull(command.genre),
-                name = requireNotNull(command.name),
-                volumes = requireNotNull(command.volumes)
-            )
+    constructor()
+
+    @CommandHandler
+    constructor(command: AddVideoSeriesCommand) {
+        logger.info("Created addVideoSeriesCommand {}", command)
+        val event =             AddSeriesEvent(
+            id = UUID.randomUUID().toString(),
+            cashValue = requireNotNull(command.cashValue),
+            genre = requireNotNull(command.genre),
+            name = requireNotNull(command.name),
+            volumes = requireNotNull(command.volumes)
         )
+        AggregateLifecycle.apply(event)
     }
 
     @EventSourcingHandler
@@ -39,5 +44,9 @@ class VideoSeriesAggregate @CommandHandler constructor(command: AddVideoSeriesCo
         volumes = event.volumes
         cashValue = event.cashValue
         genre = event.genre
+    }
+
+    companion object {
+        val logger: Logger = LoggerFactory.getLogger(VideoSeriesAggregate::class.java)
     }
 }

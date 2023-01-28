@@ -15,5 +15,5 @@ class VideoAppQueryLauncher {
 
 }
 fun main(args: Array<String>) {
-    SpringApplication.run(VideoAppQueryLauncher::class.java)
+    SpringApplication.run(VideoAppQueryLauncher::class.java, *args).start()
 }

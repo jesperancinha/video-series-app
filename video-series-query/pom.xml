@@ -189,7 +189,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <executable>true</executable>
-                    <mainClass>org.jesperancinha.video.VideoAppQueryLauncher</mainClass>
+                    <mainClass>org.jesperancinha.video.VideoAppQueryLauncherKt</mainClass>
                 </configuration>
                 <executions>
                     <execution>

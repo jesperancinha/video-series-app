@@ -13,9 +13,8 @@ import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConf
     info = Info(title = "OpenAPI definition"),
     servers = [Server(url = "\${vsa.server.url}", description = "Server URL")]
 )
-object VideoAppCommandLauncher {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        SpringApplication.run(VideoAppCommandLauncher::class.java)
-    }
+class VideoAppCommandLauncher
+
+fun main(args: Array<String>) {
+    SpringApplication.run(VideoAppCommandLauncher::class.java, *args).start()
 }

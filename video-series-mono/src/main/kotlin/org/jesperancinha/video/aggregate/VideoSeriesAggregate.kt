@@ -8,7 +8,6 @@ import org.axonframework.spring.stereotype.Aggregate
 import org.jesperancinha.video.command.AddVideoSeriesCommand
 import org.jesperancinha.video.data.Genre
 import org.jesperancinha.video.event.VideoSeriesEvent
-import org.jesperancinha.video.repository.VsaRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.math.BigDecimal

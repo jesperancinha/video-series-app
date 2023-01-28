@@ -18,7 +18,7 @@ class VsaController @Autowired constructor(
     private val vsaRepository: VsaRepository
 ) {
     @PostMapping("/video/series")
-    fun createVideoSeries(@RequestBody videoSeriesDto: VideoSeriesDto): ResponseEntity<Void> {
+    fun createVideoSeries(@RequestBody videoSeriesDto: VideoSeriesDto): ResponseEntity<Unit> {
         val command = AddVideoSeriesCommand(
             videoSeriesDto.id.toString(),
             videoSeriesDto.name,

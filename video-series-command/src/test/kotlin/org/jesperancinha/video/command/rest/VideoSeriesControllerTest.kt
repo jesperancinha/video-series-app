@@ -11,6 +11,9 @@ import io.mockk.Called
 import io.mockk.every
 import io.mockk.slot
 import io.mockk.verify
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.axonframework.commandhandling.gateway.DefaultCommandGateway
 import org.axonframework.eventhandling.tokenstore.TokenStore
@@ -18,6 +21,9 @@ import org.axonframework.eventsourcing.eventstore.EventStorageEngine
 import org.jesperancinha.video.command.commands.AddVideoSeriesCommand
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
+import org.junit.platform.commons.logging.LoggerFactory
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -34,13 +40,9 @@ import java.math.BigDecimal
 @AutoConfigureMockMvc
 @ContextConfiguration(initializers = [VideoSeriesCommandInitializer::class])
 @Import(TestConfig::class)
-class VideoSeriesControllerTest(
-    @Autowired
+class VideoSeriesControllerTest @Autowired constructor(
     private val mvc: MockMvc,
-    @Autowired
-    private val commandGateway: DefaultCommandGateway
-
-    ) : WordSpec() {
+) : WordSpec() {
 
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
@@ -55,14 +57,16 @@ class VideoSeriesControllerTest(
     init {
         "should receive data and responde correctly" should {
             "should send a video title" {
+                logger.info("Starting send title test!")
 //                every { commandGateway.send<VideoSeriesDto>(any<AddVideoSeriesCommand>()) }
 //                val slotFilm = slot<AddVideoSeriesCommand>()
-                val film = VideoSeriesDto.builder()
-                    .id("1")
-                    .name("Silence of the Lambs")
-                    .cashValue(BigDecimal.valueOf(1_000_000))
-                    .genre(Genre.HORROR)
-                    .build()
+                val film = VideoSeriesDto(
+                    id = "1",
+                    name = "Silence of the Lambs",
+                    volumes = 1,
+                    cashValue = BigDecimal.valueOf(1_000_000),
+                    genre = Genre.HORROR
+                )
                 with(mvc) {
                     perform(
                         post("/video-series")
@@ -83,7 +87,10 @@ class VideoSeriesControllerTest(
 //                captured.genre shouldBe film.genre
             }
         }
+    }
 
+    companion object{
+        val logger: Logger = getLogger(VideoSeriesControllerTest::class.java)
     }
 }
 

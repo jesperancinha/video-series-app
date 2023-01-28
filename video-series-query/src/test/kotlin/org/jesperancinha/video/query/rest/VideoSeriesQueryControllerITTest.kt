@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import org.bson.Document
-import org.jesperancinha.video.core.data.Genre
+import org.jesperancinha.video.core.data.Genre.*
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository
@@ -25,7 +25,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
-import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
@@ -68,12 +67,12 @@ class VideoSeriesQueryControllerITTest(
                     .find().toList()
                     .shouldBeEmpty()
 
-                val film = VideoSeriesDto.builder()
-                    .name("Halloween")
-                    .volumes(6)
-                    .cashValue(BigDecimal.valueOf(1_000_000))
-                    .genre(Genre.HORROR)
-                    .build()
+                val film = VideoSeriesDto(
+                    name="Halloween",
+                    volumes = 6,
+                    cashValue = BigDecimal.valueOf(1_000_000),
+                    genre = HORROR
+                )
 
                 val responseCreateEntity =
                     testRestTemplate.restTemplate.postForEntity<Any>(
@@ -92,7 +91,7 @@ class VideoSeriesQueryControllerITTest(
                 val filmOnEventQueue: VideoSeriesDto = resultingDocumentList.findFirstDocumentInCollection()
                 filmOnEventQueue.id.shouldNotBeNull()
                 filmOnEventQueue.name shouldBe "Nightmare on Elm Street I"
-                filmOnEventQueue.genre shouldBe Genre.HORROR
+                filmOnEventQueue.genre shouldBe HORROR
                 filmOnEventQueue.cashValue shouldBe BigDecimal.valueOf(1000000)
                 filmOnEventQueue.volumes shouldBe 1
 
@@ -128,7 +127,7 @@ class VideoSeriesQueryControllerITTest(
                 .withFileFromClasspath("entrypoint.sh", "/entrypoint.sh")
                 .withFileFromClasspath(
                     "video-series-command.jar",
-                    "/video-series-command-2.0.0.jar"
+                    "/video-series-command.jar"
                 )
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder

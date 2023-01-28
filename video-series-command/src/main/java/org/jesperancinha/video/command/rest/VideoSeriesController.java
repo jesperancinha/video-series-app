@@ -24,11 +24,11 @@ public class VideoSeriesController {
                     VideoSeriesDto videoSeriesDto) {
         commandGateway.send(
                 AddVideoSeriesCommand.builder()
-                        .id(videoSeriesDto.id())
-                        .name(videoSeriesDto.name())
-                        .volumes(videoSeriesDto.volumes())
-                        .genre(videoSeriesDto.genre())
-                        .cashValue(videoSeriesDto.cashValue())
+                        .id(videoSeriesDto.id)
+                        .name(videoSeriesDto.name)
+                        .volumes(videoSeriesDto.volumes)
+                        .genre(videoSeriesDto.genre)
+                        .cashValue(videoSeriesDto.cashValue)
                         .build());
     }
 }

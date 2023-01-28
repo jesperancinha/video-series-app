@@ -172,12 +172,11 @@
                 </executions>
                 <configuration>
                     <jvmTarget>${java.version}</jvmTarget>
-                    <args>
-                        <arg>-Xjsr305=strict</arg>
-                    </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
                         <plugin>jpa</plugin>
+                        <plugin>all-open</plugin>
+                        <plugin>no-arg</plugin>
                     </compilerPlugins>
                 </configuration>
                 <dependencies>
@@ -250,7 +249,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <useFile>false</useFile>
                     <includes>
+                        <include>**/VideoSeriesQueryControllerITTest</include>
                         <include>**/*Test</include>
                         <include>**/*Spec</include>
                     </includes>
@@ -273,7 +274,7 @@
                                 <resource>
                                     <directory>${project.basedir}/../video-series-command/target</directory>
                                     <includes>
-                                        <include>video-series-command-*.jar</include>
+                                        <include>video-series-command.jar</include>
                                     </includes>
                                 </resource>
                             </resources>

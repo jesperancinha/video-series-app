@@ -134,9 +134,8 @@ class VideoSeriesQueryControllerITTest(
                 )
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
-                        .from("adoptopenjdk/openjdk16")
+                        .from("openjdk:19-alpine")
                         .workDir("/usr/local/bin/")
-                        .run("apt-get update")
                         .copy(
                             "video-series-command.jar",
                             "/usr/local/bin/video-series-command.jar"
@@ -153,7 +152,7 @@ class VideoSeriesQueryControllerITTest(
 
         @Container
         @JvmStatic
-        val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer<Nothing>("postgres").apply {
+        val postgreSQLContainer: PostgreSQLContainer<*> = PostgreSQLContainer<Nothing>("postgres:15.0-alpine").apply {
             withNetwork(network)
             withNetworkAliases("postgres")
             withDatabaseName("vsa")

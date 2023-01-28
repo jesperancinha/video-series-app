@@ -48,7 +48,7 @@ internal class VsaMonoApplicationTests {
             val mongoPort = dockerCompose.getServicePort("mongo_1", 27017)
             TestPropertySourceUtils
                 .addInlinedPropertiesToEnvironment(
-                    applicationContext, String.format("video.series.mongo.port=%d", mongoPort)
+                    applicationContext, "video.series.mongo.port=$mongoPort"
                 )
         }
 

@@ -66,6 +66,7 @@
         <testcontainers.version>1.17.6</testcontainers.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.2</omni-coveragereporter-maven-plugin.version>
+        <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
     </properties>
 
     <dependencyManagement>
@@ -139,6 +140,13 @@
                 <groupId>com.thoughtworks.xstream</groupId>
                 <artifactId>xstream</artifactId>
                 <version>${xstream.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+                <scope>test</scope>
             </dependency>
 
             <!-- Test dependencies -->

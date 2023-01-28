@@ -1,7 +1,5 @@
 package org.jesperancinha.video.command.rest
 
-//import org.springframework.data.mongodb.core.query.Query
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.mongodb.MongoClient
 import com.mongodb.client.FindIterable
@@ -12,10 +10,9 @@ import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import org.bson.Document
 import org.jesperancinha.video.command.aggregates.VideoSeriesAggregate
-import org.jesperancinha.video.core.data.Genre
+import org.jesperancinha.video.common.VideoSeriesInitializer
 import org.jesperancinha.video.core.data.Genre.HORROR
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,7 +25,7 @@ import org.springframework.web.client.postForEntity
 import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@ContextConfiguration(initializers = [VideoSeriesCommandInitializer::class])
+@ContextConfiguration(initializers = [VideoSeriesInitializer::class])
 class VideoSeriesControllerITTest(
     @Autowired
     private val testRestTemplate: TestRestTemplate,

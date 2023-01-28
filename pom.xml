@@ -23,6 +23,7 @@
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
+        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
 
         <!-- Study case libraries -->
@@ -73,6 +74,13 @@
             <dependency>
                 <groupId>org.jesperancinha.video</groupId>
                 <artifactId>video-series-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jesperancinha.video</groupId>
+                <artifactId>video-series-core</artifactId>
+                <type>test-jar</type>
+                <scope>test</scope>
                 <version>${project.version}</version>
             </dependency>
 

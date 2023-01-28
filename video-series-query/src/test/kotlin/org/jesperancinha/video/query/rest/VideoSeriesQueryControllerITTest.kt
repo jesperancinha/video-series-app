@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import org.bson.Document
+import org.jesperancinha.video.common.VideoSeriesInitializer
 import org.jesperancinha.video.core.data.Genre.*
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
@@ -42,7 +43,7 @@ import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("local")
-@ContextConfiguration(initializers = [VideoSeriesQueryInitializer::class])
+@ContextConfiguration(initializers = [VideoSeriesInitializer::class])
 class VideoSeriesQueryControllerITTest(
     @Autowired private val testRestTemplate: TestRestTemplate,
     @Autowired private val videoSeriesRepository: VideoSeriesRepository,

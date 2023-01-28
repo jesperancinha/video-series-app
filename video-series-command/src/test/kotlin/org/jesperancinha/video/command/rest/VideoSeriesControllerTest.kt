@@ -5,28 +5,15 @@ import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.extensions.spring.SpringExtension
-import io.kotest.matchers.nulls.shouldNotBeNull
-import io.kotest.matchers.shouldBe
-import io.mockk.Called
-import io.mockk.every
-import io.mockk.slot
-import io.mockk.verify
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import org.axonframework.commandhandling.gateway.CommandGateway
-import org.axonframework.commandhandling.gateway.DefaultCommandGateway
 import org.axonframework.eventhandling.tokenstore.TokenStore
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine
-import org.jesperancinha.video.command.commands.AddVideoSeriesCommand
+import org.jesperancinha.video.common.VideoSeriesInitializer
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
-import org.junit.platform.commons.logging.LoggerFactory
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
@@ -38,7 +25,7 @@ import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@ContextConfiguration(initializers = [VideoSeriesCommandInitializer::class])
+@ContextConfiguration(initializers = [VideoSeriesInitializer::class])
 @Import(TestConfig::class)
 class VideoSeriesControllerTest @Autowired constructor(
     private val mvc: MockMvc,

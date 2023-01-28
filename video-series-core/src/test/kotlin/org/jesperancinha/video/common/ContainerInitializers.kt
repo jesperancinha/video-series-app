@@ -1,4 +1,4 @@
-package org.jesperancinha.video.command.rest
+package org.jesperancinha.video.common
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -11,7 +11,7 @@ import java.io.File
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 
-class VideoSeriesCommandInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
+class VideoSeriesInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
     override fun initialize(applicationContext: ConfigurableApplicationContext) {
         logger.info("Starting IT -> ${LocalDateTime.now()}")
         val postgres1Host = dockerCompose.getServiceHost("postgres_1", 5432)
@@ -37,7 +37,7 @@ class VideoSeriesCommandInitializer : ApplicationContextInitializer<Configurable
     }
 
     companion object {
-        val logger: Logger = LoggerFactory.getLogger(VideoSeriesCommandInitializer::class.java)
+        val logger: Logger = LoggerFactory.getLogger(VideoSeriesInitializer::class.java)
         private val startup: LocalDateTime = LocalDateTime.now()
 
         private val dockerCompose by lazy {

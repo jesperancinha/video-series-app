@@ -11,8 +11,8 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c37d762c19014f54b55ce48771b11453)](https://www.codacy.com/gh/jesperancinha/video-series-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/video-series-app&amp;utm_campaign=Badge_Grade)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c37d762c19014f54b55ce48771b11453)](https://www.codacy.com/gh/jesperancinha/video-series-app/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/video-series-app&utm_campaign=Badge_Coverage)
-[![codecov](https://codecov.io/gl/jesperancinha/video-series-app/branch/master/graph/badge.svg)](https://codecov.io/gl/jesperancinha/video-series-app/branch/master)
-[![Coverage Status](https://coveralls.io/repos/gitlab/jesperancinha/video-series-app/badge.svg?)](https://coveralls.io/gitlab/jesperancinha/video-series-app?branch=HEAD)
+[![codecov](https://codecov.io/gh/jesperancinha/video-series-app/branch/master/graph/badge.svg)](https://codecov.io/gh/jesperancinha/video-series-app/branch/master)
+[![Coverage Status](https://coveralls.io/repos/github/jesperancinha/video-series-app/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/video-series-app?branch=master)
 
 [![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/video-series-app.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/video-series-app.svg)](#)

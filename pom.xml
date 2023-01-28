@@ -218,6 +218,11 @@
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>${springdoc-openapi-ui.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
 
             <!-- This Dependency is added as a workaround for the following issue -->
             <!--- https://github.com/Kotlin/kotlinx.coroutines/issues/3334 -->

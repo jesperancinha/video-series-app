@@ -62,7 +62,7 @@
         <springdoc-openapi-starter-webmvc-ui.version>2.0.2</springdoc-openapi-starter-webmvc-ui.version>
         <springdoc-openapi-ui.version>1.6.14</springdoc-openapi-ui.version>
 
-        <postgresql.version>42.5.2</postgresql.version>
+        <postgresql.version>42.5.3</postgresql.version>
         <testcontainers.version>1.17.6</testcontainers.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.2</omni-coveragereporter-maven-plugin.version>

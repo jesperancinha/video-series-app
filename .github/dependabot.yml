@@ -13,10 +13,6 @@ updates:
         versions: ["1.6.0-RC2", "1.6.0-RC3", "1.6.0"]
 
   - package-ecosystem: "npm"
-    directory: "/stamps-and-coins-web"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "npm"
     directory: "/e2e"
     schedule:
       interval: "daily"

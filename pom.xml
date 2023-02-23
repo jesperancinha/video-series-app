@@ -31,7 +31,7 @@
         <axon-mongo.version>4.7.0</axon-mongo.version>
         <axon-spring-boot-starter.version>${axon.version}</axon-spring-boot-starter.version>
         <axon-mongo.version>4.2</axon-mongo.version>
-        <versions-maven-plugin.version>2.14.2</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.15.0</versions-maven-plugin.version>
 
         <!-- Serialization libraries -->
         <xstream.version>1.4.20</xstream.version>

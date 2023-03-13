@@ -27,7 +27,7 @@
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
 
         <!-- Study case libraries -->
-        <axon.version>4.7.2</axon.version>
+        <axon.version>4.7.3</axon.version>
         <axon-mongo.version>4.7.0</axon-mongo.version>
         <axon-spring-boot-starter.version>${axon.version}</axon-spring-boot-starter.version>
         <axon-mongo.version>4.2</axon-mongo.version>

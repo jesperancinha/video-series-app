@@ -46,7 +46,7 @@
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
         <mockito-junit-jupiter.version>5.3.1</mockito-junit-jupiter.version>
 
-        <jacoco-maven-plugin.version>0.8.9</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <springmockk.version>4.0.2</springmockk.version>

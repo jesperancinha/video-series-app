@@ -55,7 +55,7 @@
         <kotest.version>5.5.3</kotest.version>
 
         <kotlin.version>1.8.21</kotlin.version>
-        <kotlinx-coroutines.version>1.6.4</kotlinx-coroutines.version>
+        <kotlinx-coroutines.version>1.7.0</kotlinx-coroutines.version>
         <kotlinx-coroutines-debug.version>${kotlinx-coroutines.version}</kotlinx-coroutines-debug.version>
 
         <spring-boot.version>3.0.6</spring-boot.version>

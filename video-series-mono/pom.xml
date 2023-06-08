@@ -15,7 +15,7 @@
 	<description>Single control project to keep green as a checkup for Axon</description>
 
     <properties>
-        <kotlin.version>1.8.21</kotlin.version>
+        <kotlin.version>1.8.22</kotlin.version>
     </properties>
 
     <dependencies>

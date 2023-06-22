@@ -28,7 +28,7 @@
 
         <!-- Study case libraries -->
         <axon.version>4.7.6</axon.version>
-        <axon-mongo.version>4.7.0</axon-mongo.version>
+        <axon-mongo.version>4.8.0</axon-mongo.version>
         <axon-spring-boot-starter.version>${axon.version}</axon-spring-boot-starter.version>
         <axon-mongo.version>4.2</axon-mongo.version>
         <versions-maven-plugin.version>2.16.0</versions-maven-plugin.version>

@@ -60,7 +60,7 @@ dcd:
 dcup-full: docker-clean-build-start vsa-wait
 dcup-full-action: docker-clean no-test docker-action vsa-wait
 cypress-open:
-	cd e2e && yarn && npm run cypress
+	cd e2e && yarn && npm run cypress:open:electron
 cypress-electron:
 	cd e2e && make cypress-electron
 cypress-chrome:

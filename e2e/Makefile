@@ -2,7 +2,7 @@ SHELL := /bin/bash
 GITHUB_RUN_ID ?=123
 
 cypress-open:
-	yarn && npm run cypress
+	yarn && npm run cypress:open:electron
 cypress-electron:
 	yarn && docker-compose -p ${GITHUB_RUN_ID} -f ../docker-compose.yml -f docker-compose.yml -f ../docker-compose-db.yml up --exit-code-from e2e-electron e2e-electron
 cypress-chrome:

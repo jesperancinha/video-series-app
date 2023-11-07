@@ -41,7 +41,7 @@
         <lombok.version>1.18.30</lombok.version>
 
         <!-- Test Dependency Versions -->
-        <junit-jupiter.version>5.10.0</junit-jupiter.version>
+        <junit-jupiter.version>5.10.1</junit-jupiter.version>
 
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
@@ -51,7 +51,7 @@
         <mockk.version>1.13.8</mockk.version>
         <kotest.version>5.5.3</kotest.version>
 
-        <kotlin.version>1.9.10</kotlin.version>
+        <kotlin.version>1.9.20</kotlin.version>
         <kotlinx-coroutines.version>1.7.3</kotlinx-coroutines.version>
         <kotlinx-coroutines-debug.version>1.7.3</kotlinx-coroutines-debug.version>
 

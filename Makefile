@@ -81,3 +81,15 @@ version-update-maven:
 	mvn versions:use-next-releases
 	mvn versions:use-latest-releases
 	mvn versions:use-releases
+update:
+	find . -name "package-lock.json" | xargs rm; \
+	find . -name "yarn.lock" | xargs rm; \
+	git pull; \
+	curl --compressed -o- -L https://yarnpkg.com/install.sh | bash; \
+	npm install caniuse-lite; \
+	npm install -g npm-check-updates; \
+	cd e2e; \
+		yarn; \
+		npx browserslist --update-db; \
+		ncu -u; \
+		yarn

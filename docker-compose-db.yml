@@ -15,7 +15,7 @@ services:
 
   mongo:
     hostname: mongo
-    image: mongo:3.0.0
+    image: mongo
     healthcheck:
       test: [ "CMD","echo","db.adminCommand('ping')", ">","script.js", "mongosh", "<", "script.js" ]
       interval: 10s

@@ -2,6 +2,10 @@ package org.jesperancinha.video.core.configuration
 
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoClients
+import com.thoughtworks.xstream.converters.collections.CollectionConverter
+import com.thoughtworks.xstream.converters.collections.MapConverter
+import com.thoughtworks.xstream.converters.collections.SingletonCollectionConverter
+import com.thoughtworks.xstream.converters.collections.SingletonMapConverter
 import com.thoughtworks.xstream.security.AnyTypePermission
 import com.thoughtworks.xstream.security.NoTypePermission
 import com.thoughtworks.xstream.security.NullPermission
@@ -48,13 +52,30 @@ class AxonConfig(
                 ReplayToken::class.java,
                 MongoTrackingToken::class.java,
                 Collections::class.java,
+                Set::class.java,
+                AbstractMap::class.java
             )
         )
+        xStream.registerConverter(MapConverter(xStream.mapper))
+        xStream.registerConverter(CollectionConverter(xStream.mapper))
+        xStream.registerConverter(SingletonCollectionConverter(xStream.mapper))
+        xStream.registerConverter(SingletonCollectionConverter(xStream.mapper))
+        xStream.registerConverter(SingletonMapConverter(xStream.mapper))
         xStream.allowTypeHierarchy(MutableCollection::class.java)
         xStream.allowTypeHierarchy(Collections::class.java)
-        val defaultMongoTemplate = DefaultMongoTemplate.builder().mongoDatabase(client).build()
-        return MongoEventStorageEngine.builder().snapshotSerializer(serializer).eventSerializer(serializer)
-            .mongoTemplate(defaultMongoTemplate).build()
+        xStream.allowTypeHierarchy(Set::class.java)
+        xStream.allowTypeHierarchy(AbstractMap::class.java)
+        return MongoEventStorageEngine
+            .builder()
+            .snapshotSerializer(serializer)
+            .eventSerializer(serializer)
+            .mongoTemplate(
+                DefaultMongoTemplate
+                    .builder()
+                    .mongoDatabase(client)
+                    .build()
+            )
+            .build()
     }
 
     @Bean

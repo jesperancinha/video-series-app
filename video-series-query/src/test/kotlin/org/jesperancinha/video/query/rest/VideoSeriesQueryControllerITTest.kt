@@ -1,8 +1,8 @@
 package org.jesperancinha.video.query.rest
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.mongodb.MongoClient
 import com.mongodb.client.FindIterable
+import com.mongodb.client.MongoClient
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.core.test.TestCase
@@ -13,12 +13,9 @@ import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.bson.Document
-import org.jesperancinha.video.common.VideoSeriesInitializer
-import org.jesperancinha.video.core.data.Genre.*
+import org.jesperancinha.video.core.data.Genre.HORROR
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository
@@ -29,7 +26,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForEntity
 import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
 import org.springframework.web.client.postForEntity
@@ -55,55 +51,61 @@ class VideoSeriesQueryControllerITTest(
 
         "should receive data and respond correctly" should {
             "return initial list when no data has been inserted" {
-                val responseEntity =
-                    testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
+                runBlocking(Dispatchers.IO) {
+                    val responseEntity =
+                        testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
 
-                responseEntity.shouldNotBeNull()
-                val allVSAs = responseEntity.body as List<*>
-                allVSAs.shouldHaveSize(3)
+                    responseEntity.shouldNotBeNull()
+                    val allVSAs = responseEntity.body as List<*>
+                    allVSAs.shouldHaveSize(3)
 
-                mongoClient
-                    .getDatabase("axonframework")
-                    .getCollection("domainevents")
-                    .find().toList()
-                    .shouldBeEmpty()
+                    mongoClient
+                        .getDatabase("axonframework")
+                        .getCollection("domainevents")
+                        .find().toList()
+                        .shouldBeEmpty()
 
-                val film = VideoSeriesDto(
-                    name="Halloween",
-                    volumes = 6,
-                    cashValue = BigDecimal.valueOf(1_000_000),
-                    genre = HORROR
-                )
-
-                val responseCreateEntity =
-                    testRestTemplate.restTemplate.postForEntity<Any>(
-                        "http://${vsaContainer.host}:${vsaContainer.getMappedPort(8080)}/video-series",
-                        film
+                    val film = VideoSeriesDto(
+                        name = "Halloween",
+                        volumes = 6,
+                        cashValue = BigDecimal.valueOf(1_000_000),
+                        genre = HORROR
                     )
 
-                responseCreateEntity.statusCode shouldBe OK
+                    launch {
+                        testRestTemplate.restTemplate.postForEntity<Any>(
+                            "http://${vsaContainer.host}:${vsaContainer.getMappedPort(8080)}/video-series",
+                            film
+                        ).statusCode shouldBe OK
+                    }.join()
 
-                val resultingDocumentList = mongoClient
-                    .getDatabase("axonframework")
-                    .getCollection("domainevents")
-                    .find()
-                resultingDocumentList.toList()
-                    .shouldHaveSize(1)
-                val filmOnEventQueue: VideoSeriesDto = resultingDocumentList.findFirstDocumentInCollection()
-                filmOnEventQueue.id.shouldNotBeNull()
-                filmOnEventQueue.name shouldBe "Halloween"
-                filmOnEventQueue.genre shouldBe HORROR
-                filmOnEventQueue.cashValue shouldBe BigDecimal.valueOf(1000000)
-                filmOnEventQueue.volumes shouldBe 6
+                    val resultingDocumentList = mongoClient
+                        .getDatabase("axonframework")
+                        .getCollection("domainevents")
+                        .find()
+                    resultingDocumentList.toList()
+                        .shouldHaveSize(1)
+                    val filmOnEventQueue: VideoSeriesDto = resultingDocumentList.findFirstDocumentInCollection()
+                    filmOnEventQueue.id.shouldNotBeNull()
+                    filmOnEventQueue.name shouldBe "Halloween"
+                    filmOnEventQueue.genre shouldBe HORROR
+                    filmOnEventQueue.cashValue shouldBe BigDecimal.valueOf(1000000)
+                    filmOnEventQueue.volumes shouldBe 6
 
-                delay(5000)
-                val responseResultEntity =
-                    testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
+                    repeat(4) {
+                        delay(1000)
+                        val responseResultEntity =
+                            testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
+                        responseResultEntity.shouldNotBeNull()
 
-                responseResultEntity.shouldNotBeNull()
-                val allVSAResults = responseResultEntity.body as List<*>
-                allVSAResults.shouldNotBeEmpty()
-                allVSAResults shouldHaveSize 4
+                    }
+                    val responseResultEntity =
+                        testRestTemplate.getForEntity<VideoSeriesList>("/video-series", VideoSeriesList::class)
+                    responseResultEntity.shouldNotBeNull()
+                    val allVSAResults = responseResultEntity.body as List<*>
+                    allVSAResults.shouldNotBeEmpty()
+                    allVSAResults shouldHaveSize 4
+                }
             }
         }
 
@@ -116,7 +118,7 @@ class VideoSeriesQueryControllerITTest(
 
         @Container
         @JvmField
-        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo:3.0.0")
+        val mongoDBContainer: MongoDBContainer = MongoDBContainer("mongo")
             .withNetwork(network)
             .withNetworkAliases("mongo")
             .withExposedPorts(27017)

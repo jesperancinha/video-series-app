@@ -54,11 +54,10 @@ internal class VsaMonoApplicationTests {
 
         companion object {
             val logger = LoggerFactory.getLogger(VsaMonoApplicationTests::class.java)
-            private val startup = LocalDateTime.now()
-            private val dockerCompose: DockerComposeContainer<*> =
+            private val dockerCompose by lazy {
                 DockerComposeContainer(listOf(File("docker-compose.yml")))
                     .withExposedService("mongo_1", 27017, Wait.forListeningPort())
-                    .withLocalCompose(true)
+                    .withLocalCompose(false)}
 
             init {
                 dockerCompose.start()

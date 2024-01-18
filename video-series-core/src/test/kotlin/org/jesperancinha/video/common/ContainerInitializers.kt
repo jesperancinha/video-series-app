@@ -44,7 +44,7 @@ class VideoSeriesInitializer : ApplicationContextInitializer<ConfigurableApplica
             DockerCompose(listOf(File("../docker-compose-db.yml")))
                 .withExposedService("postgres_1", 5432, Wait.forListeningPort())
                 .withExposedService("mongo_1", 27017, Wait.forListeningPort())
-                .withLocalCompose(true)
+                .withLocalCompose(false)
                 .also { it.start() }
         }
 

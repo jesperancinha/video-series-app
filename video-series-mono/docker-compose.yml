@@ -1,7 +1,7 @@
 services:
   mongo:
     hostname: mongo
-    image: mongo:3.0.0
+    image: mongo
     expose:
       - 27017
     ports:

@@ -1,8 +1,8 @@
 package org.jesperancinha.video.command.rest
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.mongodb.MongoClient
 import com.mongodb.client.FindIterable
+import com.mongodb.client.MongoClient
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.extensions.spring.SpringExtension

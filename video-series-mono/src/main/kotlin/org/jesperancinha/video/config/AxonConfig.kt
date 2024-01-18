@@ -1,6 +1,7 @@
 package org.jesperancinha.video.config
 
-import com.mongodb.MongoClient
+import com.mongodb.client.MongoClient
+import com.mongodb.client.MongoClients
 import com.thoughtworks.xstream.security.NoTypePermission
 import com.thoughtworks.xstream.security.NullPermission
 import com.thoughtworks.xstream.security.PrimitiveTypePermission
@@ -17,12 +18,14 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class AxonConfig {
+class AxonConfig(
     @Value("\${video.series.mongo.port}")
-    private val mongoPort: Long? = null
+    private val mongoPort: Long
+) {
+
     @Bean
     fun mongoClient(): MongoClient {
-        return MongoClient("localhost", mongoPort!!.toInt())
+        return MongoClients.create("mongodb://localhost:${mongoPort.toInt()}")
     }
 
     @Bean

@@ -4,16 +4,19 @@ GITHUB_RUN_ID=${GITHUB_RUN_ID:-123}
 function checkServiceByNameAndMessage() {
     name=$1
     message=$2
+    messageLog=$(echo $message | tr '[:upper:]' '[:lower:]')
     docker-compose -p "${GITHUB_RUN_ID}" -f docker-compose.yml -f docker-compose-db.yml logs "$name" > "logs"
     string=$(cat logs)
+    stringLog=$(echo $string | tr '[:upper:]' '[:lower:]')
     counter=0
     echo "Project $GITHUB_RUN_ID"
     echo -n "Starting service $name "
-    while [[ "$string" != *"$message"* ]]
+    while [[ "$stringLog" != *"$messageLog"* ]]
     do
       echo -e -n "\e[93m-\e[39m"
       docker-compose -p "${GITHUB_RUN_ID}" -f docker-compose.yml -f docker-compose-db.yml logs "$name" > "logs"
       string=$(cat logs)
+      stringLog=$(echo $string | tr '[:upper:]' '[:lower:]')
       sleep 1
       counter=$((counter+1))
       if [ $counter -eq 200 ]; then

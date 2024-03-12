@@ -55,7 +55,7 @@
         <kotlinx-coroutines-debug.version>1.8.0</kotlinx-coroutines-debug.version>
 
         <spring-boot.version>3.2.3</spring-boot.version>
-        <springdoc-openapi-starter-webmvc-ui.version>2.3.0</springdoc-openapi-starter-webmvc-ui.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.4.0</springdoc-openapi-starter-webmvc-ui.version>
 
         <postgresql.version>42.7.2</postgresql.version>
         <testcontainers.version>1.19.7</testcontainers.version>

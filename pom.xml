@@ -34,7 +34,7 @@
 
         <!-- Serialization libraries -->
         <xstream.version>1.4.20</xstream.version>
-        <jackson.version>2.16.2</jackson.version>
+        <jackson.version>2.17.0</jackson.version>
 
         <h2.version>2.1.214</h2.version>
         <lombok.version>1.18.30</lombok.version>

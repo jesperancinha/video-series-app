@@ -50,3 +50,13 @@ screenshots
 
 ## Logs
 logs
+
+# NPM
+package-lock.json
+yarn.lock
+
+## Automation
+cypressUpdateOne.sh
+docker-composetmp.yml
+packagetmp.json
+pluginUpdatesOne.sh

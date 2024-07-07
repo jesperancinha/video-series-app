@@ -104,3 +104,5 @@ deps-cypress-update:
 deps-plugins-update:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/pluginUpdatesOne.sh | bash
 deps-quick-update: deps-cypress-update deps-plugins-update
+accept-prs:
+	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/acceptPR.sh | bash

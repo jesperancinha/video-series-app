@@ -55,10 +55,10 @@ dcup-light:
 dcup: dcd
 	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml -f docker-compose.override.yml up -d --build --remove-orphans
 	bash vsa_wait.sh
-dcd:
+dcd: dc-migration
 	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml down
-dcup-full: docker-clean-build-start vsa-wait
-dcup-full-action: docker-clean no-test docker-action vsa-wait
+dcup-full: dcd docker-clean-build-start vsa-wait
+dcup-full-action: dcd docker-clean no-test docker-action vsa-wait
 cypress-open:
 	cd e2e && yarn && npm run cypress:open:electron
 cypress-electron:
@@ -106,3 +106,5 @@ deps-plugins-update:
 deps-quick-update: deps-cypress-update deps-plugins-update
 accept-prs:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/acceptPR.sh | bash
+dc-migration:
+	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/setupDockerCompose.sh | bash

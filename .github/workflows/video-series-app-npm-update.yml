@@ -22,7 +22,7 @@ jobs:
         run: make deps-update
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           commit-message: Update npm dependencies
           branch: update-npm-dependencies

@@ -50,7 +50,7 @@
         <mockk.version>1.13.13</mockk.version>
         <kotest.version>5.8.0</kotest.version>
 
-        <kotlin.version>2.0.21</kotlin.version>
+        <kotlin.version>2.1.0</kotlin.version>
         <kotlinx-coroutines.version>1.9.0</kotlinx-coroutines.version>
         <kotlinx-coroutines-debug.version>1.9.0</kotlinx-coroutines-debug.version>
 

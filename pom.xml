@@ -37,7 +37,7 @@
         <jackson.version>2.18.3</jackson.version>
 
         <h2.version>2.1.214</h2.version>
-        <lombok.version>1.18.36</lombok.version>
+        <lombok.version>1.18.38</lombok.version>
 
         <!-- Test Dependency Versions -->
         <junit-jupiter.version>5.12.1</junit-jupiter.version>

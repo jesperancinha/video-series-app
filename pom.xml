@@ -60,7 +60,7 @@
         <postgresql.version>42.7.5</postgresql.version>
         <testcontainers.version>1.21.0</testcontainers.version>
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-        <omni-coveragereporter-maven-plugin.version>0.4.4</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
         <jackson-module-kotlin.version>2.19.0</jackson-module-kotlin.version>
     </properties>

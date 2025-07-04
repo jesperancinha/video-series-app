@@ -40,7 +40,7 @@
         <lombok.version>1.18.38</lombok.version>
 
         <!-- Test Dependency Versions -->
-        <junit-jupiter.version>5.13.2</junit-jupiter.version>
+        <junit-jupiter.version>5.13.3</junit-jupiter.version>
 
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>

@@ -47,7 +47,7 @@
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <springmockk.version>4.0.2</springmockk.version>
         <kotest-extensions-spring.version>1.3.0</kotest-extensions-spring.version>
-        <mockk.version>1.14.4</mockk.version>
+        <mockk.version>1.14.5</mockk.version>
         <kotest.version>5.8.0</kotest.version>
 
         <kotlin.version>2.2.0</kotlin.version>

@@ -62,7 +62,7 @@
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <hibernate-validator.version>9.0.1.Final</hibernate-validator.version>
-        <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
     </properties>
 
     <dependencyManagement>

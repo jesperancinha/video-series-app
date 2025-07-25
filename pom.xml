@@ -27,7 +27,7 @@
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
 
         <!-- Study case libraries -->
-        <axon.version>4.11.2</axon.version>
+        <axon.version>4.11.3</axon.version>
         <axon-mongo.version>4.11.1</axon-mongo.version>
         <axon-spring-boot-starter.version>${axon.version}</axon-spring-boot-starter.version>
         <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
@@ -40,7 +40,7 @@
         <lombok.version>1.18.38</lombok.version>
 
         <!-- Test Dependency Versions -->
-        <junit-jupiter.version>5.13.3</junit-jupiter.version>
+        <junit-jupiter.version>5.13.4</junit-jupiter.version>
 
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
@@ -54,7 +54,7 @@
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
         <kotlinx-coroutines-debug.version>1.10.2</kotlinx-coroutines-debug.version>
 
-        <spring-boot.version>3.5.3</spring-boot.version>
+        <spring-boot.version>3.5.4</spring-boot.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.8.9</springdoc-openapi-starter-webmvc-ui.version>
 
         <postgresql.version>42.7.7</postgresql.version>
@@ -62,7 +62,7 @@
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <hibernate-validator.version>9.0.1.Final</hibernate-validator.version>
-        <jackson-module-kotlin.version>2.19.1</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
     </properties>
 
     <dependencyManagement>

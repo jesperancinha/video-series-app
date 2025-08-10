@@ -61,3 +61,4 @@ docker-composetmp.yml
 packagetmp.json
 pluginUpdatesOne.sh
 yarn.lock
+./package.json

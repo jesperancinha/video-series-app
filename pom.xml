@@ -34,7 +34,6 @@
 
         <!-- Serialization libraries -->
         <xstream.version>1.4.21</xstream.version>
-        <jackson.version>2.19.2</jackson.version>
 
         <h2.version>2.1.214</h2.version>
         <lombok.version>1.18.38</lombok.version>
@@ -62,7 +61,6 @@
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <hibernate-validator.version>9.0.1.Final</hibernate-validator.version>
-        <jackson-module-kotlin.version>2.20.0</jackson-module-kotlin.version>
     </properties>
 
     <dependencyManagement>
@@ -107,28 +105,6 @@
                 <artifactId>axon-mongo</artifactId>
                 <version>${axon-mongo.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-xml</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
@@ -211,11 +187,6 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-reflect</artifactId>
                 <version>${kotlin.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-kotlin</artifactId>
-                <version>${jackson-module-kotlin.version}</version>
             </dependency>
 
             <!-- This Dependency is added as a workaround for the following issue -->

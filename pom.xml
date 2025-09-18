@@ -36,7 +36,7 @@
         <xstream.version>1.4.21</xstream.version>
 
         <h2.version>2.1.214</h2.version>
-        <lombok.version>1.18.40</lombok.version>
+        <lombok.version>1.18.42</lombok.version>
 
         <!-- Test Dependency Versions -->
         <junit-jupiter.version>5.13.4</junit-jupiter.version>

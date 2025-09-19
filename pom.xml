@@ -17,7 +17,7 @@
 
     <properties>
         <!-- External Dependency Versions -->
-        <java.version>19</java.version>
+        <java.version>21</java.version>
         <maven-compiler-plugin.source>${java.version}</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>${java.version}</maven-compiler-plugin.target>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>

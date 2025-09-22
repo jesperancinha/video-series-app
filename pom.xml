@@ -20,7 +20,7 @@
         <java.version>19</java.version>
         <maven-compiler-plugin.source>${java.version}</maven-compiler-plugin.source>
         <maven-compiler-plugin.target>${java.version}</maven-compiler-plugin.target>
-        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
@@ -30,7 +30,7 @@
         <axon.version>4.12.1</axon.version>
         <axon-mongo.version>4.12.0</axon-mongo.version>
         <axon-spring-boot-starter.version>${axon.version}</axon-spring-boot-starter.version>
-        <versions-maven-plugin.version>2.19.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.19.1</versions-maven-plugin.version>
 
         <!-- Serialization libraries -->
         <xstream.version>1.4.21</xstream.version>

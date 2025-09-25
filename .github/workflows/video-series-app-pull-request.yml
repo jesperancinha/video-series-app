@@ -1,16 +1,8 @@
 name: VSA Pull Request
 
 on:
-  create:
-    branches:
-      - '**'
-  push:
-    branches:
-      - '**'
-      - '!master'
   pull_request:
-    branches:
-      - '**'
+    branches: [ master ]
 
 jobs:
   build:

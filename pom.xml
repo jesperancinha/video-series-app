@@ -41,7 +41,7 @@
         <!-- Test Dependency Versions -->
         <junit-jupiter.version>6.0.0</junit-jupiter.version>
 
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
         <springmockk.version>4.0.2</springmockk.version>
@@ -57,7 +57,7 @@
         <springdoc-openapi-starter-webmvc-ui.version>2.8.13</springdoc-openapi-starter-webmvc-ui.version>
 
         <testcontainers.version>1.21.3</testcontainers.version>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.5</omni-coveragereporter-maven-plugin.version>
         <hibernate-validator.version>9.0.1.Final</hibernate-validator.version>
     </properties>

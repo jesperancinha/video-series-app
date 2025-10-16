@@ -1,4 +1,4 @@
-FROM openjdk:19-alpine
+FROM eclipse-temurin:21-alpine
 
 ENV runningFolder /usr/local/bin/
 

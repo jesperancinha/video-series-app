@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Credits to https://github.com/mrts/docker-postgresql-multiple-databases/blob/master/create-multiple-postgresql-databases.sh
 # This is an improvement of that file

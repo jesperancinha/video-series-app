@@ -80,9 +80,9 @@ Example payload for Command API:
 ```json
 {
   "name": "MacGyver",
-  "volumes": 30,
-  "cashValue": 1323.2,
-  "genre": "DRAMA"
+  "volumes": 233,
+  "cashValue": 9999.9,
+  "genre": "ACTION"
 }
 ```
 

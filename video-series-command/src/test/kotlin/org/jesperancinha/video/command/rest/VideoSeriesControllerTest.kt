@@ -11,7 +11,7 @@ import org.jesperancinha.video.common.VideoSeriesInitializer
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.slf4j.Logger
-import org.slf4j.LoggerFactory.*
+import org.slf4j.LoggerFactory.getLogger
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -49,10 +49,10 @@ class VideoSeriesControllerTest @Autowired constructor(
 //                val slotFilm = slot<AddVideoSeriesCommand>()
                 val film = VideoSeriesDto(
                     id = "1",
-                    name = "Silence of the Lambs",
+                    name = "Karate Kid",
                     volumes = 1,
                     cashValue = BigDecimal.valueOf(1_000_000),
-                    genre = Genre.HORROR
+                    genre = Genre.ACTION
                 )
                 with(mvc) {
                     perform(

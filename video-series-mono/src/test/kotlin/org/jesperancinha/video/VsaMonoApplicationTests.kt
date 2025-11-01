@@ -1,6 +1,7 @@
 package org.jesperancinha.video
 
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import org.jesperancinha.video.data.Genre.SITCOM
 import org.jesperancinha.video.data.VideoSeriesDto
@@ -39,7 +40,7 @@ internal class VsaMonoApplicationTests {
         responseEntity.statusCode shouldBe OK
         val videoHistoryEntity = restTemplate.getForEntity("/video/history", Array<VideoSeriesDto>::class.java)
         videoHistoryEntity.statusCode shouldBe OK
-        val videoHistory = videoHistoryEntity.body!!
+        val videoHistory = videoHistoryEntity.body.shouldNotBeNull()
         videoHistory.shouldHaveSize(1)
         videoHistory[0] shouldBe film
     }

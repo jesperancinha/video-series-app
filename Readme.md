@@ -57,7 +57,7 @@ curl localhost:8090/video-series
 2.  Create new records
 
 ```shell
-curl -d '{ "name":"True Blood", "volumes":30, "cashValue": 1323.2, "genre": "DRAMA"}' -H "Content-Type: application/json" -X POST http://localhost:8080/video-series
+curl -d '{ "name":"MacGyver", "volumes":233, "cashValue": 9999.9, "genre": "ACTION"}' -H "Content-Type: application/json" -X POST http://localhost:8080/video-series
 ```
 
 ## Swagger
@@ -79,7 +79,7 @@ Example payload for Command API:
 
 ```json
 {
-  "name": "True Blood",
+  "name": "MacGyver",
   "volumes": 30,
   "cashValue": 1323.2,
   "genre": "DRAMA"

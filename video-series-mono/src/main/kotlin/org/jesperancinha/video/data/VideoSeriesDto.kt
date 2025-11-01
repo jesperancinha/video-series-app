@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal
 
 data class VideoSeriesDto (
-    @JsonProperty("id")
+    @param:JsonProperty("id")
     val id: Long,
-    @JsonProperty("name")
+    @param:JsonProperty("name")
     val name: String,
-    @JsonProperty("volumes")
+    @param:JsonProperty("volumes")
     val volumes: Int = 1,
-    @JsonProperty("cashValue")
+    @param:JsonProperty("cashValue")
     val cashValue: BigDecimal,
-    @JsonProperty("genre")
+    @param:JsonProperty("genre")
     val genre: Genre
 )

@@ -1,6 +1,7 @@
 package org.jesperancinha.video
 
-import org.assertj.core.api.Assertions
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.shouldBe
 import org.jesperancinha.video.data.Genre.SITCOM
 import org.jesperancinha.video.data.VideoSeriesDto
 import org.junit.jupiter.api.Test
@@ -11,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.support.TestPropertySourceUtils
 import org.testcontainers.containers.DockerComposeContainer
@@ -35,12 +36,12 @@ internal class VsaMonoApplicationTests {
             genre = SITCOM
         )
         val responseEntity = restTemplate.postForEntity("/video/series", film, VideoSeriesDto::class.java)
-        Assertions.assertThat(responseEntity.statusCode).isEqualTo(HttpStatus.OK)
+        responseEntity.statusCode shouldBe OK
         val videoHistoryEntity = restTemplate.getForEntity("/video/history", Array<VideoSeriesDto>::class.java)
-        Assertions.assertThat(videoHistoryEntity.statusCode).isEqualTo(HttpStatus.OK)
+        videoHistoryEntity.statusCode shouldBe OK
         val videoHistory = videoHistoryEntity.body!!
-        Assertions.assertThat(videoHistory).hasSize(1)
-        Assertions.assertThat(videoHistory[0]).isEqualTo(film)
+        videoHistory.shouldHaveSize(1)
+        videoHistory[0] shouldBe film
     }
 
     class VideoSeriesCommandInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {

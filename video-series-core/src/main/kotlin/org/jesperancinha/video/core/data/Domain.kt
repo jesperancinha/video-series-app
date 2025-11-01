@@ -8,14 +8,14 @@ enum class Genre {
 }
 
 data class VideoSeriesDto(
-    @JsonProperty("id")
+    @param:JsonProperty("id")
     val id: String? = null,
-    @JsonProperty("name")
+    @param:JsonProperty("name")
     val name: String,
-    @JsonProperty("volumes")
+    @param:JsonProperty("volumes")
     val volumes: Int = 1,
-    @JsonProperty("cashValue")
+    @param:JsonProperty("cashValue")
     val cashValue: BigDecimal,
-    @JsonProperty("genre")
+    @param:JsonProperty("genre")
     val genre: Genre,
 )

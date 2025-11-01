@@ -1,7 +1,7 @@
 package org.jesperancinha.video
 
 import org.assertj.core.api.Assertions
-import org.jesperancinha.video.data.Genre
+import org.jesperancinha.video.data.Genre.SITCOM
 import org.jesperancinha.video.data.VideoSeriesDto
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
@@ -30,9 +30,10 @@ internal class VsaMonoApplicationTests {
         val restTemplate = testRestTemplate!!.restTemplate
         val film: Any = VideoSeriesDto(
              id = 123L,
-            name = "Nightmare on Elm Street I",
+            name = "3rd Rock from the Sun",
             cashValue = BigDecimal.valueOf(1000000),
-            genre =Genre.HORROR)
+            genre = SITCOM
+        )
         val responseEntity = restTemplate.postForEntity("/video/series", film, VideoSeriesDto::class.java)
         Assertions.assertThat(responseEntity.statusCode).isEqualTo(HttpStatus.OK)
         val videoHistoryEntity = restTemplate.getForEntity("/video/history", Array<VideoSeriesDto>::class.java)

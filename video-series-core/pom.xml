@@ -16,6 +16,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-api-jvm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-core-jvm</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>

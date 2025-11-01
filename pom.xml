@@ -138,21 +138,16 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-bom</artifactId>
+                <version>${kotest.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
                 <groupId>io.kotest.extensions</groupId>
                 <artifactId>kotest-extensions-spring</artifactId>
                 <version>${kotest-extensions-spring.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.kotest</groupId>
-                <artifactId>kotest-runner-junit5-jvm</artifactId>
-                <version>${kotest.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.kotest</groupId>
-                <artifactId>kotest-runner-junit5</artifactId>
-                <version>${kotest.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

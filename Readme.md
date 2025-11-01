@@ -28,9 +28,9 @@ Please check the [TechStack.md](TechStack.md) file for details.
 
 This is an example project to to offer you a very simple example of a CQRS architecture.
 
-This project is also the official support project of my article on medium:
+This project is also the official support project of my article on dev.to:
 
-[![](https://img.shields.io/badge/CQRS%20—%20Command%20Query%20Responsibility%20Segregation-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/swlh/cqrs-command-query-responsibility-segregation-72db08ee8282)
+[![](https://img.shields.io/badge/CQRS%20—%20Command%20Query%20Responsibility%20Segregation-12100E?style=for-the-badge&logo=dev.to&logoColor=white)](https://dev.to/jofisaes/cqrs-command-query-responsibility-segregation-a-java-spring-springboot-and-axon-example-4i26)
 
 Please have a look at my [Issues](./Issues.md) file to find out about improvements being made. This file contains a list
 of ongoing issues that on one hand do not block the development, but on the other hand they are a great nice to haves.

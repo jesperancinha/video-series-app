@@ -182,6 +182,10 @@ git checkout 1.0.0
 git checkout 2.0.0
 ```
 
+## Checklist
+
+* For every image update, file [VideoSeriesQueryControllerITTest](video-series-query/src/test/kotlin/org/jesperancinha/video/query/rest/VideoSeriesQueryControllerITTest.kt) must also be updated.
+
 ## References
 
 -   [Working with Postgres Audit Triggers](https://www.enterprisedb.com/postgres-tutorials/working-postgres-audit-triggers)

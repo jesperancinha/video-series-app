@@ -15,7 +15,7 @@ import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.*
 import org.bson.Document
-import org.jesperancinha.video.core.data.Genre.HORROR
+import org.jesperancinha.video.core.data.Genre.SITCOM
 import org.jesperancinha.video.core.data.VideoSeriesDto
 import org.jesperancinha.video.query.data.VideoSeries
 import org.jesperancinha.video.query.jpa.VideoSeriesRepository
@@ -66,10 +66,10 @@ class VideoSeriesQueryControllerITTest(
                         .shouldBeEmpty()
 
                     val film = VideoSeriesDto(
-                        name = "Halloween",
+                        name = "The Big Bang Theory",
                         volumes = 6,
                         cashValue = BigDecimal.valueOf(1_000_000),
-                        genre = HORROR
+                        genre = SITCOM
                     )
 
                     launch {
@@ -87,8 +87,8 @@ class VideoSeriesQueryControllerITTest(
                         .shouldHaveSize(1)
                     val filmOnEventQueue: VideoSeriesDto = resultingDocumentList.findFirstDocumentInCollection()
                     filmOnEventQueue.id.shouldNotBeNull()
-                    filmOnEventQueue.name shouldBe "Halloween"
-                    filmOnEventQueue.genre shouldBe HORROR
+                    filmOnEventQueue.name shouldBe "The Big Bang Theory"
+                    filmOnEventQueue.genre shouldBe SITCOM
                     filmOnEventQueue.cashValue shouldBe BigDecimal.valueOf(1000000)
                     filmOnEventQueue.volumes shouldBe 6
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import java.math.BigDecimal
 
 enum class Genre {
-    SITCOM, DRAMA, HORROR
+    SITCOM, DRAMA, ACTION
 }
 
 data class VideoSeriesDto(

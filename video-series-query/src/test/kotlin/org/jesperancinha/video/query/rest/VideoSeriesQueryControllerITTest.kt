@@ -135,7 +135,7 @@ class VideoSeriesQueryControllerITTest(
                 )
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
-                        .from("openjdk:19-alpine")
+                        .from("eclipse-temurin:21-alpine")
                         .workDir("/usr/local/bin/")
                         .copy(
                             "video-series-command.jar",

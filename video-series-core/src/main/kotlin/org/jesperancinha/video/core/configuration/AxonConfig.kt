@@ -27,9 +27,9 @@ import java.util.*
 
 @Configuration
 class AxonConfig(
-    @Value("\${video.series.mongo.port}")
+    @param:Value("\${video.series.mongo.port}")
     val mongoPort: Long,
-    @Value("\${video.series.mongo.host:localhost}")
+    @param:Value("\${video.series.mongo.host:localhost}")
     val mongoHost: String
 ) {
 

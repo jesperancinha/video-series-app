@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class AxonConfig(
-    @Value("\${video.series.mongo.port}")
+    @param:Value("\${video.series.mongo.port}")
     private val mongoPort: Long
 ) {
 

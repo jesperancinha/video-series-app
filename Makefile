@@ -50,6 +50,7 @@ pull:
 	docker-compose -p ${GITHUB_RUN_ID} pull
 vsa-wait:
 	bash vsa_wait.sh
+dcup-dbs: dcup-light
 dcup-light:
 	docker-compose -p ${GITHUB_RUN_ID} -f docker-compose.yml -f docker-compose-db.yml -f docker-compose.override.yml up -d postgres mongo
 dcup: dcd

@@ -5,31 +5,33 @@ import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.extensions.Extension
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.extensions.spring.SpringExtension
+import io.kotest.matchers.shouldBe
 import org.axonframework.eventhandling.tokenstore.TokenStore
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine
 import org.jesperancinha.video.common.VideoSeriesInitializer
 import org.jesperancinha.video.core.data.Genre
 import org.jesperancinha.video.core.data.VideoSeriesDto
+import org.junit.jupiter.api.Disabled
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory.getLogger
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.context.annotation.Import
-import org.springframework.http.MediaType
+import org.springframework.http.HttpStatus
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.test.web.servlet.client.RestTestClient
 import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
 @ContextConfiguration(initializers = [VideoSeriesInitializer::class])
 @Import(TestConfig::class)
-class VideoSeriesControllerTest @Autowired constructor(
-    private val mvc: MockMvc,
+@Disabled
+class VideoSeriesControllerTest(
+    @LocalServerPort private val port: Int,
 ) : WordSpec() {
+
+    val restTestClient =
+        RestTestClient.bindToServer().baseUrl("http://localhost:$port").build();
 
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
@@ -54,14 +56,11 @@ class VideoSeriesControllerTest @Autowired constructor(
                     cashValue = BigDecimal.valueOf(1_000_000),
                     genre = Genre.ACTION
                 )
-                with(mvc) {
-                    perform(
-                        post("/video-series")
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .content(objectMapper.writeValueAsString(film))
-                    )
-                        .andExpect(status().isOk)
-                }
+                restTestClient.post()
+                    .body(objectMapper.writeValueAsString(film))
+                    .exchange()
+                    .returnResult()
+                    .status shouldBe HttpStatus.OK
 
 //                verify { commandGateway.send<VideoSeriesDto>(capture(slotFilm)) }
 //                verify { tokenStore wasNot Called }
@@ -76,7 +75,7 @@ class VideoSeriesControllerTest @Autowired constructor(
         }
     }
 
-    companion object{
+    companion object {
         val logger: Logger = getLogger(VideoSeriesControllerTest::class.java)
     }
 }

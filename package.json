@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-<<<<<<< HEAD
-    "caniuse-lite": "^1.0.30001757"
-=======
-    "caniuse-lite": "^1.0.30001759"
->>>>>>> 7f8d8223ba0c9ab651dcadf3fd52b67ed64191c2
-  }
-}

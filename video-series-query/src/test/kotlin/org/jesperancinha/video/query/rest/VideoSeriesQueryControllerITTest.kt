@@ -40,10 +40,10 @@ import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ActiveProfiles("local")
-class VideoSeriesQueryControllerITTest(
-    @Autowired private val testRestTemplate: TestRestTemplate,
-    @Autowired private val videoSeriesRepository: VideoSeriesRepository,
-    @Autowired private val mongoClient: MongoClient
+class VideoSeriesQueryControllerITTest @Autowired constructor(
+    private val testRestTemplate: TestRestTemplate,
+    private val videoSeriesRepository: VideoSeriesRepository,
+    private val mongoClient: MongoClient
 ) : WordSpec(
     {
 
@@ -114,7 +114,7 @@ class VideoSeriesQueryControllerITTest(
     companion object {
 
         @JvmField
-        var network: Network = Network.newNetwork()
+        val network: Network = Network.newNetwork()
 
         @Container
         @JvmField
@@ -135,7 +135,7 @@ class VideoSeriesQueryControllerITTest(
                 )
                 .withDockerfileFromBuilder { builder: DockerfileBuilder ->
                     builder
-                        .from("eclipse-temurin:21-alpine")
+                        .from("eclipse-temurin:25-alpine")
                         .workDir("/usr/local/bin/")
                         .copy(
                             "video-series-command.jar",

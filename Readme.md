@@ -186,6 +186,19 @@ git checkout 2.0.0
 
 * For every image update, file [VideoSeriesQueryControllerITTest](video-series-query/src/test/kotlin/org/jesperancinha/video/query/rest/VideoSeriesQueryControllerITTest.kt) must also be updated.
 
+---
+
+## Claude
+
+Prompt claude with the following:
+
+### Run all skills
+```text
+please run skills annotations, kotlin, parallel, docker, and spring-integration-test-wiring on this project
+```
+
+---
+
 ## References
 
 -   [Working with Postgres Audit Triggers](https://www.enterprisedb.com/postgres-tutorials/working-postgres-audit-triggers)

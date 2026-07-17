@@ -5,7 +5,6 @@ import org.jesperancinha.video.command.AddVideoSeriesCommand
 import org.jesperancinha.video.data.VideoSeriesDto
 import org.jesperancinha.video.domain.VideoSeries
 import org.jesperancinha.video.repository.VsaRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class VsaController @Autowired constructor(
+class VsaController(
     private val commandGateway: CommandGateway,
     private val vsaRepository: VsaRepository
 ) {

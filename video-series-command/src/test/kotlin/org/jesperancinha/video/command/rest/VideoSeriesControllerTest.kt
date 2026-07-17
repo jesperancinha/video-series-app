@@ -28,6 +28,8 @@ import java.math.BigDecimal
 @Disabled
 class VideoSeriesControllerTest(
     @LocalServerPort private val port: Int,
+    @MockkBean(relaxed = true) private val tokenStore: TokenStore,
+    @MockkBean(relaxed = true) private val eventStorageEngine: EventStorageEngine,
 ) : WordSpec() {
 
     val restTestClient =
@@ -36,12 +38,6 @@ class VideoSeriesControllerTest(
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
     private val objectMapper = ObjectMapper()
-
-    @MockkBean(relaxed = true)
-    lateinit var tokenStore: TokenStore
-
-    @MockkBean(relaxed = true)
-    lateinit var eventStorageEngine: EventStorageEngine
 
     init {
         "should receive data and responde correctly" should {

@@ -17,8 +17,7 @@ import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.support.TestPropertySourceUtils
-import org.springframework.test.web.servlet.client.RestTestClient
-import org.springframework.test.web.servlet.client.expectBody
+import org.springframework.web.client.postForEntity
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait
 import java.io.File
@@ -27,41 +26,25 @@ import java.time.LocalDateTime
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(initializers = [VsaMonoApplicationTests.VideoSeriesCommandInitializer::class])
-@AutoConfigureRestClient
-internal class VsaMonoApplicationTests(
-    @LocalServerPort private val port: Int,
-){
-
-    val restTestClient =
-        RestTestClient.bindToServer().baseUrl("http://localhost:$port").build();
-
+internal class VsaMonoApplicationTests @Autowired constructor(
+    private val testRestTemplate: TestRestTemplate
+) {
     @Test
     fun contextLoads() {
-        val restTemplate = restTestClient
+        val restTemplate = testRestTemplate.restTemplate
         val film: Any = VideoSeriesDto(
              id = 123L,
             name = "3rd Rock from the Sun",
             cashValue = BigDecimal.valueOf(1000000),
             genre = SITCOM
         )
-        val responseEntity = restTemplate
-            .post()
-            .uri("/video/series")
-            .body(film)
-            .exchange()
-            .expectBody<VideoSeriesDto>()
-            .returnResult()
-        responseEntity.status shouldBe OK
-        val videoHistoryEntity = restTemplate
-            .get()
-            .uri("/video/history")
-            .exchange()
-            .expectBody<Array<VideoSeriesDto>>()
-            .returnResult()
-        videoHistoryEntity.status shouldBe OK
-        val videoHistory = videoHistoryEntity.responseBody.shouldNotBeNull()
-//        videoHistory.shouldHaveSize(1)
-//        videoHistory[0] shouldBe film
+        val responseEntity = restTemplate.postForEntity<VideoSeriesDto>("/video/series", film)
+        responseEntity.statusCode shouldBe OK
+        val videoHistoryEntity = restTemplate.getForEntity("/video/history", Array<VideoSeriesDto>::class.java)
+        videoHistoryEntity.statusCode shouldBe OK
+        val videoHistory = videoHistoryEntity.body.shouldNotBeNull()
+        videoHistory.shouldHaveSize(1)
+        videoHistory[0] shouldBe film
     }
 
     class VideoSeriesCommandInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {

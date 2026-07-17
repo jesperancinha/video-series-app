@@ -194,7 +194,12 @@ Prompt claude with the following:
 
 ### Run all skills
 ```text
-please run skills angular, annotations, docker, java, jee, jvm, kotlin, parallel, readme, spring, and spring-test on this project
+please run skills angular, annotations, docker, java, jee, jvm, kotlin, ktor, maven, parallel, readme, spring, and spring-test on this project
+```
+
+### Run all skills except spring (used for migrations)
+```text
+please run skills angular, annotations, docker, java, jee, jvm, kotlin, ktor, maven, parallel, and readme
 ```
 
 ---

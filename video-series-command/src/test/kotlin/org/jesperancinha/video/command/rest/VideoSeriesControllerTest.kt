@@ -29,17 +29,13 @@ import java.math.BigDecimal
 @Import(TestConfig::class)
 class VideoSeriesControllerTest @Autowired constructor(
     private val mvc: MockMvc,
+    @MockkBean(relaxed = true) private val tokenStore: TokenStore,
+    @MockkBean(relaxed = true) private val eventStorageEngine: EventStorageEngine,
 ) : WordSpec() {
 
     override fun extensions(): List<Extension> = listOf(SpringExtension)
 
     private val objectMapper = ObjectMapper()
-
-    @MockkBean(relaxed = true)
-    lateinit var tokenStore: TokenStore
-
-    @MockkBean(relaxed = true)
-    lateinit var eventStorageEngine: EventStorageEngine
 
     init {
         "should receive data and responde correctly" should {

@@ -26,10 +26,8 @@ import java.math.BigDecimal
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = [VideoSeriesInitializer::class])
-class VideoSeriesControllerITTest(
-    @Autowired
+class VideoSeriesControllerITTest @Autowired constructor(
     private val testRestTemplate: TestRestTemplate,
-    @Autowired
     private val mongoClient: MongoClient,
 ) : WordSpec(
     {

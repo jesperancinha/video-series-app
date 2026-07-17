@@ -16,6 +16,7 @@ import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.HttpStatus.OK
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.support.TestPropertySourceUtils
+import org.springframework.web.client.postForEntity
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait
 import java.io.File
@@ -24,19 +25,19 @@ import java.time.LocalDateTime
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(initializers = [VsaMonoApplicationTests.VideoSeriesCommandInitializer::class])
-internal class VsaMonoApplicationTests {
-    @Autowired
-    private val testRestTemplate: TestRestTemplate? = null
+internal class VsaMonoApplicationTests @Autowired constructor(
+    private val testRestTemplate: TestRestTemplate
+) {
     @Test
     fun contextLoads() {
-        val restTemplate = testRestTemplate!!.restTemplate
+        val restTemplate = testRestTemplate.restTemplate
         val film: Any = VideoSeriesDto(
              id = 123L,
             name = "3rd Rock from the Sun",
             cashValue = BigDecimal.valueOf(1000000),
             genre = SITCOM
         )
-        val responseEntity = restTemplate.postForEntity("/video/series", film, VideoSeriesDto::class.java)
+        val responseEntity = restTemplate.postForEntity<VideoSeriesDto>("/video/series", film)
         responseEntity.statusCode shouldBe OK
         val videoHistoryEntity = restTemplate.getForEntity("/video/history", Array<VideoSeriesDto>::class.java)
         videoHistoryEntity.statusCode shouldBe OK

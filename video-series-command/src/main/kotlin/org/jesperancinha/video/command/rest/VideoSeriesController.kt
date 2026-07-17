@@ -3,7 +3,6 @@ package org.jesperancinha.video.command.rest
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.jesperancinha.video.command.commands.AddVideoSeriesCommand
 import org.jesperancinha.video.core.data.VideoSeriesDto
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/video-series")
-class VideoSeriesController @Autowired constructor (private val commandGateway: CommandGateway) {
+class VideoSeriesController(private val commandGateway: CommandGateway) {
     @PostMapping
     fun postNewVideoSeries(
         @RequestBody videoSeriesDto: VideoSeriesDto

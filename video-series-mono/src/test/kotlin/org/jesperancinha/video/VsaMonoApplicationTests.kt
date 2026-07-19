@@ -8,9 +8,10 @@ import org.jesperancinha.video.data.VideoSeriesDto
 import org.junit.jupiter.api.Test
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.restclient.test.autoconfigure.AutoConfigureRestClient
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment
-import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.HttpStatus.OK
@@ -61,8 +62,7 @@ internal class VsaMonoApplicationTests @Autowired constructor(
             private val dockerCompose by lazy {
                 DockerComposeContainer(listOf(File("docker-compose.yml")))
                     .withExposedService("mongo_1", 27017, Wait.forListeningPort())
-                    .withLocalCompose(false)}
-
+            }
             init {
                 dockerCompose.start()
             }

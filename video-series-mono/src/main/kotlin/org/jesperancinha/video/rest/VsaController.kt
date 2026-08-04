@@ -30,7 +30,7 @@ class VsaController(
     }
 
     @GetMapping("/video/history")
-    fun listAllVideoSeriesHistory(): ResponseEntity<List<VideoSeries?>?> {
+    fun listAllVideoSeriesHistory(): ResponseEntity<List<VideoSeries>> {
         return ResponseEntity.ok().body(
             vsaRepository.readAll()
         )
